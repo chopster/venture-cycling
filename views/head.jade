@@ -1,0 +1,78 @@
+head
+	meta(charset='utf-8')
+	title Venture Cycling
+	meta(name="viewport" content="width=device-width, initial-scale=1.0")
+	#link(href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Lobster" rel="stylesheet" type="text/css")
+	link(href="../css/style.css" rel="stylesheet" type="text/css")
+
+	script(src='../javascript/jquery-1.11.3.min.js')
+	script(src='../javascript/script.js')
+
+	body(id=(submenu !== '' ? submenu : ''))
+		input(type="checkbox" id="slide-checkbox" class="slide-checkbox" role="button")
+		header(role="banner")
+			div(class="nav-mobile-wrapper")
+				div(class="nav")
+					ul(class="navbar")
+						li(class=(menu === 'Home' ? 'active' : ''))
+							a(href="/") Home
+						li(class=(menu === 'About' ? 'active' : ''))
+							a(href="/about") About Me 
+						li(class=(menu === 'Services' ? 'active' : ''))
+							a(href="/services") Services 
+							ul
+								li(class=(submenu === 'adult-lessons' ? 'active' : ''))
+									a(href="/services/adult-lessons") Adult lessons
+								li(class=(submenu === 'childrens-lessons' ? 'active' : ''))
+									a(href="/services/childrens-lessons") Children's lessons
+								li(class=(submenu === 'group-lessons' ? 'active' : ''))
+									a(href="/services/group-lessons") Group lessons
+								li 
+									a(href="/services/ride-leading") Ride Leading
+								li(class=(submenu === 'dr-bike' ? 'active' : ''))
+									a(href="/services/dr-bike") Dr Bike
+						li(class=(menu === 'Booking' ? 'active' : ''))
+							a(href="/booking/make-a-booking") Booking
+							ul
+								li(class=(submenu === 'pricing' ? 'active' : ''))
+									a(href="/booking/pricing") Pricing
+								li(class=(submenu === 'make-a-booking' ? 'active' : '')) 
+									a(href="/booking/make-a-booking") Make a booking
+								li 
+									a(href="/booking/faqs") Faq's
+						li
+							a(href="/contact") Contact
+
+			label(for="slide-checkbox" class="nav-trigger" onclick)
+			a(class="brand" href='/')
+				h1 Venture <span>Cycling</span>
+			nav(role="navigation")
+				ul(class="navbar")
+					li(class=(menu === 'Home' ? 'active' : ''))
+						a(href="/") Home
+					li(class=(menu === 'About' ? 'active' : ''))
+						a(href="/about") About Me 
+					li(class=(menu === 'Services' ? 'active' : ''))
+						a(href="/services") Services 
+						ul
+							li(class=(submenu === 'adult-lessons' ? 'active' : ''))
+								a(href="/services/adult-lessons") Adult lessons
+							li(class=(submenu === 'childrens-lessons' ? 'active' : ''))
+								a(href="/services/childrens-lessons") Children's lessons
+							li(class=(submenu === 'group-lessons' ? 'active' : ''))
+								a(href="/services/group-lessons") Group lessons
+							li 
+								a(href="/services/ride-leading") Ride Leading
+							li(class=(submenu === 'dr-bike' ? 'active' : ''))
+								a(href="/services/dr-bike") Dr Bike
+					li(class=(menu === 'Booking' ? 'active' : ''))
+						a(href="/booking/make-a-booking") Booking
+						ul
+							li(class=(submenu === 'pricing' ? 'active' : ''))
+								a(href="/booking/pricing") Pricing
+							li(class=(submenu === 'make-a-booking' ? 'active' : '')) 
+								a(href="/booking/make-a-booking") Make a booking
+							li 
+								a(href="/booking/faqs") Faq's
+						li
+							a(href="/contact") Contact

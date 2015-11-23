@@ -1,0 +1,83 @@
+#booking-form {
+  width: 630px;
+}
+
+/* Common form styles */
+.field-box {
+  padding: 10px 0;
+  label {
+    width: 150px;
+    float: left;
+
+    &.error {
+      float: none;
+      display: inline;
+      margin-left: 20px;
+      color: #ff0000;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+  }
+
+  small {
+    font-size: 0.8em;
+  }
+
+  input {
+    padding: 5px;
+    width: 180px;
+  }
+  textarea {
+    border: 1px solid #eee;
+  }
+
+  &.button-cont {
+    margin-left: 150px;
+  } 
+
+  .button {
+    background: #008080;
+    color: #fff;
+    padding: 5px;
+    font-size: 1.1em;
+    width: 195px;
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+  }
+  span {
+    margin-left: 10px;
+    color: #ff0000;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  #booking-form {
+    width: 100%;
+    .field-box {
+      display: inline-block;
+      width: 100%;
+    }
+    label {
+      &.error {
+        display: block;
+        margin-left: 0px;
+        width: 100%;
+        float: left;
+      }
+    }
+
+    input, textarea {
+      clear: both;
+      float: left;
+    }
+
+    .button-cont {
+      margin-left: 0px;
+    }
+  }
+
+}

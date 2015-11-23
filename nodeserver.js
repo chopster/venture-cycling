@@ -26,6 +26,7 @@ var tests = "localhost";
 var server = express();
 console.log(__dirname);
 
+server.set('port', (process.env.PORT || 8080));
 
 server.set('views', __dirname + '/views')
 server.set('view engine', 'jade');
@@ -119,9 +120,6 @@ server.get('/booking-email', function (req, res) {
 
 
 
-
-
-var port = 8080;
-server.listen(port, function() {
-    console.log('server listening on port ' + port);
+server.listen(server.get('port'), function() {
+  console.log('Node app is running on port', server.get('port'));
 });

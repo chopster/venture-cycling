@@ -39,6 +39,8 @@ text-decoration: none;
 h1 {
   color: #707070;
   font-family: 'Lobster', cursive;
+  font-weight: normal;
+
 
   span {
     color: #008080;
@@ -187,7 +189,7 @@ nav {
       width: 100%;
 
       ul {
-      	display: none;
+        display: none;
       }
 
 
@@ -197,9 +199,9 @@ nav {
       }
 
       &:hover {
-      	ul {
-      		display: block;
-      	}
+        ul {
+          display: block;
+        }
       }
 
       a {
@@ -271,12 +273,12 @@ h1 {
   }
 
   .main-content {
-  	width: 900px;
-  	margin: 15px 0;
+    width: 900px;
+    margin: 15px 0;
 
-  	p {
-  		line-height: 2em;
-  	}
+    p {
+      line-height: 2em;
+    }
   }
 }
 

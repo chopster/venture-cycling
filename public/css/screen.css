@@ -108,6 +108,7 @@ a {
 h1 {
   color: #707070;
   font-family: 'Lobster', cursive;
+  font-weight: normal;
 }
 /* line 45, ../../sass/screen.scss */
 h1 span {

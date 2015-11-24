@@ -229,6 +229,7 @@ header .brand {
   header .brand h1 {
     color: #707070;
     font-family: 'Lobster', cursive;
+    font-weight: normal;
     margin: 30px 0; }
     header .brand h1 span {
       color: #008080; }

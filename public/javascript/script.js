@@ -211,7 +211,7 @@ function injectQsComponent(url, component) {
 });
 
 $(document).ready(function(){
-  $('.lightbox').click(function(e) {
+  $('.lightbox').on('click', function(e) {
     e.preventDefault();
     $('.lightbox').colorbox({
       html:'<div id="calendar"></div>',
@@ -300,7 +300,7 @@ $(document).ready(function(){
                 overlayClose: false 
               });
 
-              $.get("http://localhost:8080/booking-email",{from, name, number, location, dob, message},function(data){
+              $.get("http://www.venturecycling.co.uk/booking-email",{from, name, number, location, dob, message},function(data){
                 if(data === "sent") {
                   $("#colorbox").find('.processing').text("Your booking request has been sent!");
                   setTimeout(function(){
@@ -308,6 +308,81 @@ $(document).ready(function(){
                   }, 3000);
                   $('#booking-form-submit').prop('disabled', false);
                   $('#booking-form')[0].reset();
+                }
+
+              });
+            },
+            // set this class to error-labels to indicate valid fields
+            success: function(label) {
+              // set &nbsp; as text for IE
+              label.html("&nbsp;").addClass("checked");
+            }
+        });
+
+			var validator = $("#contact-form").validate({
+            rules: {
+                name: {
+                  required: true,
+                  minlength: 2
+                },
+                email: {
+                  required: true,
+                  email: true
+                },
+                number: {
+                  required: false,
+                  phonesUK: true 
+                },
+            },
+            messages: {
+              name: {
+                required: "Please enter your name",
+                minlength: jQuery.validator.format("Enter at least {0} characters")
+              },
+              email: {
+                required: "Please enter your email address",
+                email: "Enter a valid email format"
+              },
+              number: {
+                phonesUK: "Enter a valid UK telephone number"
+              }
+            },
+            // the errorPlacement has to take the table layout into account
+            errorPlacement: function(error, element) {
+              // if (element.is(":radio"))
+              //   error.appendTo(element.parent().next().next());
+              // else if (element.is(":checkbox"))
+              //   error.appendTo(element.next());
+              // else
+                error.appendTo(element.parent());
+            },
+            // specifying a submitHandler prevents the default submit, good for the demo
+            submitHandler: function() {
+              var from,name,number,message;
+               
+              from = $('#contact-form-email').val();
+              name = $('#contact-form-name').val();
+              number = $('#contact-form-number').val();
+              message = $('#contact-form-message').val();
+
+              $('#contact-form-submit').prop('disabled', true);
+
+              $.colorbox({
+                html:'<div class="processing">Sending your request... <br />Please wait</div>',
+                width:"400px", 
+                height:"200px",
+                className: 'booking-submit-message',
+                overlayClose: false 
+              });
+
+              $.get("http://www.venturecycling.co.uk/contact-email",{from, name, number, message},function(data){
+                if(data === "sent") {
+                  $("#colorbox").find('.processing').text("Your request has been sent!");
+                  setTimeout(function(){
+                      $.colorbox.close();
+                  }, 3000);
+                  $('#contact-form-submit').prop('disabled', false);
+                  $('#contact-form')[0].reset();
                 }
 
               });
@@ -331,7 +406,6 @@ function renderCalendar() {
     },
 
      eventClick: function(calEvent, jsEvent, view) {
-      console.log(calEvent);
     $.colorbox({html:"<h1>"+calEvent.title+"</h1><br><p>"+calEvent.start+" TO "+calEvent.end+"</p>"});
   },
     

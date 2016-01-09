@@ -26,7 +26,6 @@ var tests = "localhost";
 var server = express();
 console.log(__dirname);
 
-server.set('port', (process.env.PORT || 8080));
 
 server.set('views', __dirname + '/views')
 server.set('view engine', 'jade');
@@ -78,8 +77,16 @@ server.get('/booking/make-a-booking', function (req, res) {
   res.render('booking/make-a-booking', {menu: 'Booking', submenu: 'make-a-booking'});
 });
 
+server.get('/booking/faqs', function (req, res) {
+  res.render('booking/faqs', {menu: 'Booking', submenu: 'faqs'});
+});
+
 server.get('/calendar', function (req, res) {
   res.render('calendar');
+});
+
+server.get('/contact', function (req, res) {
+  res.render('contact', {menu: 'Contact'});
 });
 
 
@@ -95,7 +102,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 
 server.get('/booking-email', function (req, res) {
   var mailOpts = {
-    to: 'rkoya81@gmail.com', // list of receivers. This is whoever you want to get the email when someone hits submit
+    to: 'kelly@venturecycling.co.uk', // list of receivers. This is whoever you want to get the email when someone hits submit
     subject: 'Venture Cycling - booking', // Subject line
     html: '<p>Email: ' + '<a href="mailto:' + req.query.from + '?Subject=Venture Cycling - Booking&body=Hi ' + req.query.name + ',' + '%0D%0A%0D%0AThank you for your booking enquiry,"' +'>' + req.query.from + '</a></p>' +
     			'<p>Name: ' + req.query.name + '</p>' + 
@@ -118,8 +125,34 @@ server.get('/booking-email', function (req, res) {
 	});
 });
 
+server.get('/contact-email', function (req, res) {
+  var mailOpts = {
+    to: 'kelly@venturecycling.co.uk', // list of receivers. This is whoever you want to get the email when someone hits submit
+    subject: 'Venture Cycling - contact', // Subject line
+    html: '<p>Email: ' + '<a href="mailto:' + req.query.from + '?Subject=Venture Cycling - contact&body=Hi ' + req.query.name + ',' + '%0D%0A%0D%0AThank you for your enquiry,"' +'>' + req.query.from + '</a></p>' +
+          '<p>Name: ' + req.query.name + '</p>' + 
+          '<p>Number: ' + req.query.number + '</p>' + 
+          '<p>Message: ' + req.query.message + '</p>' 
+
+  };
+
+  smtpTransport.sendMail(mailOpts, function(error, response){
+    if(error){
+      console.log(error);
+      res.end("error");
+    }
+    else{
+      console.log("Message sent: " + response.message);
+      res.end("sent");
+    }
+  });
+});
 
 
-server.listen(server.get('port'), function() {
-  console.log('Node app is running on port', server.get('port'));
+
+
+
+var port = 8080;
+server.listen(port, function() {
+    console.log('server listening on port ' + port);
 });

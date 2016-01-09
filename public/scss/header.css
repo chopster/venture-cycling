@@ -1,0 +1,154 @@
+/* Desktop navigation */
+nav {
+  width: 75.77vw;
+  margin: auto;
+  text-align: center;
+  text-transform: uppercase;
+  overflow: hidden;
+  font-size: 13px; }
+  nav .navbar:before {
+    right: 29px;
+    margin-left: -50%; }
+  nav .navbar:after {
+    left: 29px;
+    margin-right: -50%; }
+  nav .navbar:before, nav .navbar:after {
+    background-color: #d0d0d0;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    bottom: .1em;
+    position: relative;
+    vertical-align: middle;
+    width: 50%; }
+
+.nav-trigger {
+  display: none; }
+
+.nav-mobile-wrapper {
+  display: none; }
+
+.slide-checkbox {
+  position: absolute;
+  top: -9999px;
+  left: -9999px; }
+
+/* Common header styles */
+header .brand {
+  display: block;
+  margin: 0 auto;
+  /*width: 400px;*/ }
+  header .brand h1 {
+    color: #707070;
+    font-family: 'Lobster', cursive;
+    margin: 30px 0;
+    font-weight: normal; }
+    header .brand h1 span {
+      color: #008080; }
+
+.navbar li {
+  display: inline-block;
+  list-style: none; }
+  .navbar li ul {
+    display: none;
+    position: absolute;
+    width: 175px;
+    background-color: #e1e1e1;
+    z-index: 2; }
+  .navbar li:hover > ul {
+    display: block; }
+    .navbar li:hover > ul li {
+      float: left;
+      width: 100%; }
+      .navbar li:hover > ul li a {
+        color: #717171;
+        display: block; }
+        .navbar li:hover > ul li a:hover {
+          color: #fff; }
+  .navbar li:hover, .navbar li.active {
+    background: #008080;
+    color: #fff; }
+    .navbar li:hover ul li.active, .navbar li.active ul li.active {
+      background: none; }
+      .navbar li:hover ul li.active a, .navbar li.active ul li.active a {
+        color: #008080;
+        display: block; }
+  .navbar li a {
+    color: inherit;
+    display: inline-block;
+    padding: 10px 14px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+
+/* Mobile overrides for header */
+@media (max-width: 767px) {
+  header, .main-content {
+    -webkit-transition: -webkit-transform 500ms ease;
+    -moz-transition: -moz-transform 500ms ease;
+    -o-transition: -o-transform 500ms ease;
+    transition: transform 500ms ease; }
+
+  .slide-checkbox:checked ~ header, .slide-checkbox:checked ~ .main-content {
+    -webkit-transform: translateX(250px) scale(1);
+    -moz-transform: translateX(250px) scale(1);
+    -ms-transform: translateX(250px) scale(1);
+    -o-transform: translateX(250px) scale(1);
+    transform: translateX(250px) scale(1); }
+    .slide-checkbox:checked ~ header .nav-trigger:after, .slide-checkbox:checked ~ .main-content .nav-trigger:after {
+      content: '"'; }
+
+  nav {
+    display: none; }
+
+  .nav-trigger {
+    float: left;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin: 8px 10px 0 30px; }
+    .nav-trigger:after {
+      content: "!";
+      color: #f9f9f9;
+      background: #333;
+      display: block;
+      height: 30px;
+      width: 38px;
+      border-radius: 3px;
+      font: 24px/30px 'responav';
+      text-align: center;
+      margin-left: -19px; }
+
+  .nav-mobile-wrapper {
+    position: absolute;
+    width: 250px;
+    height: 100vh;
+    padding: 26px 0 20px 0;
+    top: -30px;
+    left: 0;
+    border-right: 1px solid #e1e1e1;
+    display: inline-table;
+    box-sizing: border-box;
+    background: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%); }
+    .nav-mobile-wrapper ul li {
+      list-style: none;
+      width: 100%;
+      text-align: left; }
+      .nav-mobile-wrapper ul li ul {
+        width: 100%; }
+      .nav-mobile-wrapper ul li:hover > ul li a {
+        padding-left: 30px; }
+      .nav-mobile-wrapper ul li a {
+        display: block; } }
+
+/*# sourceMappingURL=header.css.map */

@@ -231,6 +231,7 @@ blockquote {
   }
 }
 
+
 @media (max-width: 399px) {
   .main-content {
     .pricing-structure {
@@ -249,6 +250,96 @@ blockquote {
   }
 }
 
+.homepage-content {
+  display: inline-block;
+  .info {
+    float: left;
+
+    .accreditations {
+      .breeze {
+        vertical-align: top;
+        margin: 13px 15px 0 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+.homepage-content {
+  margin-top: 15px;
+
+    .info {
+      width: 100%;
+    }
+
+    .facebook-feed {
+      margin-top: 15px;
+      width: 100%;
+      float: left;
+    }
+  }
+}
+
+@media (min-width: 501px) {
+  .homepage-content {
+    margin-top: 15px;
+
+      .info {
+        width: 50%;
+      }
+
+      .facebook-feed {
+        margin-top: 0px;
+        width: 50%;
+        float: right;
+      }
+    }
+}
+
+@media (min-width: 600px) {
+  .homepage-content {
+
+      .info {
+        width: 45%;
+      }
+
+      .facebook-feed {
+        width: 299px;
+      }
+    }
+}
+
+@media (min-width: 700px) {
+  .homepage-content {
+    margin-top: 30px;
+
+      .info {
+        width: 55%;
+      }
+
+      .facebook-feed {
+        width: 299px;
+        float: right;
+      }
+    }
+}
+
+@media (min-width: 801px) {
+  .homepage-content {
+
+      .info {
+        width: 58%;
+      }
+
+      .facebook-feed {
+        width: 299px;
+        float: right;
+      }
+    }
+}
+
+
+
 #calendar {
   width: 50%;
   margin: 65px 0 0;
@@ -262,10 +353,14 @@ blockquote {
 }
 
 
+
+
 @import 'header';
 @import 'footer';
 @import 'form';
 @import 'calendar';
 @import 'colorbox';
+@import 'slider';
+
 
 /*# sourceMappingURL=style.css.map */

@@ -79,10 +79,6 @@ server.get('/booking/make-a-booking', function (req, res) {
   res.render('booking/make-a-booking', {menu: 'Booking', submenu: 'make-a-booking'});
 });
 
-server.get('/booking/faqs', function (req, res) {
-  res.render('booking/faqs', {menu: 'Booking', submenu: 'faqs'});
-});
-
 server.get('/calendar', function (req, res) {
   res.render('calendar');
 });

@@ -395,6 +395,12 @@ $(document).ready(function(){
         });
 
     renderCalendar();
+    $('.bxslider').bxSlider({
+    	auto: true,
+  		controls: false,
+  		pager: false,
+  		mode: 'fade'
+    });
 });
 
 

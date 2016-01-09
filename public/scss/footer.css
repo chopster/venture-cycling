@@ -1,0 +1,24 @@
+/* Common footer styles */
+footer {
+  border-top: 1px solid #d0d0d0;
+  width: 72.77vw;
+  margin: auto;
+  padding: 20px; }
+  footer ul li {
+    list-style: none;
+    float: left;
+    width: 25%;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    line-height: 2em;
+    color: #008080; }
+    footer ul li a {
+      color: #8E8E8E;
+      font-size: 1.4em; }
+
+/* Footer overrides */
+@media (max-width: 767px) {
+  footer {
+    width: 100%; } }
+
+/*# sourceMappingURL=footer.css.map */

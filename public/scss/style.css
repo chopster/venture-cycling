@@ -168,15 +168,6 @@ blockquote {
     /* 24px / 16px = */
     line-height: 1.45833333;
     /* 35px / 24px */ } }
-.homepage-content {
-  margin-top: 30px; }
-  .homepage-content .info {
-    width: 60%; }
-
-.facebook-feed {
-  width: 299px;
-  float: right; }
-
 @media (max-width: 399px) {
   .main-content .pricing-structure {
     width: 100%; }
@@ -187,9 +178,51 @@ blockquote {
       float: left;
       line-height: 1em;
       margin-top: 3px; } }
+.homepage-content {
+  display: inline-block; }
+  .homepage-content .info {
+    float: left; }
+    .homepage-content .info .accreditations .breeze {
+      vertical-align: top;
+      margin: 13px 15px 0 0; }
+
 @media (max-width: 500px) {
-  .facebook-feed {
-    width: 100%; } }
+  .homepage-content {
+    margin-top: 15px; }
+    .homepage-content .info {
+      width: 100%; }
+    .homepage-content .facebook-feed {
+      margin-top: 15px;
+      width: 100%;
+      float: left; } }
+@media (min-width: 501px) {
+  .homepage-content {
+    margin-top: 15px; }
+    .homepage-content .info {
+      width: 50%; }
+    .homepage-content .facebook-feed {
+      margin-top: 0px;
+      width: 50%;
+      float: right; } }
+@media (min-width: 600px) {
+  .homepage-content .info {
+    width: 45%; }
+  .homepage-content .facebook-feed {
+    width: 299px; } }
+@media (min-width: 700px) {
+  .homepage-content {
+    margin-top: 30px; }
+    .homepage-content .info {
+      width: 55%; }
+    .homepage-content .facebook-feed {
+      width: 299px;
+      float: right; } }
+@media (min-width: 801px) {
+  .homepage-content .info {
+    width: 58%; }
+  .homepage-content .facebook-feed {
+    width: 299px;
+    float: right; } }
 #calendar {
   width: 50%;
   margin: 65px 0 0; }

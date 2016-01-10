@@ -10,6 +10,7 @@
     "moment": "^2.10.6",
     "mongodb": "^2.0.43",
     "nodemailer": "^0.7.1",
+    "sitemap": "^1.5.0",
     "stylus": "^0.52.4",
     "xoauth2": "^1.1.0"
   },

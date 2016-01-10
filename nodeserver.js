@@ -3,42 +3,53 @@ var stylus = require('stylus');
 var nodemailer = require('nodemailer');
 var moment = require('moment');
 var google = require('googleapis');
-var smtpTransport = require('nodemailer-smtp-transport');
+var sitemap = require('sitemap');
 var adminuser = "admin";
 var adminpass = "admin";
 var tests = "localhost";
-// var port   = 27017; 
-// var dbName = "mydatabase";
-// var mongodb          = require('mongodb');
-// var mongoClient = mongodb.MongoClient;
-
-// var connString = "mongodb://"+adminuser+":"+adminpass+"@"+tests+":"+port+"/"+dbName;
-//     mongoClient.connect(connString, function(err, db) {
-//     	console.log(err);
-//         if(!err) {
-//             console.log("\nMongo DB connected\n");                
-//         }
-//         else{
-//             console.log("Mongo DB could not be connected");
-//             process.exit(0);
-//         }
-//     });
- 
 var server = express();
+
 console.log(__dirname);
 
 server.set('port', (process.env.PORT || 8080));
-
-
 server.set('views', __dirname + '/views')
 server.set('view engine', 'jade');
+
+function generate_xml_sitemap() {
+    // this is the source of the URLs on your site, in this case we use a simple array, actually it could come from the database
+  var urls = ['about', 'about/testimonials', 'services', 'services/adult-lessons', 
+  'services/childrens-lessons','services/group-lessons','services/ride-leading','services/dr-bike','booking/make-a-booking',
+  'booking/pricing','contact','calendar'];
+  // the root of your website - the protocol and the domain name with a trailing slash
+  var root_path = 'http://www.venturecycling.co.uk/';
+  // XML sitemap generation starts here
+  var priority = 0.5;
+  var freq = 'monthly';
+  var xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+  for (var i in urls) {
+      xml += '<url>';
+      xml += '<loc>'+ root_path + urls[i] + '</loc>';
+      xml += '<changefreq>'+ freq +'</changefreq>';
+      xml += '<priority>'+ priority +'</priority>';
+      xml += '</url>';
+      i++;
+  }
+  xml += '</urlset>';
+  return xml;
+}
 
 server.use(stylus.middleware({
     debug: true,
     src: __dirname + '/views',
     dest: __dirname + '/public'
   }));  
-  server.use(express.static(__dirname + '/public'));
+server.use(express.static(__dirname + '/public'));
+
+server.get('/sitemap.xml', function(req, res) {
+  var sitemap = generate_xml_sitemap(); // get the dynamically generated XML sitemap
+  res.header('Content-Type', 'text/xml');
+  res.send(sitemap);     
+})
 
 server.get('/', function (req, res) {
   res.render('index', {menu: 'Home'});
@@ -152,8 +163,6 @@ server.get('/contact-email', function (req, res) {
     }
   });
 });
-
-
 
 
 server.listen(server.get('port'), function() {

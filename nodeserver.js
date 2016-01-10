@@ -101,12 +101,12 @@ generator.on('token', function(token){
     console.log('New token for %s: %s', token.user, token.accessToken);
 });
 
-var transport = nodemailer.createTransport(({
+var transport = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {
         xoauth2: generator
     }
-}));
+});
 
  // XOAuth2: {
  //        user: "kelly.koya@gmail.com",

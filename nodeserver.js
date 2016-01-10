@@ -1,12 +1,6 @@
 var express = require('express');
 var stylus = require('stylus');
 var nodemailer = require('nodemailer');
-var moment = require('moment');
-var google = require('googleapis');
-var sitemap = require('sitemap');
-var adminuser = "admin";
-var adminpass = "admin";
-var tests = "localhost";
 var server = express();
 
 console.log(__dirname);

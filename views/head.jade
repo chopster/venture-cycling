@@ -28,7 +28,10 @@ head
 						li(class=(menu === 'Home' ? 'active' : ''))
 							a(href="/") Home
 						li(class=(menu === 'About' ? 'active' : ''))
-							a(href="/about") About Me 
+							a(href="/about") About Me
+							ul
+							li(class=(submenu === 'testimonials' ? 'active' : ''))
+								a(href="/about/testimonials") Testimonials 
 						li(class=(menu === 'Services' ? 'active' : ''))
 							a(href="/services") Services 
 							ul
@@ -38,7 +41,7 @@ head
 									a(href="/services/childrens-lessons") Children's lessons
 								li(class=(submenu === 'group-lessons' ? 'active' : ''))
 									a(href="/services/group-lessons") Group lessons
-								li 
+								li(class=(submenu === 'ride-leading' ? 'active' : ''))
 									a(href="/services/ride-leading") Ride Leading
 								li(class=(submenu === 'dr-bike' ? 'active' : ''))
 									a(href="/services/dr-bike") Dr Bike
@@ -60,7 +63,10 @@ head
 					li(class=(menu === 'Home' ? 'active' : ''))
 						a(href="/") Home
 					li(class=(menu === 'About' ? 'active' : ''))
-						a(href="/about") About Me 
+						a(href="/about") About Me
+						ul
+							li(class=(submenu === 'testimonials' ? 'active' : ''))
+								a(href="/about/testimonials") Testimonials 
 					li(class=(menu === 'Services' ? 'active' : ''))
 						a(href="/services") Services 
 						ul
@@ -70,7 +76,7 @@ head
 								a(href="/services/childrens-lessons") Children's lessons
 							li(class=(submenu === 'group-lessons' ? 'active' : ''))
 								a(href="/services/group-lessons") Group lessons
-							li 
+							li(class=(submenu === 'ride-leading' ? 'active' : ''))
 								a(href="/services/ride-leading") Ride Leading
 							li(class=(submenu === 'dr-bike' ? 'active' : ''))
 								a(href="/services/dr-bike") Dr Bike

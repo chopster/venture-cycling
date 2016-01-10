@@ -42,16 +42,22 @@ a {
 #colorbox.booking-submit-message #cboxClose {
   display: none; }
 
+.link {
+  font-weight: bold;
+  color: #8e8e8e;
+  text-decoration: underline; }
+
 .main-content {
   font-size: 0.9em;
   line-height: 1.5em; }
   .main-content h2 {
-    line-height: 0; }
+    line-height: 0;
+    padding-bottom: 10px;
+    color: #008080; }
   .main-content .sub-section {
     padding: 5px 15px; }
     .main-content .sub-section .heading {
-      margin: 5px 0 15px;
-      color: #008080; }
+      margin: 5px 0 15px; }
   .main-content p strong {
     font-weight: bold; }
   .main-content .pricing-structure {
@@ -79,7 +85,7 @@ h1 {
   margin: 0px; }
 
 .main-content {
-  padding: 15px; }
+  padding: 0 15px; }
   .main-content .sub-section {
     padding: 5px 2px; }
   .main-content p {
@@ -112,7 +118,7 @@ h1 {
 
   .main-content {
     width: 75%;
-    margin: 15px auto 30px; }
+    margin: 0px auto 30px; }
     .main-content p {
       margin-bottom: 1.2em; } }
 h2 {
@@ -227,10 +233,44 @@ blockquote {
   width: 50%;
   margin: 65px 0 0; }
 
+#calendar h2 {
+  font-size: 1.8em; }
+
 #colorbox #calendar {
   margin: 10px 0 0;
   width: 100%; }
 
+.testimonials p {
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 10px;
+  margin-bottom: 40px; }
+  .testimonials p.disclaimer {
+    border: none;
+    font-style: italic; }
+
+.home .main-content {
+  margin-top: 15px;
+  padding-top: 15px; }
+
+@media (min-width: 320px) {
+  .main-content .content {
+    float: left;
+    width: 100%; }
+  .main-content .image {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px; }
+    .main-content .image img {
+      max-width: 100%; } }
+@media (min-width: 600px) {
+  .main-content .content {
+    float: left;
+    width: 60%; }
+  .main-content .image {
+    float: right;
+    width: 35%; }
+    .main-content .image img {
+      max-width: 100%; } }
 /* Desktop navigation */
 nav {
   width: 75.77vw;
@@ -388,7 +428,8 @@ footer {
   border-top: 1px solid #d0d0d0;
   width: 72.77vw;
   margin: auto;
-  padding: 20px; }
+  padding: 20px;
+  clear: both; }
   footer ul li {
     list-style: none;
     float: left;

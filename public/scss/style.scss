@@ -39,8 +39,6 @@ a {
   font-style: normal;
 }
 
-
-
 .processing {
   font-size: 1.5em;
   top: 25%;
@@ -57,18 +55,26 @@ a {
   }
 }
 
+.link {
+  font-weight: bold;
+  color: #8e8e8e;
+  text-decoration: underline;
+}
+
 
 .main-content {
   font-size: 0.9em;
   line-height: 1.5em;
+
   h2 {
     line-height: 0;
+    padding-bottom: 10px;
+    color: #008080;
   }
   .sub-section {
     padding: 5px 15px;
     .heading {
       margin: 5px 0 15px;
-      color: #008080;
     }
   }
   p strong {
@@ -106,7 +112,7 @@ h1 {
 }
 
 .main-content {
-  padding: 15px;
+  padding: 0 15px;
   .sub-section {
     padding: 5px 2px;
   }
@@ -149,7 +155,7 @@ h1 {
   }
   .main-content {
     width: 75%;
-    margin: 15px auto 30px;
+    margin: 0px auto 30px;
     p {
       margin-bottom: 1.2em;
     }
@@ -345,6 +351,10 @@ blockquote {
   margin: 65px 0 0;
 }
 
+#calendar h2 {
+  font-size: 1.8em;
+}
+
 #colorbox {
   #calendar {
     margin: 10px 0 0;
@@ -353,7 +363,60 @@ blockquote {
 }
 
 
+.testimonials p {
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 10px;
+  margin-bottom: 40px;
 
+  &.disclaimer {
+    border: none;
+    font-style: italic;
+  }
+}
+
+.home .main-content {
+  margin-top: 15px;
+  padding-top: 15px;
+}
+
+
+@media (min-width: 320px) {
+  .main-content {
+
+    .content {
+      float: left; 
+      width: 100%;
+    }
+
+    .image {
+      float: left; 
+      width: 100%;
+      margin-bottom: 20px;
+      
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .main-content {
+
+    .content {
+      float: left; 
+      width: 60%;
+    }
+
+    .image {
+      float: right; 
+      width: 35%;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
 
 @import 'header';
 @import 'footer';

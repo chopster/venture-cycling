@@ -6,6 +6,10 @@ footer {
   padding: 20px;
   clear: both;
 
+  small {
+    float: right;
+  }
+
   ul {
     li {
       list-style: none;

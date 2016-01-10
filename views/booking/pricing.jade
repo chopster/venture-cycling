@@ -1,5 +1,8 @@
 doctype html
 html
+	- var titleVar = "- Pricing"
+	- var canonicalUrl = "booking/pricing"
+
 	include ../head.jade
 	div(class="main-content")
 		h2 Pricing
@@ -22,6 +25,6 @@ html
 		p The prices listed are a guideline and may be subject to change, depending on individual requirement.
 
 		p Payment is required either by cash or bank transfer.
-		p <a href="/contact">Contact me</a> for further information or <a href="/booking/make-a-booking">Make a booking</a>
+		p <a href="/contact" class="link">Contact me</a> for further information or <a href="/booking/make-a-booking" class="link">Make a booking</a>
 
 	include ../footer.jade

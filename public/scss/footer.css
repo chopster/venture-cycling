@@ -5,6 +5,8 @@ footer {
   margin: auto;
   padding: 20px;
   clear: both; }
+  footer small {
+    float: right; }
   footer ul li {
     list-style: none;
     float: left;

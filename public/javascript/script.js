@@ -375,7 +375,7 @@ $(document).ready(function(){
                 overlayClose: false 
               });
 
-              $.get("http://www.venturecycling.co.uk/contact-email",{from, name, number, message},function(data){
+              $.get("http://localhost:8080/contact-email",{from, name, number, message},function(data){
                 if(data === "sent") {
                   $("#colorbox").find('.processing').text("Your request has been sent!");
                   setTimeout(function(){

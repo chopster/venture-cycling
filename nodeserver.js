@@ -3,6 +3,7 @@ var stylus = require('stylus');
 var nodemailer = require('nodemailer');
 var moment = require('moment');
 var google = require('googleapis');
+var smtpTransport = require('nodemailer-smtp-transport');
 var adminuser = "admin";
 var adminpass = "admin";
 var tests = "localhost";
@@ -88,13 +89,20 @@ server.get('/contact', function (req, res) {
 });
 
 
-var smtpTransport = nodemailer.createTransport("SMTP",{
-	service: "Gmail",
+var smtpTransport = nodemailer.createTransport(smtpTransport({
+	service: "gmail",
 	auth: {
-		user: "kelly.koya@gmail.com",
+		user: "venturecycling@gmail.com",
 		pass: "rheannon3"
 	}
-});
+}));
+
+ // XOAuth2: {
+ //        user: "kelly.koya@gmail.com",
+ //        pass: "rheannon3",
+ //        clientId: '501911394985-etgq1sbcco7j30cdf0b91844mqdk36ts.apps.googleusercontent.com',
+ //        clientSecret: 'fzlAn7nPv3c6SKPwYS9dLj73'
+ //      }
 
 
 

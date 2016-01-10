@@ -11,7 +11,7 @@ server.set('view engine', 'jade');
 
 function generate_xml_sitemap() {
     // this is the source of the URLs on your site, in this case we use a simple array, actually it could come from the database
-  var urls = ['about', 'about/testimonials', 'services', 'services/adult-lessons', 
+  var urls = ['', 'about', 'about/testimonials', 'services', 'services/adult-lessons', 
   'services/childrens-lessons','services/group-lessons','services/ride-leading','services/dr-bike','booking/make-a-booking',
   'booking/pricing','contact','calendar'];
   // the root of your website - the protocol and the domain name with a trailing slash

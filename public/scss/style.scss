@@ -383,16 +383,11 @@ blockquote {
 @media (min-width: 320px) {
   .main-content {
 
-    .content {
-      float: left; 
-      width: 100%;
-    }
-
     .image {
       float: left; 
       width: 100%;
       margin-bottom: 20px;
-      
+
       img {
         max-width: 100%;
       }
@@ -403,17 +398,34 @@ blockquote {
 @media (min-width: 600px) {
   .main-content {
 
-    .content {
-      float: left; 
-      width: 60%;
-    }
-
     .image {
       float: right; 
       width: 35%;
+      padding: 5px 0 5px 10px;
+
       img {
         max-width: 100%;
       }
+    }
+  }
+
+  .about {
+    .main-content {
+      .image {
+        width: 25%;
+      }
+    }
+  }
+
+  #childrens-lessons {
+    .main-content {
+       .image {
+          padding-top: 45px;
+
+          img {
+            padding-bottom: 25px;
+          }
+       }
     }
   }
 }

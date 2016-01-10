@@ -253,9 +253,6 @@ blockquote {
   padding-top: 15px; }
 
 @media (min-width: 320px) {
-  .main-content .content {
-    float: left;
-    width: 100%; }
   .main-content .image {
     float: left;
     width: 100%;
@@ -263,14 +260,20 @@ blockquote {
     .main-content .image img {
       max-width: 100%; } }
 @media (min-width: 600px) {
-  .main-content .content {
-    float: left;
-    width: 60%; }
   .main-content .image {
     float: right;
-    width: 35%; }
+    width: 35%;
+    padding: 5px 0 5px 10px; }
     .main-content .image img {
-      max-width: 100%; } }
+      max-width: 100%; }
+
+  .about .main-content .image {
+    width: 25%; }
+
+  #childrens-lessons .main-content .image {
+    padding-top: 45px; }
+    #childrens-lessons .main-content .image img {
+      padding-bottom: 25px; } }
 /* Desktop navigation */
 nav {
   width: 75.77vw;

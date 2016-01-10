@@ -27,7 +27,7 @@ var tests = "localhost";
 var server = express();
 console.log(__dirname);
 
--server.set('port', (process.env.PORT || 8080));
+server.set('port', (process.env.PORT || 8080));
 
 
 server.set('views', __dirname + '/views')
@@ -89,7 +89,7 @@ server.get('/contact', function (req, res) {
 });
 
 
-var smtpTransport = nodemailer.createTransport(smtpTransport({
+var transport = nodemailer.createTransport(smtpTransport({
 	service: "gmail",
 	auth: {
 		user: "venturecycling@gmail.com",
@@ -119,7 +119,7 @@ server.get('/booking-email', function (req, res) {
 
   };
 
-  smtpTransport.sendMail(mailOpts, function(error, response){
+  transport.sendMail(mailOpts, function(error, response){
 		if(error){
 			console.log(error);
 			res.end("error");
@@ -142,7 +142,7 @@ server.get('/contact-email', function (req, res) {
 
   };
 
-  smtpTransport.sendMail(mailOpts, function(error, response){
+  transport.sendMail(mailOpts, function(error, response){
     if(error){
       console.log(error);
       res.end("error");

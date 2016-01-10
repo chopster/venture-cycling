@@ -1,30 +1,31 @@
 {
   "name": "venture-cycling",
   "version": "1.0.0",
-   "description": "",
+  "description": "",
   "main": "example.js",
   "dependencies": {
-    "jade": "^1.11.0",
     "express": "^4.13.3",
     "googleapis": "^2.1.3",
+    "jade": "^1.11.0",
     "moment": "^2.10.6",
     "mongodb": "^2.0.43",
+    "nodemailer": "^0.7.1",
     "stylus": "^0.52.4",
-    "nodemailer": "^0.7.1"
+    "xoauth2": "^1.1.0"
   },
   "devDependencies": {},
-   "scripts": {
-     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node nodeserver.js"
-   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node nodeserver.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chopster/venture-cycling.git"
   },
   "author": "",
-   "license": "ISC",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/chopster/venture-cycling/issues"
-    },
+  },
   "homepage": "https://github.com/chopster/venture-cycling#readme"
 }

@@ -89,12 +89,23 @@ server.get('/contact', function (req, res) {
 });
 
 
-var transport = nodemailer.createTransport(smtpTransport({
-	service: "gmail",
-	auth: {
-		user: "venturecycling@gmail.com",
-		pass: "rheannon3"
-	}
+var generator = require('xoauth2').createXOAuth2Generator({
+    user: 'venturecycling@gmail.com',
+    clientId: '501911394985-mdfhlmue90pjtbhf7v1l5h9cjjns13ge.apps.googleusercontent.com',
+    clientSecret: '2tJtyTiM1CwERPDd_bW5Rpkh',
+    refreshToken: '1/FNp0XFG8rfjhbUrLIRKlUJubj7IWnnI-Mo6fs5CgGYM',
+    accessToken: 'ya29.ZQL-aeIZc9jiKrg7KirmfHG_tav8xSRaloUl3sn3UgbavmNK0ZitkK2BSJfhppunbwWl' // optional 
+});
+
+generator.on('token', function(token){
+    console.log('New token for %s: %s', token.user, token.accessToken);
+});
+
+var transport = nodemailer.createTransport(({
+    service: 'gmail',
+    auth: {
+        xoauth2: generator
+    }
 }));
 
  // XOAuth2: {

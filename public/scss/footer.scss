@@ -5,9 +5,12 @@ footer {
   margin: auto auto 40px;
   padding: 20px;
   clear: both;
+  position: relative;
 
   small {
-    float: right;
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
   }
 
   ul {

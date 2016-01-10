@@ -430,7 +430,7 @@ header .brand {
 footer {
   border-top: 1px solid #d0d0d0;
   width: 72.77vw;
-  margin: auto;
+  margin: auto auto 30px;
   padding: 20px;
   clear: both; }
   footer small {

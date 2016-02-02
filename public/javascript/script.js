@@ -157,6 +157,7 @@ function transformOptions(sourceOptions, start, end, timezone, calendar) {
     endParam: false, // same
     timezoneParam: false, // same
     success: function(data) {
+    	// console.log(data);
       var successArgs;
       var successRes;
 
@@ -172,7 +173,7 @@ function transformOptions(sourceOptions, start, end, timezone, calendar) {
             url = injectQsComponent(url, 'ctz=' + timezoneArg);
           }
 
-          console.log(entry);
+          //console.log(entry);
 
           events.push({
             id: entry.id,
@@ -403,6 +404,19 @@ $(document).ready(function(){
     });
 });
 
+ function msToTime(duration) {
+    var milliseconds = parseInt((duration%1000)/100)
+        , seconds = parseInt((duration/1000)%60)
+        , minutes = parseInt((duration/(1000*60))%60)
+        , hours = parseInt((duration/(1000*60*60))%24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds;
+}
+
 
 function renderCalendar() {
   $('#calendar').fullCalendar({
@@ -412,7 +426,7 @@ function renderCalendar() {
     },
 
      eventClick: function(calEvent, jsEvent, view) {
-    $.colorbox({html:"<h1>"+calEvent.title+"</h1><br><p>"+calEvent.start+" TO "+calEvent.end+"</p>"});
+    $.colorbox({html:"<h1>"+calEvent.title+"</h1><br><p>"+msToTime(calEvent.start)+" TO "+msToTime(calEvent.end)+"</p>"});
   },
     
     loading: function(bool) {

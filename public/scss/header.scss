@@ -127,7 +127,7 @@ header {
 
 /* Mobile overrides for header */
 @media (max-width: 767px) {
-  header, .main-content {
+  header, .main-content, footer {
     -webkit-transition: -webkit-transform 500ms ease;
     -moz-transition: -moz-transform 500ms ease;
     -o-transition: -o-transform 500ms ease;
@@ -135,7 +135,7 @@ header {
   }
 
   .slide-checkbox {
-    &:checked ~ header , &:checked~.main-content {
+    &:checked ~ header , &:checked~.main-content, &:checked ~ footer {
     -webkit-transform: translateX(250px) scale(1);
     -moz-transform: translateX(250px) scale(1);
     -ms-transform: translateX(250px) scale(1);

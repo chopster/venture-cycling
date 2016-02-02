@@ -230,8 +230,8 @@ blockquote {
     width: 299px;
     float: right; } }
 #calendar {
-  width: 50%;
-  margin: 65px 0 0; }
+  width: 100%;
+  margin: 35px 0; }
 
 #calendar h2 {
   font-size: 1.8em; }
@@ -360,19 +360,19 @@ header .brand {
 
 /* Mobile overrides for header */
 @media (max-width: 767px) {
-  header, .main-content {
+  header, .main-content, footer {
     -webkit-transition: -webkit-transform 500ms ease;
     -moz-transition: -moz-transform 500ms ease;
     -o-transition: -o-transform 500ms ease;
     transition: transform 500ms ease; }
 
-  .slide-checkbox:checked ~ header, .slide-checkbox:checked ~ .main-content {
+  .slide-checkbox:checked ~ header, .slide-checkbox:checked ~ .main-content, .slide-checkbox:checked ~ footer {
     -webkit-transform: translateX(250px) scale(1);
     -moz-transform: translateX(250px) scale(1);
     -ms-transform: translateX(250px) scale(1);
     -o-transform: translateX(250px) scale(1);
     transform: translateX(250px) scale(1); }
-    .slide-checkbox:checked ~ header .nav-trigger:after, .slide-checkbox:checked ~ .main-content .nav-trigger:after {
+    .slide-checkbox:checked ~ header .nav-trigger:after, .slide-checkbox:checked ~ .main-content .nav-trigger:after, .slide-checkbox:checked ~ footer .nav-trigger:after {
       content: '"'; }
 
   nav {

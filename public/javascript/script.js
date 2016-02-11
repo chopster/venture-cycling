@@ -2,10 +2,6 @@
  * http://jqueryvalidation.org/
  * Copyright (c) 2015 Jörn Zaefferer; Licensed MIT */
 !function(a){"function"==typeof define&&define.amd?define(["jquery"],a):a(jQuery)}(function(a){a.extend(a.fn,{validate:function(b){if(!this.length)return void(b&&b.debug&&window.console&&console.warn("Nothing selected, can't validate, returning nothing."));var c=a.data(this[0],"validator");return c?c:(this.attr("novalidate","novalidate"),c=new a.validator(b,this[0]),a.data(this[0],"validator",c),c.settings.onsubmit&&(this.on("click.validate",":submit",function(b){c.settings.submitHandler&&(c.submitButton=b.target),a(this).hasClass("cancel")&&(c.cancelSubmit=!0),void 0!==a(this).attr("formnovalidate")&&(c.cancelSubmit=!0)}),this.on("submit.validate",function(b){function d(){var d,e;return c.settings.submitHandler?(c.submitButton&&(d=a("<input type='hidden'/>").attr("name",c.submitButton.name).val(a(c.submitButton).val()).appendTo(c.currentForm)),e=c.settings.submitHandler.call(c,c.currentForm,b),c.submitButton&&d.remove(),void 0!==e?e:!1):!0}return c.settings.debug&&b.preventDefault(),c.cancelSubmit?(c.cancelSubmit=!1,d()):c.form()?c.pendingRequest?(c.formSubmitted=!0,!1):d():(c.focusInvalid(),!1)})),c)},valid:function(){var b,c,d;return a(this[0]).is("form")?b=this.validate().form():(d=[],b=!0,c=a(this[0].form).validate(),this.each(function(){b=c.element(this)&&b,d=d.concat(c.errorList)}),c.errorList=d),b},rules:function(b,c){var d,e,f,g,h,i,j=this[0];if(b)switch(d=a.data(j.form,"validator").settings,e=d.rules,f=a.validator.staticRules(j),b){case"add":a.extend(f,a.validator.normalizeRule(c)),delete f.messages,e[j.name]=f,c.messages&&(d.messages[j.name]=a.extend(d.messages[j.name],c.messages));break;case"remove":return c?(i={},a.each(c.split(/\s/),function(b,c){i[c]=f[c],delete f[c],"required"===c&&a(j).removeAttr("aria-required")}),i):(delete e[j.name],f)}return g=a.validator.normalizeRules(a.extend({},a.validator.classRules(j),a.validator.attributeRules(j),a.validator.dataRules(j),a.validator.staticRules(j)),j),g.required&&(h=g.required,delete g.required,g=a.extend({required:h},g),a(j).attr("aria-required","true")),g.remote&&(h=g.remote,delete g.remote,g=a.extend(g,{remote:h})),g}}),a.extend(a.expr[":"],{blank:function(b){return!a.trim(""+a(b).val())},filled:function(b){return!!a.trim(""+a(b).val())},unchecked:function(b){return!a(b).prop("checked")}}),a.validator=function(b,c){this.settings=a.extend(!0,{},a.validator.defaults,b),this.currentForm=c,this.init()},a.validator.format=function(b,c){return 1===arguments.length?function(){var c=a.makeArray(arguments);return c.unshift(b),a.validator.format.apply(this,c)}:(arguments.length>2&&c.constructor!==Array&&(c=a.makeArray(arguments).slice(1)),c.constructor!==Array&&(c=[c]),a.each(c,function(a,c){b=b.replace(new RegExp("\\{"+a+"\\}","g"),function(){return c})}),b)},a.extend(a.validator,{defaults:{messages:{},groups:{},rules:{},errorClass:"error",validClass:"valid",errorElement:"label",focusCleanup:!1,focusInvalid:!0,errorContainer:a([]),errorLabelContainer:a([]),onsubmit:!0,ignore:":hidden",ignoreTitle:!1,onfocusin:function(a){this.lastActive=a,this.settings.focusCleanup&&(this.settings.unhighlight&&this.settings.unhighlight.call(this,a,this.settings.errorClass,this.settings.validClass),this.hideThese(this.errorsFor(a)))},onfocusout:function(a){this.checkable(a)||!(a.name in this.submitted)&&this.optional(a)||this.element(a)},onkeyup:function(b,c){var d=[16,17,18,20,35,36,37,38,39,40,45,144,225];9===c.which&&""===this.elementValue(b)||-1!==a.inArray(c.keyCode,d)||(b.name in this.submitted||b===this.lastElement)&&this.element(b)},onclick:function(a){a.name in this.submitted?this.element(a):a.parentNode.name in this.submitted&&this.element(a.parentNode)},highlight:function(b,c,d){"radio"===b.type?this.findByName(b.name).addClass(c).removeClass(d):a(b).addClass(c).removeClass(d)},unhighlight:function(b,c,d){"radio"===b.type?this.findByName(b.name).removeClass(c).addClass(d):a(b).removeClass(c).addClass(d)}},setDefaults:function(b){a.extend(a.validator.defaults,b)},messages:{required:"This field is required.",remote:"Please fix this field.",email:"Please enter a valid email address.",url:"Please enter a valid URL.",date:"Please enter a valid date.",dateISO:"Please enter a valid date ( ISO ).",number:"Please enter a valid number.",digits:"Please enter only digits.",creditcard:"Please enter a valid credit card number.",equalTo:"Please enter the same value again.",maxlength:a.validator.format("Please enter no more than {0} characters."),minlength:a.validator.format("Please enter at least {0} characters."),rangelength:a.validator.format("Please enter a value between {0} and {1} characters long."),range:a.validator.format("Please enter a value between {0} and {1}."),max:a.validator.format("Please enter a value less than or equal to {0}."),min:a.validator.format("Please enter a value greater than or equal to {0}.")},autoCreateRanges:!1,prototype:{init:function(){function b(b){var c=a.data(this.form,"validator"),d="on"+b.type.replace(/^validate/,""),e=c.settings;e[d]&&!a(this).is(e.ignore)&&e[d].call(c,this,b)}this.labelContainer=a(this.settings.errorLabelContainer),this.errorContext=this.labelContainer.length&&this.labelContainer||a(this.currentForm),this.containers=a(this.settings.errorContainer).add(this.settings.errorLabelContainer),this.submitted={},this.valueCache={},this.pendingRequest=0,this.pending={},this.invalid={},this.reset();var c,d=this.groups={};a.each(this.settings.groups,function(b,c){"string"==typeof c&&(c=c.split(/\s/)),a.each(c,function(a,c){d[c]=b})}),c=this.settings.rules,a.each(c,function(b,d){c[b]=a.validator.normalizeRule(d)}),a(this.currentForm).on("focusin.validate focusout.validate keyup.validate",":text, [type='password'], [type='file'], select, textarea, [type='number'], [type='search'], [type='tel'], [type='url'], [type='email'], [type='datetime'], [type='date'], [type='month'], [type='week'], [type='time'], [type='datetime-local'], [type='range'], [type='color'], [type='radio'], [type='checkbox']",b).on("click.validate","select, option, [type='radio'], [type='checkbox']",b),this.settings.invalidHandler&&a(this.currentForm).on("invalid-form.validate",this.settings.invalidHandler),a(this.currentForm).find("[required], [data-rule-required], .required").attr("aria-required","true")},form:function(){return this.checkForm(),a.extend(this.submitted,this.errorMap),this.invalid=a.extend({},this.errorMap),this.valid()||a(this.currentForm).triggerHandler("invalid-form",[this]),this.showErrors(),this.valid()},checkForm:function(){this.prepareForm();for(var a=0,b=this.currentElements=this.elements();b[a];a++)this.check(b[a]);return this.valid()},element:function(b){var c=this.clean(b),d=this.validationTargetFor(c),e=!0;return this.lastElement=d,void 0===d?delete this.invalid[c.name]:(this.prepareElement(d),this.currentElements=a(d),e=this.check(d)!==!1,e?delete this.invalid[d.name]:this.invalid[d.name]=!0),a(b).attr("aria-invalid",!e),this.numberOfInvalids()||(this.toHide=this.toHide.add(this.containers)),this.showErrors(),e},showErrors:function(b){if(b){a.extend(this.errorMap,b),this.errorList=[];for(var c in b)this.errorList.push({message:b[c],element:this.findByName(c)[0]});this.successList=a.grep(this.successList,function(a){return!(a.name in b)})}this.settings.showErrors?this.settings.showErrors.call(this,this.errorMap,this.errorList):this.defaultShowErrors()},resetForm:function(){a.fn.resetForm&&a(this.currentForm).resetForm(),this.submitted={},this.lastElement=null,this.prepareForm(),this.hideErrors();var b,c=this.elements().removeData("previousValue").removeAttr("aria-invalid");if(this.settings.unhighlight)for(b=0;c[b];b++)this.settings.unhighlight.call(this,c[b],this.settings.errorClass,"");else c.removeClass(this.settings.errorClass)},numberOfInvalids:function(){return this.objectLength(this.invalid)},objectLength:function(a){var b,c=0;for(b in a)c++;return c},hideErrors:function(){this.hideThese(this.toHide)},hideThese:function(a){a.not(this.containers).text(""),this.addWrapper(a).hide()},valid:function(){return 0===this.size()},size:function(){return this.errorList.length},focusInvalid:function(){if(this.settings.focusInvalid)try{a(this.findLastActive()||this.errorList.length&&this.errorList[0].element||[]).filter(":visible").focus().trigger("focusin")}catch(b){}},findLastActive:function(){var b=this.lastActive;return b&&1===a.grep(this.errorList,function(a){return a.element.name===b.name}).length&&b},elements:function(){var b=this,c={};return a(this.currentForm).find("input, select, textarea").not(":submit, :reset, :image, :disabled").not(this.settings.ignore).filter(function(){return!this.name&&b.settings.debug&&window.console&&console.error("%o has no name assigned",this),this.name in c||!b.objectLength(a(this).rules())?!1:(c[this.name]=!0,!0)})},clean:function(b){return a(b)[0]},errors:function(){var b=this.settings.errorClass.split(" ").join(".");return a(this.settings.errorElement+"."+b,this.errorContext)},reset:function(){this.successList=[],this.errorList=[],this.errorMap={},this.toShow=a([]),this.toHide=a([]),this.currentElements=a([])},prepareForm:function(){this.reset(),this.toHide=this.errors().add(this.containers)},prepareElement:function(a){this.reset(),this.toHide=this.errorsFor(a)},elementValue:function(b){var c,d=a(b),e=b.type;return"radio"===e||"checkbox"===e?this.findByName(b.name).filter(":checked").val():"number"===e&&"undefined"!=typeof b.validity?b.validity.badInput?!1:d.val():(c=d.val(),"string"==typeof c?c.replace(/\r/g,""):c)},check:function(b){b=this.validationTargetFor(this.clean(b));var c,d,e,f=a(b).rules(),g=a.map(f,function(a,b){return b}).length,h=!1,i=this.elementValue(b);for(d in f){e={method:d,parameters:f[d]};try{if(c=a.validator.methods[d].call(this,i,b,e.parameters),"dependency-mismatch"===c&&1===g){h=!0;continue}if(h=!1,"pending"===c)return void(this.toHide=this.toHide.not(this.errorsFor(b)));if(!c)return this.formatAndAdd(b,e),!1}catch(j){throw this.settings.debug&&window.console&&console.log("Exception occurred when checking element "+b.id+", check the '"+e.method+"' method.",j),j instanceof TypeError&&(j.message+=".  Exception occurred when checking element "+b.id+", check the '"+e.method+"' method."),j}}if(!h)return this.objectLength(f)&&this.successList.push(b),!0},customDataMessage:function(b,c){return a(b).data("msg"+c.charAt(0).toUpperCase()+c.substring(1).toLowerCase())||a(b).data("msg")},customMessage:function(a,b){var c=this.settings.messages[a];return c&&(c.constructor===String?c:c[b])},findDefined:function(){for(var a=0;a<arguments.length;a++)if(void 0!==arguments[a])return arguments[a];return void 0},defaultMessage:function(b,c){return this.findDefined(this.customMessage(b.name,c),this.customDataMessage(b,c),!this.settings.ignoreTitle&&b.title||void 0,a.validator.messages[c],"<strong>Warning: No message defined for "+b.name+"</strong>")},formatAndAdd:function(b,c){var d=this.defaultMessage(b,c.method),e=/\$?\{(\d+)\}/g;"function"==typeof d?d=d.call(this,c.parameters,b):e.test(d)&&(d=a.validator.format(d.replace(e,"{$1}"),c.parameters)),this.errorList.push({message:d,element:b,method:c.method}),this.errorMap[b.name]=d,this.submitted[b.name]=d},addWrapper:function(a){return this.settings.wrapper&&(a=a.add(a.parent(this.settings.wrapper))),a},defaultShowErrors:function(){var a,b,c;for(a=0;this.errorList[a];a++)c=this.errorList[a],this.settings.highlight&&this.settings.highlight.call(this,c.element,this.settings.errorClass,this.settings.validClass),this.showLabel(c.element,c.message);if(this.errorList.length&&(this.toShow=this.toShow.add(this.containers)),this.settings.success)for(a=0;this.successList[a];a++)this.showLabel(this.successList[a]);if(this.settings.unhighlight)for(a=0,b=this.validElements();b[a];a++)this.settings.unhighlight.call(this,b[a],this.settings.errorClass,this.settings.validClass);this.toHide=this.toHide.not(this.toShow),this.hideErrors(),this.addWrapper(this.toShow).show()},validElements:function(){return this.currentElements.not(this.invalidElements())},invalidElements:function(){return a(this.errorList).map(function(){return this.element})},showLabel:function(b,c){var d,e,f,g=this.errorsFor(b),h=this.idOrName(b),i=a(b).attr("aria-describedby");g.length?(g.removeClass(this.settings.validClass).addClass(this.settings.errorClass),g.html(c)):(g=a("<"+this.settings.errorElement+">").attr("id",h+"-error").addClass(this.settings.errorClass).html(c||""),d=g,this.settings.wrapper&&(d=g.hide().show().wrap("<"+this.settings.wrapper+"/>").parent()),this.labelContainer.length?this.labelContainer.append(d):this.settings.errorPlacement?this.settings.errorPlacement(d,a(b)):d.insertAfter(b),g.is("label")?g.attr("for",h):0===g.parents("label[for='"+h+"']").length&&(f=g.attr("id").replace(/(:|\.|\[|\]|\$)/g,"\\$1"),i?i.match(new RegExp("\\b"+f+"\\b"))||(i+=" "+f):i=f,a(b).attr("aria-describedby",i),e=this.groups[b.name],e&&a.each(this.groups,function(b,c){c===e&&a("[name='"+b+"']",this.currentForm).attr("aria-describedby",g.attr("id"))}))),!c&&this.settings.success&&(g.text(""),"string"==typeof this.settings.success?g.addClass(this.settings.success):this.settings.success(g,b)),this.toShow=this.toShow.add(g)},errorsFor:function(b){var c=this.idOrName(b),d=a(b).attr("aria-describedby"),e="label[for='"+c+"'], label[for='"+c+"'] *";return d&&(e=e+", #"+d.replace(/\s+/g,", #")),this.errors().filter(e)},idOrName:function(a){return this.groups[a.name]||(this.checkable(a)?a.name:a.id||a.name)},validationTargetFor:function(b){return this.checkable(b)&&(b=this.findByName(b.name)),a(b).not(this.settings.ignore)[0]},checkable:function(a){return/radio|checkbox/i.test(a.type)},findByName:function(b){return a(this.currentForm).find("[name='"+b+"']")},getLength:function(b,c){switch(c.nodeName.toLowerCase()){case"select":return a("option:selected",c).length;case"input":if(this.checkable(c))return this.findByName(c.name).filter(":checked").length}return b.length},depend:function(a,b){return this.dependTypes[typeof a]?this.dependTypes[typeof a](a,b):!0},dependTypes:{"boolean":function(a){return a},string:function(b,c){return!!a(b,c.form).length},"function":function(a,b){return a(b)}},optional:function(b){var c=this.elementValue(b);return!a.validator.methods.required.call(this,c,b)&&"dependency-mismatch"},startRequest:function(a){this.pending[a.name]||(this.pendingRequest++,this.pending[a.name]=!0)},stopRequest:function(b,c){this.pendingRequest--,this.pendingRequest<0&&(this.pendingRequest=0),delete this.pending[b.name],c&&0===this.pendingRequest&&this.formSubmitted&&this.form()?(a(this.currentForm).submit(),this.formSubmitted=!1):!c&&0===this.pendingRequest&&this.formSubmitted&&(a(this.currentForm).triggerHandler("invalid-form",[this]),this.formSubmitted=!1)},previousValue:function(b){return a.data(b,"previousValue")||a.data(b,"previousValue",{old:null,valid:!0,message:this.defaultMessage(b,"remote")})},destroy:function(){this.resetForm(),a(this.currentForm).off(".validate").removeData("validator")}},classRuleSettings:{required:{required:!0},email:{email:!0},url:{url:!0},date:{date:!0},dateISO:{dateISO:!0},number:{number:!0},digits:{digits:!0},creditcard:{creditcard:!0}},addClassRules:function(b,c){b.constructor===String?this.classRuleSettings[b]=c:a.extend(this.classRuleSettings,b)},classRules:function(b){var c={},d=a(b).attr("class");return d&&a.each(d.split(" "),function(){this in a.validator.classRuleSettings&&a.extend(c,a.validator.classRuleSettings[this])}),c},normalizeAttributeRule:function(a,b,c,d){/min|max/.test(c)&&(null===b||/number|range|text/.test(b))&&(d=Number(d),isNaN(d)&&(d=void 0)),d||0===d?a[c]=d:b===c&&"range"!==b&&(a[c]=!0)},attributeRules:function(b){var c,d,e={},f=a(b),g=b.getAttribute("type");for(c in a.validator.methods)"required"===c?(d=b.getAttribute(c),""===d&&(d=!0),d=!!d):d=f.attr(c),this.normalizeAttributeRule(e,g,c,d);return e.maxlength&&/-1|2147483647|524288/.test(e.maxlength)&&delete e.maxlength,e},dataRules:function(b){var c,d,e={},f=a(b),g=b.getAttribute("type");for(c in a.validator.methods)d=f.data("rule"+c.charAt(0).toUpperCase()+c.substring(1).toLowerCase()),this.normalizeAttributeRule(e,g,c,d);return e},staticRules:function(b){var c={},d=a.data(b.form,"validator");return d.settings.rules&&(c=a.validator.normalizeRule(d.settings.rules[b.name])||{}),c},normalizeRules:function(b,c){return a.each(b,function(d,e){if(e===!1)return void delete b[d];if(e.param||e.depends){var f=!0;switch(typeof e.depends){case"string":f=!!a(e.depends,c.form).length;break;case"function":f=e.depends.call(c,c)}f?b[d]=void 0!==e.param?e.param:!0:delete b[d]}}),a.each(b,function(d,e){b[d]=a.isFunction(e)?e(c):e}),a.each(["minlength","maxlength"],function(){b[this]&&(b[this]=Number(b[this]))}),a.each(["rangelength","range"],function(){var c;b[this]&&(a.isArray(b[this])?b[this]=[Number(b[this][0]),Number(b[this][1])]:"string"==typeof b[this]&&(c=b[this].replace(/[\[\]]/g,"").split(/[\s,]+/),b[this]=[Number(c[0]),Number(c[1])]))}),a.validator.autoCreateRanges&&(null!=b.min&&null!=b.max&&(b.range=[b.min,b.max],delete b.min,delete b.max),null!=b.minlength&&null!=b.maxlength&&(b.rangelength=[b.minlength,b.maxlength],delete b.minlength,delete b.maxlength)),b},normalizeRule:function(b){if("string"==typeof b){var c={};a.each(b.split(/\s/),function(){c[this]=!0}),b=c}return b},addMethod:function(b,c,d){a.validator.methods[b]=c,a.validator.messages[b]=void 0!==d?d:a.validator.messages[b],c.length<3&&a.validator.addClassRules(b,a.validator.normalizeRule(b))},methods:{required:function(b,c,d){if(!this.depend(d,c))return"dependency-mismatch";if("select"===c.nodeName.toLowerCase()){var e=a(c).val();return e&&e.length>0}return this.checkable(c)?this.getLength(b,c)>0:b.length>0},email:function(a,b){return this.optional(b)||/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(a)},url:function(a,b){return this.optional(b)||/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(a)},date:function(a,b){return this.optional(b)||!/Invalid|NaN/.test(new Date(a).toString())},dateISO:function(a,b){return this.optional(b)||/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(a)},number:function(a,b){return this.optional(b)||/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(a)},digits:function(a,b){return this.optional(b)||/^\d+$/.test(a)},creditcard:function(a,b){if(this.optional(b))return"dependency-mismatch";if(/[^0-9 \-]+/.test(a))return!1;var c,d,e=0,f=0,g=!1;if(a=a.replace(/\D/g,""),a.length<13||a.length>19)return!1;for(c=a.length-1;c>=0;c--)d=a.charAt(c),f=parseInt(d,10),g&&(f*=2)>9&&(f-=9),e+=f,g=!g;return e%10===0},minlength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e>=d},maxlength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||d>=e},rangelength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e>=d[0]&&e<=d[1]},min:function(a,b,c){return this.optional(b)||a>=c},max:function(a,b,c){return this.optional(b)||c>=a},range:function(a,b,c){return this.optional(b)||a>=c[0]&&a<=c[1]},equalTo:function(b,c,d){var e=a(d);return this.settings.onfocusout&&e.off(".validate-equalTo").on("blur.validate-equalTo",function(){a(c).valid()}),b===e.val()},remote:function(b,c,d){if(this.optional(c))return"dependency-mismatch";var e,f,g=this.previousValue(c);return this.settings.messages[c.name]||(this.settings.messages[c.name]={}),g.originalMessage=this.settings.messages[c.name].remote,this.settings.messages[c.name].remote=g.message,d="string"==typeof d&&{url:d}||d,g.old===b?g.valid:(g.old=b,e=this,this.startRequest(c),f={},f[c.name]=b,a.ajax(a.extend(!0,{mode:"abort",port:"validate"+c.name,dataType:"json",data:f,context:e.currentForm,success:function(d){var f,h,i,j=d===!0||"true"===d;e.settings.messages[c.name].remote=g.originalMessage,j?(i=e.formSubmitted,e.prepareElement(c),e.formSubmitted=i,e.successList.push(c),delete e.invalid[c.name],e.showErrors()):(f={},h=d||e.defaultMessage(c,"remote"),f[c.name]=g.message=a.isFunction(h)?h(b):h,e.invalid[c.name]=!0,e.showErrors(f)),g.valid=j,e.stopRequest(c,j)}},d)),"pending")}}});var b,c={};a.ajaxPrefilter?a.ajaxPrefilter(function(a,b,d){var e=a.port;"abort"===a.mode&&(c[e]&&c[e].abort(),c[e]=d)}):(b=a.ajax,a.ajax=function(d){var e=("mode"in d?d:a.ajaxSettings).mode,f=("port"in d?d:a.ajaxSettings).port;return"abort"===e?(c[f]&&c[f].abort(),c[f]=b.apply(this,arguments),c[f]):b.apply(this,arguments)})});
-/*! jQuery Validation Plugin - v1.14.0 - 6/30/2015
- * http://jqueryvalidation.org/
- * Copyright (c) 2015 Jörn Zaefferer; Licensed MIT */
-!function(a){"function"==typeof define&&define.amd?define(["jquery","./jquery.validate.min"],a):a(jQuery)}(function(a){!function(){function b(a){return a.replace(/<.[^<>]*?>/g," ").replace(/&nbsp;|&#160;/gi," ").replace(/[.(),;:!?%#$'\"_+=\/\-“”’]*/g,"")}a.validator.addMethod("maxWords",function(a,c,d){return this.optional(c)||b(a).match(/\b\w+\b/g).length<=d},a.validator.format("Please enter {0} words or less.")),a.validator.addMethod("minWords",function(a,c,d){return this.optional(c)||b(a).match(/\b\w+\b/g).length>=d},a.validator.format("Please enter at least {0} words.")),a.validator.addMethod("rangeWords",function(a,c,d){var e=b(a),f=/\b\w+\b/g;return this.optional(c)||e.match(f).length>=d[0]&&e.match(f).length<=d[1]},a.validator.format("Please enter between {0} and {1} words."))}(),a.validator.addMethod("accept",function(b,c,d){var e,f,g="string"==typeof d?d.replace(/\s/g,"").replace(/,/g,"|"):"image/*",h=this.optional(c);if(h)return h;if("file"===a(c).attr("type")&&(g=g.replace(/\*/g,".*"),c.files&&c.files.length))for(e=0;e<c.files.length;e++)if(f=c.files[e],!f.type.match(new RegExp("\\.?("+g+")$","i")))return!1;return!0},a.validator.format("Please enter a value with a valid mimetype.")),a.validator.addMethod("alphanumeric",function(a,b){return this.optional(b)||/^\w+$/i.test(a)},"Letters, numbers, and underscores only please"),a.validator.addMethod("bankaccountNL",function(a,b){if(this.optional(b))return!0;if(!/^[0-9]{9}|([0-9]{2} ){3}[0-9]{3}$/.test(a))return!1;var c,d,e,f=a.replace(/ /g,""),g=0,h=f.length;for(c=0;h>c;c++)d=h-c,e=f.substring(c,c+1),g+=d*e;return g%11===0},"Please specify a valid bank account number"),a.validator.addMethod("bankorgiroaccountNL",function(b,c){return this.optional(c)||a.validator.methods.bankaccountNL.call(this,b,c)||a.validator.methods.giroaccountNL.call(this,b,c)},"Please specify a valid bank or giro account number"),a.validator.addMethod("bic",function(a,b){return this.optional(b)||/^([A-Z]{6}[A-Z2-9][A-NP-Z1-2])(X{3}|[A-WY-Z0-9][A-Z0-9]{2})?$/.test(a)},"Please specify a valid BIC code"),a.validator.addMethod("cifES",function(a){"use strict";var b,c,d,e,f,g,h=[];if(a=a.toUpperCase(),!a.match("((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)"))return!1;for(d=0;9>d;d++)h[d]=parseInt(a.charAt(d),10);for(c=h[2]+h[4]+h[6],e=1;8>e;e+=2)f=(2*h[e]).toString(),g=f.charAt(1),c+=parseInt(f.charAt(0),10)+(""===g?0:parseInt(g,10));return/^[ABCDEFGHJNPQRSUVW]{1}/.test(a)?(c+="",b=10-parseInt(c.charAt(c.length-1),10),a+=b,h[8].toString()===String.fromCharCode(64+b)||h[8].toString()===a.charAt(a.length-1)):!1},"Please specify a valid CIF number."),a.validator.addMethod("cpfBR",function(a){if(a=a.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g,""),11!==a.length)return!1;var b,c,d,e,f=0;if(b=parseInt(a.substring(9,10),10),c=parseInt(a.substring(10,11),10),d=function(a,b){var c=10*a%11;return(10===c||11===c)&&(c=0),c===b},""===a||"00000000000"===a||"11111111111"===a||"22222222222"===a||"33333333333"===a||"44444444444"===a||"55555555555"===a||"66666666666"===a||"77777777777"===a||"88888888888"===a||"99999999999"===a)return!1;for(e=1;9>=e;e++)f+=parseInt(a.substring(e-1,e),10)*(11-e);if(d(f,b)){for(f=0,e=1;10>=e;e++)f+=parseInt(a.substring(e-1,e),10)*(12-e);return d(f,c)}return!1},"Please specify a valid CPF number"),a.validator.addMethod("creditcardtypes",function(a,b,c){if(/[^0-9\-]+/.test(a))return!1;a=a.replace(/\D/g,"");var d=0;return c.mastercard&&(d|=1),c.visa&&(d|=2),c.amex&&(d|=4),c.dinersclub&&(d|=8),c.enroute&&(d|=16),c.discover&&(d|=32),c.jcb&&(d|=64),c.unknown&&(d|=128),c.all&&(d=255),1&d&&/^(5[12345])/.test(a)?16===a.length:2&d&&/^(4)/.test(a)?16===a.length:4&d&&/^(3[47])/.test(a)?15===a.length:8&d&&/^(3(0[012345]|[68]))/.test(a)?14===a.length:16&d&&/^(2(014|149))/.test(a)?15===a.length:32&d&&/^(6011)/.test(a)?16===a.length:64&d&&/^(3)/.test(a)?16===a.length:64&d&&/^(2131|1800)/.test(a)?15===a.length:128&d?!0:!1},"Please enter a valid credit card number."),a.validator.addMethod("currency",function(a,b,c){var d,e="string"==typeof c,f=e?c:c[0],g=e?!0:c[1];return f=f.replace(/,/g,""),f=g?f+"]":f+"]?",d="^["+f+"([1-9]{1}[0-9]{0,2}(\\,[0-9]{3})*(\\.[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\\.[0-9]{0,2})?|0(\\.[0-9]{0,2})?|(\\.[0-9]{1,2})?)$",d=new RegExp(d),this.optional(b)||d.test(a)},"Please specify a valid currency"),a.validator.addMethod("dateFA",function(a,b){return this.optional(b)||/^[1-4]\d{3}\/((0?[1-6]\/((3[0-1])|([1-2][0-9])|(0?[1-9])))|((1[0-2]|(0?[7-9]))\/(30|([1-2][0-9])|(0?[1-9]))))$/.test(a)},a.validator.messages.date),a.validator.addMethod("dateITA",function(a,b){var c,d,e,f,g,h=!1,i=/^\d{1,2}\/\d{1,2}\/\d{4}$/;return i.test(a)?(c=a.split("/"),d=parseInt(c[0],10),e=parseInt(c[1],10),f=parseInt(c[2],10),g=new Date(Date.UTC(f,e-1,d,12,0,0,0)),h=g.getUTCFullYear()===f&&g.getUTCMonth()===e-1&&g.getUTCDate()===d?!0:!1):h=!1,this.optional(b)||h},a.validator.messages.date),a.validator.addMethod("dateNL",function(a,b){return this.optional(b)||/^(0?[1-9]|[12]\d|3[01])[\.\/\-](0?[1-9]|1[012])[\.\/\-]([12]\d)?(\d\d)$/.test(a)},a.validator.messages.date),a.validator.addMethod("extension",function(a,b,c){return c="string"==typeof c?c.replace(/,/g,"|"):"png|jpe?g|gif",this.optional(b)||a.match(new RegExp("\\.("+c+")$","i"))},a.validator.format("Please enter a value with a valid extension.")),a.validator.addMethod("giroaccountNL",function(a,b){return this.optional(b)||/^[0-9]{1,7}$/.test(a)},"Please specify a valid giro account number"),a.validator.addMethod("iban",function(a,b){if(this.optional(b))return!0;var c,d,e,f,g,h,i,j,k,l=a.replace(/ /g,"").toUpperCase(),m="",n=!0,o="",p="";if(c=l.substring(0,2),h={AL:"\\d{8}[\\dA-Z]{16}",AD:"\\d{8}[\\dA-Z]{12}",AT:"\\d{16}",AZ:"[\\dA-Z]{4}\\d{20}",BE:"\\d{12}",BH:"[A-Z]{4}[\\dA-Z]{14}",BA:"\\d{16}",BR:"\\d{23}[A-Z][\\dA-Z]",BG:"[A-Z]{4}\\d{6}[\\dA-Z]{8}",CR:"\\d{17}",HR:"\\d{17}",CY:"\\d{8}[\\dA-Z]{16}",CZ:"\\d{20}",DK:"\\d{14}",DO:"[A-Z]{4}\\d{20}",EE:"\\d{16}",FO:"\\d{14}",FI:"\\d{14}",FR:"\\d{10}[\\dA-Z]{11}\\d{2}",GE:"[\\dA-Z]{2}\\d{16}",DE:"\\d{18}",GI:"[A-Z]{4}[\\dA-Z]{15}",GR:"\\d{7}[\\dA-Z]{16}",GL:"\\d{14}",GT:"[\\dA-Z]{4}[\\dA-Z]{20}",HU:"\\d{24}",IS:"\\d{22}",IE:"[\\dA-Z]{4}\\d{14}",IL:"\\d{19}",IT:"[A-Z]\\d{10}[\\dA-Z]{12}",KZ:"\\d{3}[\\dA-Z]{13}",KW:"[A-Z]{4}[\\dA-Z]{22}",LV:"[A-Z]{4}[\\dA-Z]{13}",LB:"\\d{4}[\\dA-Z]{20}",LI:"\\d{5}[\\dA-Z]{12}",LT:"\\d{16}",LU:"\\d{3}[\\dA-Z]{13}",MK:"\\d{3}[\\dA-Z]{10}\\d{2}",MT:"[A-Z]{4}\\d{5}[\\dA-Z]{18}",MR:"\\d{23}",MU:"[A-Z]{4}\\d{19}[A-Z]{3}",MC:"\\d{10}[\\dA-Z]{11}\\d{2}",MD:"[\\dA-Z]{2}\\d{18}",ME:"\\d{18}",NL:"[A-Z]{4}\\d{10}",NO:"\\d{11}",PK:"[\\dA-Z]{4}\\d{16}",PS:"[\\dA-Z]{4}\\d{21}",PL:"\\d{24}",PT:"\\d{21}",RO:"[A-Z]{4}[\\dA-Z]{16}",SM:"[A-Z]\\d{10}[\\dA-Z]{12}",SA:"\\d{2}[\\dA-Z]{18}",RS:"\\d{18}",SK:"\\d{20}",SI:"\\d{15}",ES:"\\d{20}",SE:"\\d{20}",CH:"\\d{5}[\\dA-Z]{12}",TN:"\\d{20}",TR:"\\d{5}[\\dA-Z]{17}",AE:"\\d{3}\\d{16}",GB:"[A-Z]{4}\\d{14}",VG:"[\\dA-Z]{4}\\d{16}"},g=h[c],"undefined"!=typeof g&&(i=new RegExp("^[A-Z]{2}\\d{2}"+g+"$",""),!i.test(l)))return!1;for(d=l.substring(4,l.length)+l.substring(0,4),j=0;j<d.length;j++)e=d.charAt(j),"0"!==e&&(n=!1),n||(m+="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(e));for(k=0;k<m.length;k++)f=m.charAt(k),p=""+o+f,o=p%97;return 1===o},"Please specify a valid IBAN"),a.validator.addMethod("integer",function(a,b){return this.optional(b)||/^-?\d+$/.test(a)},"A positive or negative non-decimal number please"),a.validator.addMethod("ipv4",function(a,b){return this.optional(b)||/^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$/i.test(a)},"Please enter a valid IP v4 address."),a.validator.addMethod("ipv6",function(a,b){return this.optional(b)||/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i.test(a)},"Please enter a valid IP v6 address."),a.validator.addMethod("lettersonly",function(a,b){return this.optional(b)||/^[a-z]+$/i.test(a)},"Letters only please"),a.validator.addMethod("letterswithbasicpunc",function(a,b){return this.optional(b)||/^[a-z\-.,()'"\s]+$/i.test(a)},"Letters or punctuation only please"),a.validator.addMethod("mobileNL",function(a,b){return this.optional(b)||/^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)6((\s|\s?\-\s?)?[0-9]){8}$/.test(a)},"Please specify a valid mobile number"),a.validator.addMethod("mobileUK",function(a,b){return a=a.replace(/\(|\)|\s+|-/g,""),this.optional(b)||a.length>9&&a.match(/^(?:(?:(?:00\s?|\+)44\s?|0)7(?:[1345789]\d{2}|624)\s?\d{3}\s?\d{3})$/)},"Please specify a valid mobile number"),a.validator.addMethod("nieES",function(a){"use strict";return a=a.toUpperCase(),a.match("((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)")?/^[T]{1}/.test(a)?a[8]===/^[T]{1}[A-Z0-9]{8}$/.test(a):/^[XYZ]{1}/.test(a)?a[8]==="TRWAGMYFPDXBNJZSQVHLCKE".charAt(a.replace("X","0").replace("Y","1").replace("Z","2").substring(0,8)%23):!1:!1},"Please specify a valid NIE number."),a.validator.addMethod("nifES",function(a){"use strict";return a=a.toUpperCase(),a.match("((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)")?/^[0-9]{8}[A-Z]{1}$/.test(a)?"TRWAGMYFPDXBNJZSQVHLCKE".charAt(a.substring(8,0)%23)===a.charAt(8):/^[KLM]{1}/.test(a)?a[8]===String.fromCharCode(64):!1:!1},"Please specify a valid NIF number."),jQuery.validator.addMethod("notEqualTo",function(b,c,d){return this.optional(c)||!a.validator.methods.equalTo.call(this,b,c,d)},"Please enter a different value, values must not be the same."),a.validator.addMethod("nowhitespace",function(a,b){return this.optional(b)||/^\S+$/i.test(a)},"No white space please"),a.validator.addMethod("pattern",function(a,b,c){return this.optional(b)?!0:("string"==typeof c&&(c=new RegExp("^(?:"+c+")$")),c.test(a))},"Invalid format."),a.validator.addMethod("phoneNL",function(a,b){return this.optional(b)||/^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test(a)},"Please specify a valid phone number."),a.validator.addMethod("phoneUK",function(a,b){return a=a.replace(/\(|\)|\s+|-/g,""),this.optional(b)||a.length>9&&a.match(/^(?:(?:(?:00\s?|\+)44\s?)|(?:\(?0))(?:\d{2}\)?\s?\d{4}\s?\d{4}|\d{3}\)?\s?\d{3}\s?\d{3,4}|\d{4}\)?\s?(?:\d{5}|\d{3}\s?\d{3})|\d{5}\)?\s?\d{4,5})$/)},"Please specify a valid phone number"),a.validator.addMethod("phoneUS",function(a,b){return a=a.replace(/\s+/g,""),this.optional(b)||a.length>9&&a.match(/^(\+?1-?)?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[2-9]([02-9]\d|1[02-9])-?\d{4}$/)},"Please specify a valid phone number"),a.validator.addMethod("phonesUK",function(a,b){return a=a.replace(/\(|\)|\s+|-/g,""),this.optional(b)||a.length>9&&a.match(/^(?:(?:(?:00\s?|\+)44\s?|0)(?:1\d{8,9}|[23]\d{9}|7(?:[1345789]\d{8}|624\d{6})))$/)},"Please specify a valid uk phone number"),a.validator.addMethod("postalCodeCA",function(a,b){return this.optional(b)||/^[ABCEGHJKLMNPRSTVXY]\d[A-Z] \d[A-Z]\d$/.test(a)},"Please specify a valid postal code"),a.validator.addMethod("postalcodeBR",function(a,b){return this.optional(b)||/^\d{2}.\d{3}-\d{3}?$|^\d{5}-?\d{3}?$/.test(a)},"Informe um CEP válido."),a.validator.addMethod("postalcodeIT",function(a,b){return this.optional(b)||/^\d{5}$/.test(a)},"Please specify a valid postal code"),a.validator.addMethod("postalcodeNL",function(a,b){return this.optional(b)||/^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/.test(a)},"Please specify a valid postal code"),a.validator.addMethod("postcodeUK",function(a,b){return this.optional(b)||/^((([A-PR-UWYZ][0-9])|([A-PR-UWYZ][0-9][0-9])|([A-PR-UWYZ][A-HK-Y][0-9])|([A-PR-UWYZ][A-HK-Y][0-9][0-9])|([A-PR-UWYZ][0-9][A-HJKSTUW])|([A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRVWXY]))\s?([0-9][ABD-HJLNP-UW-Z]{2})|(GIR)\s?(0AA))$/i.test(a)},"Please specify a valid UK postcode"),a.validator.addMethod("require_from_group",function(b,c,d){var e=a(d[1],c.form),f=e.eq(0),g=f.data("valid_req_grp")?f.data("valid_req_grp"):a.extend({},this),h=e.filter(function(){return g.elementValue(this)}).length>=d[0];return f.data("valid_req_grp",g),a(c).data("being_validated")||(e.data("being_validated",!0),e.each(function(){g.element(this)}),e.data("being_validated",!1)),h},a.validator.format("Please fill at least {0} of these fields.")),a.validator.addMethod("skip_or_fill_minimum",function(b,c,d){var e=a(d[1],c.form),f=e.eq(0),g=f.data("valid_skip")?f.data("valid_skip"):a.extend({},this),h=e.filter(function(){return g.elementValue(this)}).length,i=0===h||h>=d[0];return f.data("valid_skip",g),a(c).data("being_validated")||(e.data("being_validated",!0),e.each(function(){g.element(this)}),e.data("being_validated",!1)),i},a.validator.format("Please either skip these fields or fill at least {0} of them.")),a.validator.addMethod("stateUS",function(a,b,c){var d,e="undefined"==typeof c,f=e||"undefined"==typeof c.caseSensitive?!1:c.caseSensitive,g=e||"undefined"==typeof c.includeTerritories?!1:c.includeTerritories,h=e||"undefined"==typeof c.includeMilitary?!1:c.includeMilitary;return d=g||h?g&&h?"^(A[AEKLPRSZ]|C[AOT]|D[CE]|FL|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEINOPST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$":g?"^(A[KLRSZ]|C[AOT]|D[CE]|FL|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEINOPST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$":"^(A[AEKLPRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$":"^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$",d=f?new RegExp(d):new RegExp(d,"i"),this.optional(b)||d.test(a)},"Please specify a valid state"),a.validator.addMethod("strippedminlength",function(b,c,d){return a(b).text().length>=d},a.validator.format("Please enter at least {0} characters")),a.validator.addMethod("time",function(a,b){return this.optional(b)||/^([01]\d|2[0-3]|[0-9])(:[0-5]\d){1,2}$/.test(a)},"Please enter a valid time, between 00:00 and 23:59"),a.validator.addMethod("time12h",function(a,b){return this.optional(b)||/^((0?[1-9]|1[012])(:[0-5]\d){1,2}(\ ?[AP]M))$/i.test(a)},"Please enter a valid time in 12-hour am/pm format"),a.validator.addMethod("url2",function(a,b){return this.optional(b)||/^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)*(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(a)},a.validator.messages.url),a.validator.addMethod("vinUS",function(a){if(17!==a.length)return!1;var b,c,d,e,f,g,h=["A","B","C","D","E","F","G","H","J","K","L","M","N","P","R","S","T","U","V","W","X","Y","Z"],i=[1,2,3,4,5,6,7,8,1,2,3,4,5,7,9,2,3,4,5,6,7,8,9],j=[8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2],k=0;for(b=0;17>b;b++){if(e=j[b],d=a.slice(b,b+1),8===b&&(g=d),isNaN(d)){for(c=0;c<h.length;c++)if(d.toUpperCase()===h[c]){d=i[c],d*=e,isNaN(g)&&8===c&&(g=h[c]);break}}else d*=e;k+=d}return f=k%11,10===f&&(f="X"),f===g?!0:!1},"The specified vehicle identification number (VIN) is invalid."),a.validator.addMethod("zipcodeUS",function(a,b){return this.optional(b)||/^\d{5}(-\d{4})?$/.test(a)},"The specified US ZIP Code is invalid"),a.validator.addMethod("ziprange",function(a,b){return this.optional(b)||/^90[2-5]\d\{2\}-\d{4}$/.test(a)},"Your ZIP-code must be in the range 902xx-xxxx to 905xx-xxxx")});
 
 //! moment.js
 //! version : 2.9.0
@@ -31,8 +27,6 @@
 }}),db=ra.extend({grid:null,rowCoords:null,colCoords:null,containerEl:null,bounds:null,constructor:function(a){this.grid=a},build:function(){this.grid.build(),this.rowCoords=this.grid.computeRowCoords(),this.colCoords=this.grid.computeColCoords(),this.computeBounds()},clear:function(){this.grid.clear(),this.rowCoords=null,this.colCoords=null},getCell:function(b,c){var d,e,f,g=this.rowCoords,h=g.length,i=this.colCoords,j=i.length,k=null,l=null;if(this.inBounds(b,c)){for(d=0;h>d;d++)if(e=g[d],c>=e.top&&c<e.bottom){k=d;break}for(d=0;j>d;d++)if(e=i[d],b>=e.left&&b<e.right){l=d;break}if(null!==k&&null!==l)return f=this.grid.getCell(k,l),f.grid=this.grid,a.extend(f,g[k],i[l]),f}return null},computeBounds:function(){this.bounds=this.containerEl?p(this.containerEl):null},inBounds:function(a,b){var c=this.bounds;return c?a>=c.left&&a<c.right&&b>=c.top&&b<c.bottom:!0}}),eb=ra.extend({coordMaps:null,constructor:function(a){this.coordMaps=a},build:function(){var a,b=this.coordMaps;for(a=0;a<b.length;a++)b[a].build()},getCell:function(a,b){var c,d=this.coordMaps,e=null;for(c=0;c<d.length&&!e;c++)e=d[c].getCell(a,b);return e},clear:function(){var a,b=this.coordMaps;for(a=0;a<b.length;a++)b[a].clear()}}),fb=Ma.DragListener=ra.extend({options:null,isListening:!1,isDragging:!1,originX:null,originY:null,mousemoveProxy:null,mouseupProxy:null,subjectEl:null,subjectHref:null,scrollEl:null,scrollBounds:null,scrollTopVel:null,scrollLeftVel:null,scrollIntervalId:null,scrollHandlerProxy:null,scrollSensitivity:30,scrollSpeed:200,scrollIntervalMs:50,constructor:function(a){a=a||{},this.options=a,this.subjectEl=a.subjectEl},mousedown:function(a){v(a)&&(a.preventDefault(),this.startListening(a),this.options.distance||this.startDrag(a))},startListening:function(b){var c;this.isListening||(b&&this.options.scroll&&(c=n(a(b.target)),c.is(window)||c.is(document)||(this.scrollEl=c,this.scrollHandlerProxy=da(ca(this,"scrollHandler"),100),this.scrollEl.on("scroll",this.scrollHandlerProxy))),a(document).on("mousemove",this.mousemoveProxy=ca(this,"mousemove")).on("mouseup",this.mouseupProxy=ca(this,"mouseup")).on("selectstart",this.preventDefault),b?(this.originX=b.pageX,this.originY=b.pageY):(this.originX=0,this.originY=0),this.isListening=!0,this.listenStart(b))},listenStart:function(a){this.trigger("listenStart",a)},mousemove:function(a){var b,c,d=a.pageX-this.originX,e=a.pageY-this.originY;this.isDragging||(b=this.options.distance||1,c=d*d+e*e,c>=b*b&&this.startDrag(a)),this.isDragging&&this.drag(d,e,a)},startDrag:function(a){this.isListening||this.startListening(),this.isDragging||(this.isDragging=!0,this.dragStart(a))},dragStart:function(a){var b=this.subjectEl;this.trigger("dragStart",a),(this.subjectHref=b?b.attr("href"):null)&&b.removeAttr("href")},drag:function(a,b,c){this.trigger("drag",a,b,c),this.updateScroll(c)},mouseup:function(a){this.stopListening(a)},stopDrag:function(a){this.isDragging&&(this.stopScrolling(),this.dragStop(a),this.isDragging=!1)},dragStop:function(a){var b=this;this.trigger("dragStop",a),setTimeout(function(){b.subjectHref&&b.subjectEl.attr("href",b.subjectHref)},0)},stopListening:function(b){this.stopDrag(b),this.isListening&&(this.scrollEl&&(this.scrollEl.off("scroll",this.scrollHandlerProxy),this.scrollHandlerProxy=null),a(document).off("mousemove",this.mousemoveProxy).off("mouseup",this.mouseupProxy).off("selectstart",this.preventDefault),this.mousemoveProxy=null,this.mouseupProxy=null,this.isListening=!1,this.listenStop(b))},listenStop:function(a){this.trigger("listenStop",a)},trigger:function(a){this.options[a]&&this.options[a].apply(this,Array.prototype.slice.call(arguments,1))},preventDefault:function(a){a.preventDefault()},computeScrollBounds:function(){var a=this.scrollEl;this.scrollBounds=a?o(a):null},updateScroll:function(a){var b,c,d,e,f=this.scrollSensitivity,g=this.scrollBounds,h=0,i=0;g&&(b=(f-(a.pageY-g.top))/f,c=(f-(g.bottom-a.pageY))/f,d=(f-(a.pageX-g.left))/f,e=(f-(g.right-a.pageX))/f,b>=0&&1>=b?h=b*this.scrollSpeed*-1:c>=0&&1>=c&&(h=c*this.scrollSpeed),d>=0&&1>=d?i=d*this.scrollSpeed*-1:e>=0&&1>=e&&(i=e*this.scrollSpeed)),this.setScrollVel(h,i)},setScrollVel:function(a,b){this.scrollTopVel=a,this.scrollLeftVel=b,this.constrainScrollVel(),!this.scrollTopVel&&!this.scrollLeftVel||this.scrollIntervalId||(this.scrollIntervalId=setInterval(ca(this,"scrollIntervalFunc"),this.scrollIntervalMs))},constrainScrollVel:function(){var a=this.scrollEl;this.scrollTopVel<0?a.scrollTop()<=0&&(this.scrollTopVel=0):this.scrollTopVel>0&&a.scrollTop()+a[0].clientHeight>=a[0].scrollHeight&&(this.scrollTopVel=0),this.scrollLeftVel<0?a.scrollLeft()<=0&&(this.scrollLeftVel=0):this.scrollLeftVel>0&&a.scrollLeft()+a[0].clientWidth>=a[0].scrollWidth&&(this.scrollLeftVel=0)},scrollIntervalFunc:function(){var a=this.scrollEl,b=this.scrollIntervalMs/1e3;this.scrollTopVel&&a.scrollTop(a.scrollTop()+this.scrollTopVel*b),this.scrollLeftVel&&a.scrollLeft(a.scrollLeft()+this.scrollLeftVel*b),this.constrainScrollVel(),this.scrollTopVel||this.scrollLeftVel||this.stopScrolling()},stopScrolling:function(){this.scrollIntervalId&&(clearInterval(this.scrollIntervalId),this.scrollIntervalId=null,this.scrollStop())},scrollHandler:function(){this.scrollIntervalId||this.scrollStop()},scrollStop:function(){}}),gb=fb.extend({coordMap:null,origCell:null,cell:null,coordAdjust:null,constructor:function(a,b){fb.prototype.constructor.call(this,b),this.coordMap=a},listenStart:function(a){var b,c,d,e=this.subjectEl;fb.prototype.listenStart.apply(this,arguments),this.computeCoords(),a?(c={left:a.pageX,top:a.pageY},d=c,e&&(b=o(e),d=x(d,b)),this.origCell=this.getCell(d.left,d.top),e&&this.options.subjectCenter&&(this.origCell&&(b=w(this.origCell,b)||b),d=y(b)),this.coordAdjust=z(d,c)):(this.origCell=null,this.coordAdjust=null)},computeCoords:function(){this.coordMap.build(),this.computeScrollBounds()},dragStart:function(a){var b;fb.prototype.dragStart.apply(this,arguments),b=this.getCell(a.pageX,a.pageY),b&&this.cellOver(b)},drag:function(a,b,c){var d;fb.prototype.drag.apply(this,arguments),d=this.getCell(c.pageX,c.pageY),sa(d,this.cell)||(this.cell&&this.cellOut(),d&&this.cellOver(d))},dragStop:function(){this.cellDone(),fb.prototype.dragStop.apply(this,arguments)},cellOver:function(a){this.cell=a,this.trigger("cellOver",a,sa(a,this.origCell),this.origCell)},cellOut:function(){this.cell&&(this.trigger("cellOut",this.cell),this.cellDone(),this.cell=null)},cellDone:function(){this.cell&&this.trigger("cellDone",this.cell)},listenStop:function(){fb.prototype.listenStop.apply(this,arguments),this.origCell=this.cell=null,this.coordMap.clear()},scrollStop:function(){fb.prototype.scrollStop.apply(this,arguments),this.computeCoords()},getCell:function(a,b){return this.coordAdjust&&(a+=this.coordAdjust.left,b+=this.coordAdjust.top),this.coordMap.getCell(a,b)}}),hb=ra.extend({options:null,sourceEl:null,el:null,parentEl:null,top0:null,left0:null,mouseY0:null,mouseX0:null,topDelta:null,leftDelta:null,mousemoveProxy:null,isFollowing:!1,isHidden:!1,isAnimating:!1,constructor:function(b,c){this.options=c=c||{},this.sourceEl=b,this.parentEl=c.parentEl?a(c.parentEl):b.parent()},start:function(b){this.isFollowing||(this.isFollowing=!0,this.mouseY0=b.pageY,this.mouseX0=b.pageX,this.topDelta=0,this.leftDelta=0,this.isHidden||this.updatePosition(),a(document).on("mousemove",this.mousemoveProxy=ca(this,"mousemove")))},stop:function(b,c){function d(){this.isAnimating=!1,e.removeElement(),this.top0=this.left0=null,c&&c()}var e=this,f=this.options.revertDuration;this.isFollowing&&!this.isAnimating&&(this.isFollowing=!1,a(document).off("mousemove",this.mousemoveProxy),b&&f&&!this.isHidden?(this.isAnimating=!0,this.el.animate({top:this.top0,left:this.left0},{duration:f,complete:d})):d())},getEl:function(){var a=this.el;return a||(this.sourceEl.width(),a=this.el=this.sourceEl.clone().css({position:"absolute",visibility:"",display:this.isHidden?"none":"",margin:0,right:"auto",bottom:"auto",width:this.sourceEl.width(),height:this.sourceEl.height(),opacity:this.options.opacity||"",zIndex:this.options.zIndex}).appendTo(this.parentEl)),a},removeElement:function(){this.el&&(this.el.remove(),this.el=null)},updatePosition:function(){var a,b;this.getEl(),null===this.top0&&(this.sourceEl.width(),a=this.sourceEl.offset(),b=this.el.offsetParent().offset(),this.top0=a.top-b.top,this.left0=a.left-b.left),this.el.css({top:this.top0+this.topDelta,left:this.left0+this.leftDelta})},mousemove:function(a){this.topDelta=a.pageY-this.mouseY0,this.leftDelta=a.pageX-this.mouseX0,this.isHidden||this.updatePosition()},hide:function(){this.isHidden||(this.isHidden=!0,this.el&&this.el.hide())},show:function(){this.isHidden&&(this.isHidden=!1,this.updatePosition(),this.getEl().show())}}),ib=ra.extend({view:null,isRTL:null,cellHtml:"<td/>",constructor:function(a){this.view=a,this.isRTL=a.opt("isRTL")},rowHtml:function(a,b){var c,d,e=this.getHtmlRenderer("cell",a),f="";for(b=b||0,c=0;c<this.colCnt;c++)d=this.getCell(b,c),f+=e(d);return f=this.bookendCells(f,a,b),"<tr>"+f+"</tr>"},bookendCells:function(a,b,c){var d=this.getHtmlRenderer("intro",b)(c||0),e=this.getHtmlRenderer("outro",b)(c||0),f=this.isRTL?e:d,g=this.isRTL?d:e;return"string"==typeof a?f+a+g:a.prepend(f).append(g)},getHtmlRenderer:function(a,b){var c,d,e,f,g=this.view;return c=a+"Html",b&&(d=b+_(a)+"Html"),d&&(f=g[d])?e=g:d&&(f=this[d])?e=this:(f=g[c])?e=g:(f=this[c])&&(e=this),"function"==typeof f?function(){return f.apply(e,arguments)||""}:function(){return f||""}}}),jb=Ma.Grid=ib.extend({start:null,end:null,rowCnt:0,colCnt:0,el:null,coordMap:null,elsByFill:null,externalDragStartProxy:null,colHeadFormat:null,eventTimeFormat:null,displayEventTime:null,displayEventEnd:null,cellDuration:null,largeUnit:null,constructor:function(){ib.apply(this,arguments),this.coordMap=new db(this),this.elsByFill={},this.externalDragStartProxy=ca(this,"externalDragStart")},computeColHeadFormat:function(){},computeEventTimeFormat:function(){return this.view.opt("smallTimeFormat")},computeDisplayEventTime:function(){return!0},computeDisplayEventEnd:function(){return!0},setRange:function(a){this.start=a.start.clone(),this.end=a.end.clone(),this.rangeUpdated(),this.processRangeOptions()},rangeUpdated:function(){},processRangeOptions:function(){var a,b,c=this.view;this.colHeadFormat=c.opt("columnFormat")||this.computeColHeadFormat(),this.eventTimeFormat=c.opt("eventTimeFormat")||c.opt("timeFormat")||this.computeEventTimeFormat(),a=c.opt("displayEventTime"),null==a&&(a=this.computeDisplayEventTime()),b=c.opt("displayEventEnd"),null==b&&(b=this.computeDisplayEventEnd()),this.displayEventTime=a,this.displayEventEnd=b},build:function(){},clear:function(){},rangeToSegs:function(a){},diffDates:function(a,b){return this.largeUnit?H(a,b,this.largeUnit):F(a,b)},getCell:function(b,c){var d;return null==c&&("number"==typeof b?(c=b%this.colCnt,b=Math.floor(b/this.colCnt)):(c=b.col,b=b.row)),d={row:b,col:c},a.extend(d,this.getRowData(b),this.getColData(c)),a.extend(d,this.computeCellRange(d)),d},computeCellRange:function(a){var b=this.computeCellDate(a);return{start:b,end:b.clone().add(this.cellDuration)}},computeCellDate:function(a){},getRowData:function(a){return{}},getColData:function(a){return{}},getRowEl:function(a){},getColEl:function(a){},getCellDayEl:function(a){return this.getColEl(a.col)||this.getRowEl(a.row)},computeRowCoords:function(){var a,b,c,d=[];for(a=0;a<this.rowCnt;a++)b=this.getRowEl(a),c=b.offset().top,d.push({top:c,bottom:c+b.outerHeight()});return d},computeColCoords:function(){var a,b,c,d=[];for(a=0;a<this.colCnt;a++)b=this.getColEl(a),c=b.offset().left,d.push({left:c,right:c+b.outerWidth()});return d},setElement:function(b){var c=this;this.el=b,b.on("mousedown",function(b){a(b.target).is(".fc-event-container *, .fc-more")||a(b.target).closest(".fc-popover").length||c.dayMousedown(b)}),this.bindSegHandlers(),this.bindGlobalHandlers()},removeElement:function(){this.unbindGlobalHandlers(),this.el.remove()},renderSkeleton:function(){},renderDates:function(){},unrenderDates:function(){},bindGlobalHandlers:function(){a(document).on("dragstart sortstart",this.externalDragStartProxy)},unbindGlobalHandlers:function(){a(document).off("dragstart sortstart",this.externalDragStartProxy)},dayMousedown:function(a){var b,c,d=this,e=this.view,f=e.opt("selectable"),i=new gb(this.coordMap,{scroll:e.opt("dragScroll"),dragStart:function(){e.unselect()},cellOver:function(a,e,h){h&&(b=e?a:null,f&&(c=d.computeSelection(h,a),c?d.renderSelection(c):g()))},cellOut:function(a){b=null,c=null,d.unrenderSelection(),h()},listenStop:function(a){b&&e.triggerDayClick(b,d.getCellDayEl(b),a),c&&e.reportSelection(c,a),h()}});i.mousedown(a)},renderRangeHelper:function(a,b){var c=this.fabricateHelperEvent(a,b);this.renderHelper(c,b)},fabricateHelperEvent:function(a,b){var c=b?R(b.event):{};return c.start=a.start.clone(),c.end=a.end?a.end.clone():null,c.allDay=null,this.view.calendar.normalizeEventRange(c),c.className=(c.className||[]).concat("fc-helper"),b||(c.editable=!1),c},renderHelper:function(a,b){},unrenderHelper:function(){},renderSelection:function(a){this.renderHighlight(this.selectionRangeToSegs(a))},unrenderSelection:function(){this.unrenderHighlight()},computeSelection:function(a,b){var c,d=[a.start,a.end,b.start,b.end];return d.sort(aa),c={start:d[0].clone(),end:d[3].clone()},this.view.calendar.isSelectionRangeAllowed(c)?c:null},selectionRangeToSegs:function(a){return this.rangeToSegs(a)},renderHighlight:function(a){this.renderFill("highlight",a)},unrenderHighlight:function(){this.unrenderFill("highlight")},highlightSegClasses:function(){return["fc-highlight"]},renderFill:function(a,b){},unrenderFill:function(a){var b=this.elsByFill[a];b&&(b.remove(),delete this.elsByFill[a])},renderFillSegEls:function(b,c){var d,e=this,f=this[b+"SegEl"],g="",h=[];if(c.length){for(d=0;d<c.length;d++)g+=this.fillSegHtml(b,c[d]);a(g).each(function(b,d){var g=c[b],i=a(d);f&&(i=f.call(e,g,i)),i&&(i=a(i),i.is(e.fillSegTag)&&(g.el=i,h.push(g)))})}return h},fillSegTag:"div",fillSegHtml:function(a,b){var c=this[a+"SegClasses"],d=this[a+"SegCss"],e=c?c.call(this,b):[],f=$(d?d.call(this,b):{});return"<"+this.fillSegTag+(e.length?' class="'+e.join(" ")+'"':"")+(f?' style="'+f+'"':"")+" />"},headHtml:function(){return'<div class="fc-row '+this.view.widgetHeaderClass+'"><table><thead>'+this.rowHtml("head")+"</thead></table></div>"},headCellHtml:function(a){var b=this.view,c=a.start;return'<th class="fc-day-header '+b.widgetHeaderClass+" fc-"+Qa[c.day()]+'">'+Y(c.format(this.colHeadFormat))+"</th>"},bgCellHtml:function(a){var b=this.view,c=a.start,d=this.getDayClasses(c);return d.unshift("fc-day",b.widgetContentClass),'<td class="'+d.join(" ")+'" data-date="'+c.format("YYYY-MM-DD")+'"></td>'},getDayClasses:function(a){var b=this.view,c=b.calendar.getNow().stripTime(),d=["fc-"+Qa[a.day()]];return 1==b.intervalDuration.as("months")&&a.month()!=b.intervalStart.month()&&d.push("fc-other-month"),a.isSame(c,"day")?d.push("fc-today",b.highlightStateClass):c>a?d.push("fc-past"):d.push("fc-future"),d}});jb.mixin({mousedOverSeg:null,isDraggingSeg:!1,isResizingSeg:!1,isDraggingExternal:!1,segs:null,renderEvents:function(a){var b,c,d=this.eventsToSegs(a),e=[],f=[];for(b=0;b<d.length;b++)c=d[b],ta(c.event)?e.push(c):f.push(c);e=this.renderBgSegs(e)||e,f=this.renderFgSegs(f)||f,this.segs=e.concat(f)},unrenderEvents:function(){this.triggerSegMouseout(),this.unrenderFgSegs(),this.unrenderBgSegs(),this.segs=null},getEventSegs:function(){return this.segs||[]},renderFgSegs:function(a){},unrenderFgSegs:function(){},renderFgSegEls:function(b,c){var d,e=this.view,f="",g=[];if(b.length){for(d=0;d<b.length;d++)f+=this.fgSegHtml(b[d],c);a(f).each(function(c,d){var f=b[c],h=e.resolveEventEl(f.event,a(d));h&&(h.data("fc-seg",f),f.el=h,g.push(f))})}return g},fgSegHtml:function(a,b){},renderBgSegs:function(a){return this.renderFill("bgEvent",a)},unrenderBgSegs:function(){this.unrenderFill("bgEvent")},bgEventSegEl:function(a,b){return this.view.resolveEventEl(a.event,b)},bgEventSegClasses:function(a){var b=a.event,c=b.source||{};return["fc-bgevent"].concat(b.className,c.className||[])},bgEventSegCss:function(a){var b=this.view,c=a.event,d=c.source||{};return{"background-color":c.backgroundColor||c.color||d.backgroundColor||d.color||b.opt("eventBackgroundColor")||b.opt("eventColor")}},businessHoursSegClasses:function(a){return["fc-nonbusiness","fc-bgevent"]},bindSegHandlers:function(){var b=this,c=this.view;a.each({mouseenter:function(a,c){b.triggerSegMouseover(a,c)},mouseleave:function(a,c){b.triggerSegMouseout(a,c)},click:function(a,b){return c.trigger("eventClick",this,a.event,b)},mousedown:function(d,e){a(e.target).is(".fc-resizer")&&c.isEventResizable(d.event)?b.segResizeMousedown(d,e,a(e.target).is(".fc-start-resizer")):c.isEventDraggable(d.event)&&b.segDragMousedown(d,e)}},function(c,d){b.el.on(c,".fc-event-container > *",function(c){var e=a(this).data("fc-seg");return!e||b.isDraggingSeg||b.isResizingSeg?void 0:d.call(this,e,c)})})},triggerSegMouseover:function(a,b){this.mousedOverSeg||(this.mousedOverSeg=a,this.view.trigger("eventMouseover",a.el[0],a.event,b))},triggerSegMouseout:function(a,b){b=b||{},this.mousedOverSeg&&(a=a||this.mousedOverSeg,this.mousedOverSeg=null,this.view.trigger("eventMouseout",a.el[0],a.event,b))},segDragMousedown:function(a,b){var c,d=this,e=this.view,f=e.calendar,i=a.el,j=a.event,k=new hb(a.el,{parentEl:e.el,opacity:e.opt("dragOpacity"),revertDuration:e.opt("dragRevertDuration"),zIndex:2}),l=new gb(e.coordMap,{distance:5,scroll:e.opt("dragScroll"),subjectEl:i,subjectCenter:!0,listenStart:function(a){k.hide(),k.start(a)},dragStart:function(b){d.triggerSegMouseout(a,b),d.segDragStart(a,b),e.hideEvent(j)},cellOver:function(b,h,i){a.cell&&(i=a.cell),c=d.computeEventDrop(i,b,j),c&&!f.isEventRangeAllowed(c,j)&&(g(),c=null),c&&e.renderDrag(c,a)?k.hide():k.show(),h&&(c=null)},cellOut:function(){e.unrenderDrag(),k.show(),c=null},cellDone:function(){h()},dragStop:function(b){k.stop(!c,function(){e.unrenderDrag(),e.showEvent(j),d.segDragStop(a,b),c&&e.reportEventDrop(j,c,this.largeUnit,i,b)})},listenStop:function(){k.stop()}});l.mousedown(b)},segDragStart:function(a,b){this.isDraggingSeg=!0,this.view.trigger("eventDragStart",a.el[0],a.event,b,{})},segDragStop:function(a,b){this.isDraggingSeg=!1,this.view.trigger("eventDragStop",a.el[0],a.event,b,{})},computeEventDrop:function(a,b,c){var d,e,f=this.view.calendar,g=a.start,h=b.start;return g.hasTime()===h.hasTime()?(d=this.diffDates(h,g),c.allDay&&N(d)?(e={start:c.start.clone(),end:f.getEventEnd(c),allDay:!1},f.normalizeEventRangeTimes(e)):e={start:c.start.clone(),end:c.end?c.end.clone():null,allDay:c.allDay},e.start.add(d),e.end&&e.end.add(d)):e={start:h.clone(),end:null,allDay:!h.hasTime()},e},applyDragOpacity:function(a){var b=this.view.opt("dragOpacity");null!=b&&a.each(function(a,c){c.style.opacity=b})},externalDragStart:function(b,c){var d,e,f=this.view;f.opt("droppable")&&(d=a((c?c.item:null)||b.target),e=f.opt("dropAccept"),(a.isFunction(e)?e.call(d[0],d):d.is(e))&&(this.isDraggingExternal||this.listenToExternalDrag(d,b,c)))},listenToExternalDrag:function(a,b,c){var d,e,f=this,i=ya(a);d=new gb(this.coordMap,{listenStart:function(){f.isDraggingExternal=!0},cellOver:function(a){e=f.computeExternalDrop(a,i),e?f.renderDrag(e):g()},cellOut:function(){e=null,f.unrenderDrag(),h()},dragStop:function(){f.unrenderDrag(),h(),e&&f.view.reportExternalDrop(i,e,a,b,c)},listenStop:function(){f.isDraggingExternal=!1}}),d.startDrag(b)},computeExternalDrop:function(a,b){var c={start:a.start.clone(),end:null};return b.startTime&&!c.start.hasTime()&&c.start.time(b.startTime),b.duration&&(c.end=c.start.clone().add(b.duration)),this.view.calendar.isExternalDropRangeAllowed(c,b.eventProps)?c:null},renderDrag:function(a,b){},unrenderDrag:function(){},segResizeMousedown:function(a,b,c){var d,e,f=this,i=this.view,j=i.calendar,k=a.el,l=a.event,m=j.getEventEnd(l);d=new gb(this.coordMap,{distance:5,scroll:i.opt("dragScroll"),subjectEl:k,dragStart:function(b){f.triggerSegMouseout(a,b),f.segResizeStart(a,b)},cellOver:function(b,d,h){e=c?f.computeEventStartResize(h,b,l):f.computeEventEndResize(h,b,l),e&&(j.isEventRangeAllowed(e,l)?e.start.isSame(l.start)&&e.end.isSame(m)&&(e=null):(g(),e=null)),e&&(i.hideEvent(l),f.renderEventResize(e,a))},cellOut:function(){e=null},cellDone:function(){f.unrenderEventResize(),i.showEvent(l),h()},dragStop:function(b){f.segResizeStop(a,b),e&&i.reportEventResize(l,e,this.largeUnit,k,b)}}),d.mousedown(b)},segResizeStart:function(a,b){this.isResizingSeg=!0,this.view.trigger("eventResizeStart",a.el[0],a.event,b,{})},segResizeStop:function(a,b){this.isResizingSeg=!1,this.view.trigger("eventResizeStop",a.el[0],a.event,b,{})},computeEventStartResize:function(a,b,c){return this.computeEventResize("start",a,b,c)},computeEventEndResize:function(a,b,c){return this.computeEventResize("end",a,b,c)},computeEventResize:function(a,b,c,d){var e,f,g=this.view.calendar,h=this.diffDates(c[a],b[a]);return e={start:d.start.clone(),end:g.getEventEnd(d),allDay:d.allDay},e.allDay&&N(h)&&(e.allDay=!1,g.normalizeEventRangeTimes(e)),e[a].add(h),e.start.isBefore(e.end)||(f=d.allDay?g.defaultAllDayEventDuration:g.defaultTimedEventDuration,this.cellDuration&&this.cellDuration<f&&(f=this.cellDuration),"start"==a?e.start=e.end.clone().subtract(f):e.end=e.start.clone().add(f)),e},renderEventResize:function(a,b){},unrenderEventResize:function(){},getEventTimeText:function(a,b,c){return null==b&&(b=this.eventTimeFormat),null==c&&(c=this.displayEventEnd),this.displayEventTime&&a.start.hasTime()?c&&a.end?this.view.formatRange(a,b):a.start.format(b):""},getSegClasses:function(a,b,c){var d=a.event,e=["fc-event",a.isStart?"fc-start":"fc-not-start",a.isEnd?"fc-end":"fc-not-end"].concat(d.className,d.source?d.source.className:[]);return b&&e.push("fc-draggable"),c&&e.push("fc-resizable"),e},getEventSkinCss:function(a){var b=this.view,c=a.source||{},d=a.color,e=c.color,f=b.opt("eventColor");return{"background-color":a.backgroundColor||d||c.backgroundColor||e||b.opt("eventBackgroundColor")||f,"border-color":a.borderColor||d||c.borderColor||e||b.opt("eventBorderColor")||f,color:a.textColor||c.textColor||b.opt("eventTextColor")}},eventsToSegs:function(a,b){var c,d=this.eventsToRanges(a),e=[];for(c=0;c<d.length;c++)e.push.apply(e,this.eventRangeToSegs(d[c],b));return e},eventsToRanges:function(b){var c=this,d=wa(b),e=[];return a.each(d,function(a,b){b.length&&e.push.apply(e,ua(b[0])?c.eventsToInverseRanges(b):c.eventsToNormalRanges(b))}),e},eventsToNormalRanges:function(a){var b,c,d,e,f=this.view.calendar,g=[];for(b=0;b<a.length;b++)c=a[b],d=c.start.clone().stripZone(),e=f.getEventEnd(c).stripZone(),g.push({event:c,start:d,end:e,eventStartMS:+d,eventDurationMS:e-d});return g},eventsToInverseRanges:function(a){var b,c,d=this.view,e=d.start.clone().stripZone(),f=d.end.clone().stripZone(),g=this.eventsToNormalRanges(a),h=[],i=a[0],j=e;for(g.sort(xa),b=0;b<g.length;b++)c=g[b],c.start>j&&h.push({event:i,start:j,end:c.start}),j=c.end;return f>j&&h.push({event:i,start:j,end:f}),h},eventRangeToSegs:function(a,b){var c,d,e;for(a=this.view.calendar.ensureVisibleEventRange(a),c=b?b(a):this.rangeToSegs(a),d=0;d<c.length;d++)e=c[d],e.event=a.event,e.eventStartMS=a.eventStartMS,e.eventDurationMS=a.eventDurationMS;return c},sortSegs:function(a){a.sort(ca(this,"compareSegs"))},compareSegs:function(a,b){return a.eventStartMS-b.eventStartMS||b.eventDurationMS-a.eventDurationMS||b.event.allDay-a.event.allDay||B(a.event,b.event,this.view.eventOrderSpecs)}}),Ma.dataAttrPrefix="";var kb=jb.extend({numbersVisible:!1,bottomCoordPadding:0,breakOnWeeks:null,cellDates:null,dayToCellOffsets:null,rowEls:null,dayEls:null,helperEls:null,constructor:function(){jb.apply(this,arguments),this.cellDuration=b.duration(1,"day")},renderDates:function(a){var b,c,d,e=this.view,f=this.rowCnt,g=this.colCnt,h=f*g,i="";for(b=0;f>b;b++)i+=this.dayRowHtml(b,a);for(this.el.html(i),this.rowEls=this.el.find(".fc-row"),this.dayEls=this.el.find(".fc-day"),c=0;h>c;c++)d=this.getCell(c),e.trigger("dayRender",null,d.start,this.dayEls.eq(c))},unrenderDates:function(){this.removeSegPopover()},renderBusinessHours:function(){var a=this.view.calendar.getBusinessHoursEvents(!0),b=this.eventsToSegs(a);this.renderFill("businessHours",b,"bgevent")},dayRowHtml:function(a,b){var c=this.view,d=["fc-row","fc-week",c.widgetContentClass];return b&&d.push("fc-rigid"),'<div class="'+d.join(" ")+'"><div class="fc-bg"><table>'+this.rowHtml("day",a)+'</table></div><div class="fc-content-skeleton"><table>'+(this.numbersVisible?"<thead>"+this.rowHtml("number",a)+"</thead>":"")+"</table></div></div>"},dayCellHtml:function(a){return this.bgCellHtml(a)},computeColHeadFormat:function(){return this.rowCnt>1?"ddd":this.colCnt>1?this.view.opt("dayOfMonthFormat"):"dddd"},computeEventTimeFormat:function(){return this.view.opt("extraSmallTimeFormat")},computeDisplayEventEnd:function(){return 1==this.colCnt},rangeUpdated:function(){var a,b,c,d;if(this.updateCellDates(),a=this.cellDates,this.breakOnWeeks){for(b=a[0].day(),d=1;d<a.length&&a[d].day()!=b;d++);c=Math.ceil(a.length/d)}else c=1,d=a.length;this.rowCnt=c,this.colCnt=d},updateCellDates:function(){for(var a=this.view,b=this.start.clone(),c=[],d=-1,e=[];b.isBefore(this.end);)a.isHiddenDay(b)?e.push(d+.5):(d++,e.push(d),c.push(b.clone())),b.add(1,"days");this.cellDates=c,this.dayToCellOffsets=e},computeCellDate:function(a){var b=this.colCnt,c=a.row*b+(this.isRTL?b-a.col-1:a.col);return this.cellDates[c].clone()},getRowEl:function(a){return this.rowEls.eq(a)},getColEl:function(a){return this.dayEls.eq(a)},getCellDayEl:function(a){return this.dayEls.eq(a.row*this.colCnt+a.col)},computeRowCoords:function(){var a=jb.prototype.computeRowCoords.call(this);return a[a.length-1].bottom+=this.bottomCoordPadding,a},rangeToSegs:function(a){var b,c,d,e,f,g,h,i,j,k,l=this.isRTL,m=this.rowCnt,n=this.colCnt,o=[];for(a=this.view.computeDayRange(a),b=this.dateToCellOffset(a.start),c=this.dateToCellOffset(a.end.subtract(1,"days")),d=0;m>d;d++)e=d*n,f=e+n-1,i=Math.max(e,b),j=Math.min(f,c),i=Math.ceil(i),j=Math.floor(j),j>=i&&(g=i===b,h=j===c,i-=e,j-=e,k={row:d,isStart:g,isEnd:h},l?(k.leftCol=n-j-1,k.rightCol=n-i-1):(k.leftCol=i,k.rightCol=j),o.push(k));return o},dateToCellOffset:function(a){var b=this.dayToCellOffsets,c=a.diff(this.start,"days");return 0>c?b[0]-1:c>=b.length?b[b.length-1]+1:b[c]},renderDrag:function(a,b){return this.renderHighlight(this.eventRangeToSegs(a)),b&&!b.el.closest(this.el).length?(this.renderRangeHelper(a,b),this.applyDragOpacity(this.helperEls),!0):void 0},unrenderDrag:function(){this.unrenderHighlight(),this.unrenderHelper()},renderEventResize:function(a,b){this.renderHighlight(this.eventRangeToSegs(a)),this.renderRangeHelper(a,b)},unrenderEventResize:function(){this.unrenderHighlight(),this.unrenderHelper()},renderHelper:function(b,c){var d,e=[],f=this.eventsToSegs([b]);f=this.renderFgSegEls(f),d=this.renderSegRows(f),this.rowEls.each(function(b,f){var g,h=a(f),i=a('<div class="fc-helper-skeleton"><table/></div>');g=c&&c.row===b?c.el.position().top:h.find(".fc-content-skeleton tbody").position().top,i.css("top",g).find("table").append(d[b].tbodyEl),h.append(i),e.push(i[0])}),this.helperEls=a(e)},unrenderHelper:function(){this.helperEls&&(this.helperEls.remove(),this.helperEls=null)},fillSegTag:"td",renderFill:function(b,c,d){var e,f,g,h=[];for(c=this.renderFillSegEls(b,c),e=0;e<c.length;e++)f=c[e],g=this.renderFillRow(b,f,d),this.rowEls.eq(f.row).append(g),h.push(g[0]);return this.elsByFill[b]=a(h),c},renderFillRow:function(b,c,d){var e,f,g=this.colCnt,h=c.leftCol,i=c.rightCol+1;return d=d||b.toLowerCase(),e=a('<div class="fc-'+d+'-skeleton"><table><tr/></table></div>'),f=e.find("tr"),h>0&&f.append('<td colspan="'+h+'"/>'),f.append(c.el.attr("colspan",i-h)),g>i&&f.append('<td colspan="'+(g-i)+'"/>'),this.bookendCells(f,b),e}});kb.mixin({rowStructs:null,unrenderEvents:function(){this.removeSegPopover(),jb.prototype.unrenderEvents.apply(this,arguments)},getEventSegs:function(){return jb.prototype.getEventSegs.call(this).concat(this.popoverSegs||[])},renderBgSegs:function(b){var c=a.grep(b,function(a){return a.event.allDay});return jb.prototype.renderBgSegs.call(this,c)},renderFgSegs:function(b){var c;return b=this.renderFgSegEls(b),c=this.rowStructs=this.renderSegRows(b),this.rowEls.each(function(b,d){a(d).find(".fc-content-skeleton > table").append(c[b].tbodyEl)}),b},unrenderFgSegs:function(){for(var a,b=this.rowStructs||[];a=b.pop();)a.tbodyEl.remove();this.rowStructs=null},renderSegRows:function(a){var b,c,d=[];for(b=this.groupSegRows(a),c=0;c<b.length;c++)d.push(this.renderSegRow(c,b[c]));return d},fgSegHtml:function(a,b){var c,d,e=this.view,f=a.event,g=e.isEventDraggable(f),h=!b&&f.allDay&&a.isStart&&e.isEventResizableFromStart(f),i=!b&&f.allDay&&a.isEnd&&e.isEventResizableFromEnd(f),j=this.getSegClasses(a,g,h||i),k=$(this.getEventSkinCss(f)),l="";return j.unshift("fc-day-grid-event","fc-h-event"),a.isStart&&(c=this.getEventTimeText(f),c&&(l='<span class="fc-time">'+Y(c)+"</span>")),d='<span class="fc-title">'+(Y(f.title||"")||"&nbsp;")+"</span>",'<a class="'+j.join(" ")+'"'+(f.url?' href="'+Y(f.url)+'"':"")+(k?' style="'+k+'"':"")+'><div class="fc-content">'+(this.isRTL?d+" "+l:l+" "+d)+"</div>"+(h?'<div class="fc-resizer fc-start-resizer" />':"")+(i?'<div class="fc-resizer fc-end-resizer" />':"")+"</a>"},renderSegRow:function(b,c){function d(b){for(;b>g;)k=(r[e-1]||[])[g],k?k.attr("rowspan",parseInt(k.attr("rowspan")||1,10)+1):(k=a("<td/>"),h.append(k)),q[e][g]=k,r[e][g]=k,g++}var e,f,g,h,i,j,k,l=this.colCnt,m=this.buildSegLevels(c),n=Math.max(1,m.length),o=a("<tbody/>"),p=[],q=[],r=[];for(e=0;n>e;e++){if(f=m[e],g=0,h=a("<tr/>"),p.push([]),q.push([]),r.push([]),f)for(i=0;i<f.length;i++){for(j=f[i],d(j.leftCol),k=a('<td class="fc-event-container"/>').append(j.el),j.leftCol!=j.rightCol?k.attr("colspan",j.rightCol-j.leftCol+1):r[e][g]=k;g<=j.rightCol;)q[e][g]=k,p[e][g]=j,g++;h.append(k)}d(l),this.bookendCells(h,"eventSkeleton"),o.append(h)}return{row:b,tbodyEl:o,cellMatrix:q,segMatrix:p,segLevels:m,segs:c}},buildSegLevels:function(a){var b,c,d,e=[];for(this.sortSegs(a),b=0;b<a.length;b++){for(c=a[b],d=0;d<e.length&&za(c,e[d]);d++);c.level=d,(e[d]||(e[d]=[])).push(c)}for(d=0;d<e.length;d++)e[d].sort(Aa);return e},groupSegRows:function(a){var b,c=[];for(b=0;b<this.rowCnt;b++)c.push([]);for(b=0;b<a.length;b++)c[a[b].row].push(a[b]);return c}}),kb.mixin({segPopover:null,popoverSegs:null,removeSegPopover:function(){this.segPopover&&this.segPopover.hide()},limitRows:function(a){var b,c,d=this.rowStructs||[];for(b=0;b<d.length;b++)this.unlimitRow(b),c=a?"number"==typeof a?a:this.computeRowLevelLimit(b):!1,c!==!1&&this.limitRow(b,c)},computeRowLevelLimit:function(b){function c(b,c){f=Math.max(f,a(c).outerHeight())}var d,e,f,g=this.rowEls.eq(b),h=g.height(),i=this.rowStructs[b].tbodyEl.children();for(d=0;d<i.length;d++)if(e=i.eq(d).removeClass("fc-limited"),f=0,e.find("> td > :first-child").each(c),e.position().top+f>h)return d;return!1},limitRow:function(b,c){function d(d){for(;d>x;)e=u.getCell(b,x),k=u.getCellSegs(e,c),k.length&&(n=g[c-1][x],t=u.renderMoreLink(e,k),s=a("<div/>").append(t),n.append(s),w.push(s[0])),x++}var e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u=this,v=this.rowStructs[b],w=[],x=0;if(c&&c<v.segLevels.length){for(f=v.segLevels[c-1],g=v.cellMatrix,h=v.tbodyEl.children().slice(c).addClass("fc-limited").get(),i=0;i<f.length;i++){for(j=f[i],d(j.leftCol),m=[],l=0;x<=j.rightCol;)e=this.getCell(b,x),k=this.getCellSegs(e,c),m.push(k),l+=k.length,x++;if(l){for(n=g[c-1][j.leftCol],o=n.attr("rowspan")||1,p=[],q=0;q<m.length;q++)r=a('<td class="fc-more-cell"/>').attr("rowspan",o),k=m[q],e=this.getCell(b,j.leftCol+q),t=this.renderMoreLink(e,[j].concat(k)),s=a("<div/>").append(t),r.append(s),p.push(r[0]),w.push(r[0]);n.addClass("fc-limited").after(a(p)),h.push(n[0])}}d(this.colCnt),v.moreEls=a(w),v.limitedEls=a(h)}},
 unlimitRow:function(a){var b=this.rowStructs[a];b.moreEls&&(b.moreEls.remove(),b.moreEls=null),b.limitedEls&&(b.limitedEls.removeClass("fc-limited"),b.limitedEls=null)},renderMoreLink:function(b,c){var d=this,e=this.view;return a('<a class="fc-more"/>').text(this.getMoreLinkText(c.length)).on("click",function(f){var g=e.opt("eventLimitClick"),h=b.start,i=a(this),j=d.getCellDayEl(b),k=d.getCellSegs(b),l=d.resliceDaySegs(k,h),m=d.resliceDaySegs(c,h);"function"==typeof g&&(g=e.trigger("eventLimitClick",null,{date:h,dayEl:j,moreEl:i,segs:l,hiddenSegs:m},f)),"popover"===g?d.showSegPopover(b,i,l):"string"==typeof g&&e.calendar.zoomTo(h,g)})},showSegPopover:function(a,b,c){var d,e,f=this,g=this.view,h=b.parent();d=1==this.rowCnt?g.el:this.rowEls.eq(a.row),e={className:"fc-more-popover",content:this.renderSegPopoverContent(a,c),parentEl:this.el,top:d.offset().top,autoHide:!0,viewportConstrain:g.opt("popoverViewportConstrain"),hide:function(){f.segPopover.removeElement(),f.segPopover=null,f.popoverSegs=null}},this.isRTL?e.right=h.offset().left+h.outerWidth()+1:e.left=h.offset().left-1,this.segPopover=new cb(e),this.segPopover.show()},renderSegPopoverContent:function(b,c){var d,e=this.view,f=e.opt("theme"),g=b.start.format(e.opt("dayPopoverFormat")),h=a('<div class="fc-header '+e.widgetHeaderClass+'"><span class="fc-close '+(f?"ui-icon ui-icon-closethick":"fc-icon fc-icon-x")+'"></span><span class="fc-title">'+Y(g)+'</span><div class="fc-clear"/></div><div class="fc-body '+e.widgetContentClass+'"><div class="fc-event-container"></div></div>'),i=h.find(".fc-event-container");for(c=this.renderFgSegEls(c,!0),this.popoverSegs=c,d=0;d<c.length;d++)c[d].cell=b,i.append(c[d].el);return h},resliceDaySegs:function(b,c){var d=a.map(b,function(a){return a.event}),e=c.clone().stripTime(),f=e.clone().add(1,"days"),g={start:e,end:f};return b=this.eventsToSegs(d,function(a){var b=E(a,g);return b?[b]:[]}),this.sortSegs(b),b},getMoreLinkText:function(a){var b=this.view.opt("eventLimitText");return"function"==typeof b?b(a):"+"+a+" "+b},getCellSegs:function(a,b){for(var c,d=this.rowStructs[a.row].segMatrix,e=b||0,f=[];e<d.length;)c=d[e][a.col],c&&f.push(c),e++;return f}});var lb=jb.extend({slotDuration:null,snapDuration:null,minTime:null,maxTime:null,colDates:null,labelFormat:null,labelInterval:null,dayEls:null,slatEls:null,slatTops:null,helperEl:null,businessHourSegs:null,constructor:function(){jb.apply(this,arguments),this.processOptions()},renderDates:function(){this.el.html(this.renderHtml()),this.dayEls=this.el.find(".fc-day"),this.slatEls=this.el.find(".fc-slats tr")},renderBusinessHours:function(){var a=this.view.calendar.getBusinessHoursEvents();this.businessHourSegs=this.renderFill("businessHours",this.eventsToSegs(a),"bgevent")},renderHtml:function(){return'<div class="fc-bg"><table>'+this.rowHtml("slotBg")+'</table></div><div class="fc-slats"><table>'+this.slatRowHtml()+"</table></div>"},slotBgCellHtml:function(a){return this.bgCellHtml(a)},slatRowHtml:function(){for(var a,c,d,e=this.view,f=this.isRTL,g="",h=b.duration(+this.minTime);h<this.maxTime;)a=this.start.clone().time(h),c=ba(L(h,this.labelInterval)),d='<td class="fc-axis fc-time '+e.widgetContentClass+'" '+e.axisStyleAttr()+">"+(c?"<span>"+Y(a.format(this.labelFormat))+"</span>":"")+"</td>",g+="<tr "+(c?"":'class="fc-minor"')+">"+(f?"":d)+'<td class="'+e.widgetContentClass+'"/>'+(f?d:"")+"</tr>",h.add(this.slotDuration);return g},processOptions:function(){var c,d=this.view,e=d.opt("slotDuration"),f=d.opt("snapDuration");e=b.duration(e),f=f?b.duration(f):e,this.slotDuration=e,this.snapDuration=f,this.cellDuration=f,this.minTime=b.duration(d.opt("minTime")),this.maxTime=b.duration(d.opt("maxTime")),c=d.opt("slotLabelFormat"),a.isArray(c)&&(c=c[c.length-1]),this.labelFormat=c||d.opt("axisFormat")||d.opt("smallTimeFormat"),c=d.opt("slotLabelInterval"),this.labelInterval=c?b.duration(c):this.computeLabelInterval(e)},computeLabelInterval:function(a){var c,d,e;for(c=yb.length-1;c>=0;c--)if(d=b.duration(yb[c]),e=L(d,a),ba(e)&&e>1)return d;return b.duration(a)},computeColHeadFormat:function(){return this.colCnt>1?this.view.opt("dayOfMonthFormat"):"dddd"},computeEventTimeFormat:function(){return this.view.opt("noMeridiemTimeFormat")},computeDisplayEventEnd:function(){return!0},rangeUpdated:function(){var a,b=this.view,c=[];for(a=this.start.clone();a.isBefore(this.end);)c.push(a.clone()),a.add(1,"day"),a=b.skipHiddenDays(a);this.isRTL&&c.reverse(),this.colDates=c,this.colCnt=c.length,this.rowCnt=Math.ceil((this.maxTime-this.minTime)/this.snapDuration)},computeCellDate:function(a){var b=this.colDates[a.col],c=this.computeSnapTime(a.row);return b=this.view.calendar.rezoneDate(b),b.time(c),b},getColEl:function(a){return this.dayEls.eq(a)},computeSnapTime:function(a){return b.duration(this.minTime+this.snapDuration*a)},rangeToSegs:function(a){var b,c,d,e,f=this.colCnt,g=[];for(a={start:a.start.clone().stripZone(),end:a.end.clone().stripZone()},c=0;f>c;c++)d=this.colDates[c],e={start:d.clone().time(this.minTime),end:d.clone().time(this.maxTime)},b=E(a,e),b&&(b.col=c,g.push(b));return g},updateSize:function(a){this.computeSlatTops(),a&&this.updateSegVerticals()},computeRowCoords:function(){var a,b,c=this.el.offset().top,d=[];for(a=0;a<this.rowCnt;a++)b={top:c+this.computeTimeTop(this.computeSnapTime(a))},a>0&&(d[a-1].bottom=b.top),d.push(b);return b.bottom=b.top+this.computeTimeTop(this.computeSnapTime(a)),d},computeDateTop:function(a,c){return this.computeTimeTop(b.duration(a.clone().stripZone()-c.clone().stripTime()))},computeTimeTop:function(a){var b,c,d,e,f=(a-this.minTime)/this.slotDuration;return f=Math.max(0,f),f=Math.min(this.slatEls.length,f),b=Math.floor(f),c=f-b,d=this.slatTops[b],c?(e=this.slatTops[b+1],d+(e-d)*c):d},computeSlatTops:function(){var b,c=[];this.slatEls.each(function(d,e){b=a(e).position().top,c.push(b)}),c.push(b+this.slatEls.last().outerHeight()),this.slatTops=c},renderDrag:function(a,b){return b?(this.renderRangeHelper(a,b),this.applyDragOpacity(this.helperEl),!0):void this.renderHighlight(this.eventRangeToSegs(a))},unrenderDrag:function(){this.unrenderHelper(),this.unrenderHighlight()},renderEventResize:function(a,b){this.renderRangeHelper(a,b)},unrenderEventResize:function(){this.unrenderHelper()},renderHelper:function(b,c){var d,e,f,g,h=this.eventsToSegs([b]);for(h=this.renderFgSegEls(h),d=this.renderSegTable(h),e=0;e<h.length;e++)f=h[e],c&&c.col===f.col&&(g=c.el,f.el.css({left:g.css("left"),right:g.css("right"),"margin-left":g.css("margin-left"),"margin-right":g.css("margin-right")}));this.helperEl=a('<div class="fc-helper-skeleton"/>').append(d).appendTo(this.el)},unrenderHelper:function(){this.helperEl&&(this.helperEl.remove(),this.helperEl=null)},renderSelection:function(a){this.view.opt("selectHelper")?this.renderRangeHelper(a):this.renderHighlight(this.selectionRangeToSegs(a))},unrenderSelection:function(){this.unrenderHelper(),this.unrenderHighlight()},renderFill:function(b,c,d){var e,f,g,h,i,j,k,l,m,n;if(c.length){for(c=this.renderFillSegEls(b,c),e=this.groupSegCols(c),d=d||b.toLowerCase(),f=a('<div class="fc-'+d+'-skeleton"><table><tr/></table></div>'),g=f.find("tr"),h=0;h<e.length;h++)if(i=e[h],j=a("<td/>").appendTo(g),i.length)for(k=a('<div class="fc-'+d+'-container"/>').appendTo(j),l=this.colDates[h],m=0;m<i.length;m++)n=i[m],k.append(n.el.css({top:this.computeDateTop(n.start,l),bottom:-this.computeDateTop(n.end,l)}));this.bookendCells(g,b),this.el.append(f),this.elsByFill[b]=f}return c}});lb.mixin({eventSkeletonEl:null,renderFgSegs:function(b){return b=this.renderFgSegEls(b),this.el.append(this.eventSkeletonEl=a('<div class="fc-content-skeleton"/>').append(this.renderSegTable(b))),b},unrenderFgSegs:function(a){this.eventSkeletonEl&&(this.eventSkeletonEl.remove(),this.eventSkeletonEl=null)},renderSegTable:function(b){var c,d,e,f,g,h,i=a("<table><tr/></table>"),j=i.find("tr");for(c=this.groupSegCols(b),this.computeSegVerticals(b),f=0;f<c.length;f++){for(g=c[f],this.placeSlotSegs(g),h=a('<div class="fc-event-container"/>'),d=0;d<g.length;d++)e=g[d],e.el.css(this.generateSegPositionCss(e)),e.bottom-e.top<30&&e.el.addClass("fc-short"),h.append(e.el);j.append(a("<td/>").append(h))}return this.bookendCells(j,"eventSkeleton"),i},placeSlotSegs:function(a){var b,c,d;if(this.sortSegs(a),b=Ba(a),Ca(b),c=b[0]){for(d=0;d<c.length;d++)Da(c[d]);for(d=0;d<c.length;d++)this.computeSlotSegCoords(c[d],0,0)}},computeSlotSegCoords:function(a,b,c){var d,e=a.forwardSegs;if(void 0===a.forwardCoord)for(e.length?(this.sortForwardSlotSegs(e),this.computeSlotSegCoords(e[0],b+1,c),a.forwardCoord=e[0].backwardCoord):a.forwardCoord=1,a.backwardCoord=a.forwardCoord-(a.forwardCoord-c)/(b+1),d=0;d<e.length;d++)this.computeSlotSegCoords(e[d],0,a.forwardCoord)},updateSegVerticals:function(){var a,b=(this.segs||[]).concat(this.businessHourSegs||[]);for(this.computeSegVerticals(b),a=0;a<b.length;a++)b[a].el.css(this.generateSegVerticalCss(b[a]))},computeSegVerticals:function(a){var b,c;for(b=0;b<a.length;b++)c=a[b],c.top=this.computeDateTop(c.start,c.start),c.bottom=this.computeDateTop(c.end,c.start)},fgSegHtml:function(a,b){var c,d,e,f=this.view,g=a.event,h=f.isEventDraggable(g),i=!b&&a.isStart&&f.isEventResizableFromStart(g),j=!b&&a.isEnd&&f.isEventResizableFromEnd(g),k=this.getSegClasses(a,h,i||j),l=$(this.getEventSkinCss(g));return k.unshift("fc-time-grid-event","fc-v-event"),f.isMultiDayEvent(g)?(a.isStart||a.isEnd)&&(c=this.getEventTimeText(a),d=this.getEventTimeText(a,"LT"),e=this.getEventTimeText(a,null,!1)):(c=this.getEventTimeText(g),d=this.getEventTimeText(g,"LT"),e=this.getEventTimeText(g,null,!1)),'<a class="'+k.join(" ")+'"'+(g.url?' href="'+Y(g.url)+'"':"")+(l?' style="'+l+'"':"")+'><div class="fc-content">'+(c?'<div class="fc-time" data-start="'+Y(e)+'" data-full="'+Y(d)+'"><span>'+Y(c)+"</span></div>":"")+(g.title?'<div class="fc-title">'+Y(g.title)+"</div>":"")+'</div><div class="fc-bg"/>'+(j?'<div class="fc-resizer fc-end-resizer" />':"")+"</a>"},generateSegPositionCss:function(a){var b,c,d=this.view.opt("slotEventOverlap"),e=a.backwardCoord,f=a.forwardCoord,g=this.generateSegVerticalCss(a);return d&&(f=Math.min(1,e+2*(f-e))),this.isRTL?(b=1-f,c=e):(b=e,c=1-f),g.zIndex=a.level+1,g.left=100*b+"%",g.right=100*c+"%",d&&a.forwardPressure&&(g[this.isRTL?"marginLeft":"marginRight"]=20),g},generateSegVerticalCss:function(a){return{top:a.top,bottom:-a.bottom}},groupSegCols:function(a){var b,c=[];for(b=0;b<this.colCnt;b++)c.push([]);for(b=0;b<a.length;b++)c[a[b].col].push(a[b]);return c},sortForwardSlotSegs:function(a){a.sort(ca(this,"compareForwardSlotSegs"))},compareForwardSlotSegs:function(a,b){return b.forwardPressure-a.forwardPressure||(a.backwardCoord||0)-(b.backwardCoord||0)||this.compareSegs(a,b)}});var mb=Ma.View=ra.extend({type:null,name:null,title:null,calendar:null,options:null,coordMap:null,el:null,displaying:null,isSkeletonRendered:!1,isEventsRendered:!1,start:null,end:null,intervalStart:null,intervalEnd:null,intervalDuration:null,intervalUnit:null,isRTL:!1,isSelected:!1,eventOrderSpecs:null,scrollerEl:null,scrollTop:null,widgetHeaderClass:null,widgetContentClass:null,highlightStateClass:null,nextDayThreshold:null,isHiddenDayHash:null,documentMousedownProxy:null,constructor:function(a,c,d,e){this.calendar=a,this.type=this.name=c,this.options=d,this.intervalDuration=e||b.duration(1,"day"),this.nextDayThreshold=b.duration(this.opt("nextDayThreshold")),this.initThemingProps(),this.initHiddenDays(),this.isRTL=this.opt("isRTL"),this.eventOrderSpecs=A(this.opt("eventOrder")),this.documentMousedownProxy=ca(this,"documentMousedown"),this.initialize()},initialize:function(){},opt:function(a){return this.options[a]},trigger:function(a,b){var c=this.calendar;return c.trigger.apply(c,[a,b||this].concat(Array.prototype.slice.call(arguments,2),[this]))},setDate:function(a){this.setRange(this.computeRange(a))},setRange:function(b){a.extend(this,b),this.updateTitle()},computeRange:function(a){var b,c,d=I(this.intervalDuration),e=a.clone().startOf(d),f=e.clone().add(this.intervalDuration);return/year|month|week|day/.test(d)?(e.stripTime(),f.stripTime()):(e.hasTime()||(e=this.calendar.rezoneDate(e)),f.hasTime()||(f=this.calendar.rezoneDate(f))),b=e.clone(),b=this.skipHiddenDays(b),c=f.clone(),c=this.skipHiddenDays(c,-1,!0),{intervalUnit:d,intervalStart:e,intervalEnd:f,start:b,end:c}},computePrevDate:function(a){return this.massageCurrentDate(a.clone().startOf(this.intervalUnit).subtract(this.intervalDuration),-1)},computeNextDate:function(a){return this.massageCurrentDate(a.clone().startOf(this.intervalUnit).add(this.intervalDuration))},massageCurrentDate:function(a,b){return this.intervalDuration.as("days")<=1&&this.isHiddenDay(a)&&(a=this.skipHiddenDays(a,b),a.startOf("day")),a},updateTitle:function(){this.title=this.computeTitle()},computeTitle:function(){return this.formatRange({start:this.intervalStart,end:this.intervalEnd},this.opt("titleFormat")||this.computeTitleFormat(),this.opt("titleRangeSeparator"))},computeTitleFormat:function(){return"year"==this.intervalUnit?"YYYY":"month"==this.intervalUnit?this.opt("monthYearFormat"):this.intervalDuration.as("days")>1?"ll":"LL"},formatRange:function(a,b,c){var d=a.end;return d.hasTime()||(d=d.clone().subtract(1)),ma(a.start,d,b,c,this.opt("isRTL"))},setElement:function(a){this.el=a,this.bindGlobalHandlers()},removeElement:function(){this.clear(),this.isSkeletonRendered&&(this.unrenderSkeleton(),this.isSkeletonRendered=!1),this.unbindGlobalHandlers(),this.el.remove()},display:function(b){var c=this,d=null;return this.displaying&&(d=this.queryScroll()),this.clear().then(function(){return c.displaying=a.when(c.displayView(b)).then(function(){c.forceScroll(c.computeInitialScroll(d)),c.triggerRender()})})},clear:function(){var b=this,c=this.displaying;return c?c.then(function(){return b.displaying=null,b.clearEvents(),b.clearView()}):a.when()},displayView:function(a){this.isSkeletonRendered||(this.renderSkeleton(),this.isSkeletonRendered=!0),this.setDate(a),this.render&&this.render(),this.renderDates(),this.updateSize(),this.renderBusinessHours()},clearView:function(){this.unselect(),this.triggerUnrender(),this.unrenderBusinessHours(),this.unrenderDates(),this.destroy&&this.destroy()},renderSkeleton:function(){},unrenderSkeleton:function(){},renderDates:function(){},unrenderDates:function(){},renderBusinessHours:function(){},unrenderBusinessHours:function(){},triggerRender:function(){this.trigger("viewRender",this,this,this.el)},triggerUnrender:function(){this.trigger("viewDestroy",this,this,this.el)},bindGlobalHandlers:function(){a(document).on("mousedown",this.documentMousedownProxy)},unbindGlobalHandlers:function(){a(document).off("mousedown",this.documentMousedownProxy)},initThemingProps:function(){var a=this.opt("theme")?"ui":"fc";this.widgetHeaderClass=a+"-widget-header",this.widgetContentClass=a+"-widget-content",this.highlightStateClass=a+"-state-highlight"},updateSize:function(a){var b;a&&(b=this.queryScroll()),this.updateHeight(a),this.updateWidth(a),a&&this.setScroll(b)},updateWidth:function(a){},updateHeight:function(a){var b=this.calendar;this.setHeight(b.getSuggestedViewHeight(),b.isHeightAuto())},setHeight:function(a,b){},computeScrollerHeight:function(a){var b,c,d=this.scrollerEl;return b=this.el.add(d),b.css({position:"relative",left:-1}),c=this.el.outerHeight()-d.height(),b.css({position:"",left:""}),a-c},computeInitialScroll:function(a){return 0},queryScroll:function(){return this.scrollerEl?this.scrollerEl.scrollTop():void 0},setScroll:function(a){return this.scrollerEl?this.scrollerEl.scrollTop(a):void 0},forceScroll:function(a){var b=this;this.setScroll(a),setTimeout(function(){b.setScroll(a)},0)},displayEvents:function(a){var b=this.queryScroll();this.clearEvents(),this.renderEvents(a),this.isEventsRendered=!0,this.setScroll(b),this.triggerEventRender()},clearEvents:function(){this.isEventsRendered&&(this.triggerEventUnrender(),this.destroyEvents&&this.destroyEvents(),this.unrenderEvents(),this.isEventsRendered=!1)},renderEvents:function(a){},unrenderEvents:function(){},triggerEventRender:function(){this.renderedEventSegEach(function(a){this.trigger("eventAfterRender",a.event,a.event,a.el)}),this.trigger("eventAfterAllRender")},triggerEventUnrender:function(){this.renderedEventSegEach(function(a){this.trigger("eventDestroy",a.event,a.event,a.el)})},resolveEventEl:function(b,c){var d=this.trigger("eventRender",b,b,c);return d===!1?c=null:d&&d!==!0&&(c=a(d)),c},showEvent:function(a){this.renderedEventSegEach(function(a){a.el.css("visibility","")},a)},hideEvent:function(a){this.renderedEventSegEach(function(a){a.el.css("visibility","hidden")},a)},renderedEventSegEach:function(a,b){var c,d=this.getEventSegs();for(c=0;c<d.length;c++)b&&d[c].event._id!==b._id||d[c].el&&a.call(this,d[c])},getEventSegs:function(){return[]},isEventDraggable:function(a){var b=a.source||{};return X(a.startEditable,b.startEditable,this.opt("eventStartEditable"),a.editable,b.editable,this.opt("editable"))},reportEventDrop:function(a,b,c,d,e){var f=this.calendar,g=f.mutateEvent(a,b,c),h=function(){g.undo(),f.reportEventChange()};this.triggerEventDrop(a,g.dateDelta,h,d,e),f.reportEventChange()},triggerEventDrop:function(a,b,c,d,e){this.trigger("eventDrop",d[0],a,b,c,e,{})},reportExternalDrop:function(b,c,d,e,f){var g,h,i=b.eventProps;i&&(g=a.extend({},i,c),h=this.calendar.renderEvent(g,b.stick)[0]),this.triggerExternalDrop(h,c,d,e,f)},triggerExternalDrop:function(a,b,c,d,e){this.trigger("drop",c[0],b.start,d,e),a&&this.trigger("eventReceive",null,a)},renderDrag:function(a,b){},unrenderDrag:function(){},isEventResizableFromStart:function(a){return this.opt("eventResizableFromStart")&&this.isEventResizable(a)},isEventResizableFromEnd:function(a){return this.isEventResizable(a)},isEventResizable:function(a){var b=a.source||{};return X(a.durationEditable,b.durationEditable,this.opt("eventDurationEditable"),a.editable,b.editable,this.opt("editable"))},reportEventResize:function(a,b,c,d,e){var f=this.calendar,g=f.mutateEvent(a,b,c),h=function(){g.undo(),f.reportEventChange()};this.triggerEventResize(a,g.durationDelta,h,d,e),f.reportEventChange()},triggerEventResize:function(a,b,c,d,e){this.trigger("eventResize",d[0],a,b,c,e,{})},select:function(a,b){this.unselect(b),this.renderSelection(a),this.reportSelection(a,b)},renderSelection:function(a){},reportSelection:function(a,b){this.isSelected=!0,this.triggerSelect(a,b)},triggerSelect:function(a,b){this.trigger("select",null,a.start,a.end,b)},unselect:function(a){this.isSelected&&(this.isSelected=!1,this.destroySelection&&this.destroySelection(),this.unrenderSelection(),this.trigger("unselect",null,a))},unrenderSelection:function(){},documentMousedown:function(b){var c;this.isSelected&&this.opt("unselectAuto")&&v(b)&&(c=this.opt("unselectCancel"),c&&a(b.target).closest(c).length||this.unselect(b))},triggerDayClick:function(a,b,c){this.trigger("dayClick",b,a.start,c)},initHiddenDays:function(){var b,c=this.opt("hiddenDays")||[],d=[],e=0;for(this.opt("weekends")===!1&&c.push(0,6),b=0;7>b;b++)(d[b]=-1!==a.inArray(b,c))||e++;if(!e)throw"invalid hiddenDays";this.isHiddenDayHash=d},isHiddenDay:function(a){return b.isMoment(a)&&(a=a.day()),this.isHiddenDayHash[a]},skipHiddenDays:function(a,b,c){var d=a.clone();for(b=b||1;this.isHiddenDayHash[(d.day()+(c?b:0)+7)%7];)d.add(b,"days");return d},computeDayRange:function(a){var b,c=a.start.clone().stripTime(),d=a.end,e=null;return d&&(e=d.clone().stripTime(),b=+d.time(),b&&b>=this.nextDayThreshold&&e.add(1,"days")),(!d||c>=e)&&(e=c.clone().add(1,"days")),{start:c,end:e}},isMultiDayEvent:function(a){var b=this.computeDayRange(a);return b.end.diff(b.start,"days")>1}}),nb=Ma.Calendar=ra.extend({dirDefaults:null,langDefaults:null,overrides:null,options:null,viewSpecCache:null,view:null,header:null,loadingLevel:0,constructor:Ga,initialize:function(){},initOptions:function(a){var b,e,f,g;a=d(a),b=a.lang,e=ob[b],e||(b=nb.defaults.lang,e=ob[b]||{}),f=X(a.isRTL,e.isRTL,nb.defaults.isRTL),g=f?nb.rtlDefaults:{},this.dirDefaults=g,this.langDefaults=e,this.overrides=a,this.options=c([nb.defaults,g,e,a]),Ha(this.options),this.viewSpecCache={}},getViewSpec:function(a){var b=this.viewSpecCache;return b[a]||(b[a]=this.buildViewSpec(a))},getUnitViewSpec:function(b){var c,d,e;if(-1!=a.inArray(b,Ra))for(c=this.header.getViewsWithButtons(),a.each(Ma.views,function(a){c.push(a)}),d=0;d<c.length;d++)if(e=this.getViewSpec(c[d]),e&&e.singleUnit==b)return e},buildViewSpec:function(a){for(var d,e,f,g,h=this.overrides.views||{},i=[],j=[],k=[],l=a;l;)d=Na[l],e=h[l],l=null,"function"==typeof d&&(d={"class":d}),d&&(i.unshift(d),j.unshift(d.defaults||{}),f=f||d.duration,l=l||d.type),e&&(k.unshift(e),f=f||e.duration,l=l||e.type);return d=Q(i),d.type=a,d["class"]?(f&&(f=b.duration(f),f.valueOf()&&(d.duration=f,g=I(f),1===f.as(g)&&(d.singleUnit=g,k.unshift(h[g]||{})))),d.defaults=c(j),d.overrides=c(k),this.buildViewSpecOptions(d),this.buildViewSpecButtonText(d,a),d):!1},buildViewSpecOptions:function(a){a.options=c([nb.defaults,a.defaults,this.dirDefaults,this.langDefaults,this.overrides,a.overrides]),Ha(a.options)},buildViewSpecButtonText:function(a,b){function c(c){var d=c.buttonText||{};return d[b]||(a.singleUnit?d[a.singleUnit]:null)}a.buttonTextOverride=c(this.overrides)||a.overrides.buttonText,a.buttonTextDefault=c(this.langDefaults)||c(this.dirDefaults)||a.defaults.buttonText||c(nb.defaults)||(a.duration?this.humanizeDuration(a.duration):null)||b},instantiateView:function(a){var b=this.getViewSpec(a);return new b["class"](this,a,b.options,b.duration)},isValidViewType:function(a){return Boolean(this.getViewSpec(a))},pushLoading:function(){this.loadingLevel++||this.trigger("loading",null,!0,this.view)},popLoading:function(){--this.loadingLevel||this.trigger("loading",null,!1,this.view)},buildSelectRange:function(a,b){return a=this.moment(a),b=b?this.moment(b):a.hasTime()?a.clone().add(this.defaultTimedEventDuration):a.clone().add(this.defaultAllDayEventDuration),{start:a,end:b}}});nb.mixin(bb),nb.defaults={titleRangeSeparator:" â€” ",monthYearFormat:"MMMM YYYY",defaultTimedEventDuration:"02:00:00",defaultAllDayEventDuration:{days:1},forceEventDuration:!1,nextDayThreshold:"09:00:00",defaultView:"month",aspectRatio:1.35,header:{left:"title",center:"",right:"today prev,next"},weekends:!0,weekNumbers:!1,weekNumberTitle:"W",weekNumberCalculation:"local",scrollTime:"06:00:00",lazyFetching:!0,startParam:"start",endParam:"end",timezoneParam:"timezone",timezone:!1,isRTL:!1,buttonText:{prev:"prev",next:"next",prevYear:"prev year",nextYear:"next year",year:"year",today:"today",month:"month",week:"week",day:"day"},buttonIcons:{prev:"left-single-arrow",next:"right-single-arrow",prevYear:"left-double-arrow",nextYear:"right-double-arrow"},theme:!1,themeButtonIcons:{prev:"circle-triangle-w",next:"circle-triangle-e",prevYear:"seek-prev",nextYear:"seek-next"},dragOpacity:.75,dragRevertDuration:500,dragScroll:!0,unselectAuto:!0,dropAccept:"*",eventOrder:"title",eventLimit:!1,eventLimitText:"more",eventLimitClick:"popover",dayPopoverFormat:"LL",handleWindowResize:!0,windowResizeDelay:200},nb.englishDefaults={dayPopoverFormat:"dddd, MMMM D"},nb.rtlDefaults={header:{left:"next,prev today",center:"",right:"title"},buttonIcons:{prev:"right-single-arrow",next:"left-single-arrow",prevYear:"right-double-arrow",nextYear:"left-double-arrow"},themeButtonIcons:{prev:"circle-triangle-e",next:"circle-triangle-w",nextYear:"seek-prev",prevYear:"seek-next"}};var ob=Ma.langs={};Ma.datepickerLang=function(b,c,d){var e=ob[b]||(ob[b]={});e.isRTL=d.isRTL,e.weekNumberTitle=d.weekHeader,a.each(pb,function(a,b){e[a]=b(d)}),a.datepicker&&(a.datepicker.regional[c]=a.datepicker.regional[b]=d,a.datepicker.regional.en=a.datepicker.regional[""],a.datepicker.setDefaults(d))},Ma.lang=function(b,d){var e,f;e=ob[b]||(ob[b]={}),d&&(e=ob[b]=c([e,d])),f=Ia(b),a.each(qb,function(a,b){null==e[a]&&(e[a]=b(f,e))}),nb.defaults.lang=b};var pb={buttonText:function(a){return{prev:Z(a.prevText),next:Z(a.nextText),today:Z(a.currentText)}},monthYearFormat:function(a){return a.showMonthAfterYear?"YYYY["+a.yearSuffix+"] MMMM":"MMMM YYYY["+a.yearSuffix+"]"}},qb={dayOfMonthFormat:function(a,b){var c=a.longDateFormat("l");return c=c.replace(/^Y+[^\w\s]*|[^\w\s]*Y+$/g,""),b.isRTL?c+=" ddd":c="ddd "+c,c},mediumTimeFormat:function(a){return a.longDateFormat("LT").replace(/\s*a$/i,"a")},smallTimeFormat:function(a){return a.longDateFormat("LT").replace(":mm","(:mm)").replace(/(\Wmm)$/,"($1)").replace(/\s*a$/i,"a")},extraSmallTimeFormat:function(a){return a.longDateFormat("LT").replace(":mm","(:mm)").replace(/(\Wmm)$/,"($1)").replace(/\s*a$/i,"t")},hourFormat:function(a){return a.longDateFormat("LT").replace(":mm","").replace(/(\Wmm)$/,"").replace(/\s*a$/i,"a")},noMeridiemTimeFormat:function(a){return a.longDateFormat("LT").replace(/\s*a$/i,"")}},rb={smallDayDateFormat:function(a){return a.isRTL?"D dd":"dd D"},weekFormat:function(a){return a.isRTL?"w[ "+a.weekNumberTitle+"]":"["+a.weekNumberTitle+" ]w"},smallWeekFormat:function(a){return a.isRTL?"w["+a.weekNumberTitle+"]":"["+a.weekNumberTitle+"]w"}};Ma.lang("en",nb.englishDefaults),Ma.sourceNormalizers=[],Ma.sourceFetchers=[];var sb={dataType:"json",cache:!1},tb=1;nb.prototype.getPeerEvents=function(a,b){var c,d,e=this.getEventCache(),f=[];for(c=0;c<e.length;c++)d=e[c],a&&a._id===d._id||f.push(d);return f};var ub=mb.extend({dayGrid:null,dayNumbersVisible:!1,weekNumbersVisible:!1,weekNumberWidth:null,headRowEl:null,initialize:function(){this.dayGrid=new kb(this),this.coordMap=this.dayGrid.coordMap},setRange:function(a){mb.prototype.setRange.call(this,a),this.dayGrid.breakOnWeeks=/year|month|week/.test(this.intervalUnit),this.dayGrid.setRange(a)},computeRange:function(a){var b=mb.prototype.computeRange.call(this,a);return/year|month/.test(b.intervalUnit)&&(b.start.startOf("week"),b.start=this.skipHiddenDays(b.start),b.end.weekday()&&(b.end.add(1,"week").startOf("week"),b.end=this.skipHiddenDays(b.end,-1,!0))),b},renderDates:function(){this.dayNumbersVisible=this.dayGrid.rowCnt>1,this.weekNumbersVisible=this.opt("weekNumbers"),this.dayGrid.numbersVisible=this.dayNumbersVisible||this.weekNumbersVisible,this.el.addClass("fc-basic-view").html(this.renderHtml()),this.headRowEl=this.el.find("thead .fc-row"),this.scrollerEl=this.el.find(".fc-day-grid-container"),this.dayGrid.coordMap.containerEl=this.scrollerEl,this.dayGrid.setElement(this.el.find(".fc-day-grid")),this.dayGrid.renderDates(this.hasRigidRows())},unrenderDates:function(){this.dayGrid.unrenderDates(),this.dayGrid.removeElement()},renderBusinessHours:function(){this.dayGrid.renderBusinessHours()},renderHtml:function(){return'<table><thead class="fc-head"><tr><td class="'+this.widgetHeaderClass+'">'+this.dayGrid.headHtml()+'</td></tr></thead><tbody class="fc-body"><tr><td class="'+this.widgetContentClass+'"><div class="fc-day-grid-container"><div class="fc-day-grid"/></div></td></tr></tbody></table>'},headIntroHtml:function(){return this.weekNumbersVisible?'<th class="fc-week-number '+this.widgetHeaderClass+'" '+this.weekNumberStyleAttr()+"><span>"+Y(this.opt("weekNumberTitle"))+"</span></th>":void 0},numberIntroHtml:function(a){return this.weekNumbersVisible?'<td class="fc-week-number" '+this.weekNumberStyleAttr()+"><span>"+this.dayGrid.getCell(a,0).start.format("w")+"</span></td>":void 0},dayIntroHtml:function(){return this.weekNumbersVisible?'<td class="fc-week-number '+this.widgetContentClass+'" '+this.weekNumberStyleAttr()+"></td>":void 0},introHtml:function(){return this.weekNumbersVisible?'<td class="fc-week-number" '+this.weekNumberStyleAttr()+"></td>":void 0},numberCellHtml:function(a){var b,c=a.start;return this.dayNumbersVisible?(b=this.dayGrid.getDayClasses(c),b.unshift("fc-day-number"),'<td class="'+b.join(" ")+'" data-date="'+c.format()+'">'+c.date()+"</td>"):"<td/>"},weekNumberStyleAttr:function(){return null!==this.weekNumberWidth?'style="width:'+this.weekNumberWidth+'px"':""},hasRigidRows:function(){var a=this.opt("eventLimit");return a&&"number"!=typeof a},updateWidth:function(){this.weekNumbersVisible&&(this.weekNumberWidth=k(this.el.find(".fc-week-number")))},setHeight:function(a,b){var c,d=this.opt("eventLimit");m(this.scrollerEl),f(this.headRowEl),this.dayGrid.removeSegPopover(),d&&"number"==typeof d&&this.dayGrid.limitRows(d),c=this.computeScrollerHeight(a),this.setGridHeight(c,b),d&&"number"!=typeof d&&this.dayGrid.limitRows(d),!b&&l(this.scrollerEl,c)&&(e(this.headRowEl,r(this.scrollerEl)),c=this.computeScrollerHeight(a),this.scrollerEl.height(c))},setGridHeight:function(a,b){b?j(this.dayGrid.rowEls):i(this.dayGrid.rowEls,a,!0)},renderEvents:function(a){this.dayGrid.renderEvents(a),this.updateHeight()},getEventSegs:function(){return this.dayGrid.getEventSegs()},unrenderEvents:function(){this.dayGrid.unrenderEvents()},renderDrag:function(a,b){return this.dayGrid.renderDrag(a,b)},unrenderDrag:function(){this.dayGrid.unrenderDrag()},renderSelection:function(a){this.dayGrid.renderSelection(a)},unrenderSelection:function(){this.dayGrid.unrenderSelection()}}),vb=ub.extend({computeRange:function(a){var b,c=ub.prototype.computeRange.call(this,a);return this.isFixedWeeks()&&(b=Math.ceil(c.end.diff(c.start,"weeks",!0)),c.end.add(6-b,"weeks")),c},setGridHeight:function(a,b){b=b||"variable"===this.opt("weekMode"),b&&(a*=this.rowCnt/6),i(this.dayGrid.rowEls,a,!b)},isFixedWeeks:function(){var a=this.opt("weekMode");return a?"fixed"===a:this.opt("fixedWeekCount")}});Na.basic={"class":ub},Na.basicDay={type:"basic",duration:{days:1}},Na.basicWeek={type:"basic",duration:{weeks:1}},Na.month={"class":vb,duration:{months:1},defaults:{fixedWeekCount:!0}};var wb=mb.extend({timeGrid:null,dayGrid:null,axisWidth:null,noScrollRowEls:null,bottomRuleEl:null,bottomRuleHeight:null,initialize:function(){this.timeGrid=new lb(this),this.opt("allDaySlot")?(this.dayGrid=new kb(this),this.coordMap=new eb([this.dayGrid.coordMap,this.timeGrid.coordMap])):this.coordMap=this.timeGrid.coordMap},setRange:function(a){mb.prototype.setRange.call(this,a),this.timeGrid.setRange(a),this.dayGrid&&this.dayGrid.setRange(a)},renderDates:function(){this.el.addClass("fc-agenda-view").html(this.renderHtml()),this.scrollerEl=this.el.find(".fc-time-grid-container"),this.timeGrid.coordMap.containerEl=this.scrollerEl,this.timeGrid.setElement(this.el.find(".fc-time-grid")),this.timeGrid.renderDates(),this.bottomRuleEl=a('<hr class="fc-divider '+this.widgetHeaderClass+'"/>').appendTo(this.timeGrid.el),this.dayGrid&&(this.dayGrid.setElement(this.el.find(".fc-day-grid")),this.dayGrid.renderDates(),this.dayGrid.bottomCoordPadding=this.dayGrid.el.next("hr").outerHeight()),this.noScrollRowEls=this.el.find(".fc-row:not(.fc-scroller *)")},unrenderDates:function(){this.timeGrid.unrenderDates(),this.timeGrid.removeElement(),this.dayGrid&&(this.dayGrid.unrenderDates(),this.dayGrid.removeElement())},renderBusinessHours:function(){this.timeGrid.renderBusinessHours(),this.dayGrid&&this.dayGrid.renderBusinessHours()},renderHtml:function(){return'<table><thead class="fc-head"><tr><td class="'+this.widgetHeaderClass+'">'+this.timeGrid.headHtml()+'</td></tr></thead><tbody class="fc-body"><tr><td class="'+this.widgetContentClass+'">'+(this.dayGrid?'<div class="fc-day-grid"/><hr class="fc-divider '+this.widgetHeaderClass+'"/>':"")+'<div class="fc-time-grid-container"><div class="fc-time-grid"/></div></td></tr></tbody></table>'},headIntroHtml:function(){var a,b;return this.opt("weekNumbers")?(a=this.timeGrid.getCell(0).start,b=a.format(this.opt("smallWeekFormat")),'<th class="fc-axis fc-week-number '+this.widgetHeaderClass+'" '+this.axisStyleAttr()+"><span>"+Y(b)+"</span></th>"):'<th class="fc-axis '+this.widgetHeaderClass+'" '+this.axisStyleAttr()+"></th>"},dayIntroHtml:function(){return'<td class="fc-axis '+this.widgetContentClass+'" '+this.axisStyleAttr()+"><span>"+(this.opt("allDayHtml")||Y(this.opt("allDayText")))+"</span></td>"},slotBgIntroHtml:function(){return'<td class="fc-axis '+this.widgetContentClass+'" '+this.axisStyleAttr()+"></td>";
 },introHtml:function(){return'<td class="fc-axis" '+this.axisStyleAttr()+"></td>"},axisStyleAttr:function(){return null!==this.axisWidth?'style="width:'+this.axisWidth+'px"':""},updateSize:function(a){this.timeGrid.updateSize(a),mb.prototype.updateSize.call(this,a)},updateWidth:function(){this.axisWidth=k(this.el.find(".fc-axis"))},setHeight:function(a,b){var c,d;null===this.bottomRuleHeight&&(this.bottomRuleHeight=this.bottomRuleEl.outerHeight()),this.bottomRuleEl.hide(),this.scrollerEl.css("overflow",""),m(this.scrollerEl),f(this.noScrollRowEls),this.dayGrid&&(this.dayGrid.removeSegPopover(),c=this.opt("eventLimit"),c&&"number"!=typeof c&&(c=xb),c&&this.dayGrid.limitRows(c)),b||(d=this.computeScrollerHeight(a),l(this.scrollerEl,d)?(e(this.noScrollRowEls,r(this.scrollerEl)),d=this.computeScrollerHeight(a),this.scrollerEl.height(d)):(this.scrollerEl.height(d).css("overflow","hidden"),this.bottomRuleEl.show()))},computeInitialScroll:function(){var a=b.duration(this.opt("scrollTime")),c=this.timeGrid.computeTimeTop(a);return c=Math.ceil(c),c&&c++,c},renderEvents:function(a){var b,c,d=[],e=[],f=[];for(c=0;c<a.length;c++)a[c].allDay?d.push(a[c]):e.push(a[c]);b=this.timeGrid.renderEvents(e),this.dayGrid&&(f=this.dayGrid.renderEvents(d)),this.updateHeight()},getEventSegs:function(){return this.timeGrid.getEventSegs().concat(this.dayGrid?this.dayGrid.getEventSegs():[])},unrenderEvents:function(){this.timeGrid.unrenderEvents(),this.dayGrid&&this.dayGrid.unrenderEvents()},renderDrag:function(a,b){return a.start.hasTime()?this.timeGrid.renderDrag(a,b):this.dayGrid?this.dayGrid.renderDrag(a,b):void 0},unrenderDrag:function(){this.timeGrid.unrenderDrag(),this.dayGrid&&this.dayGrid.unrenderDrag()},renderSelection:function(a){a.start.hasTime()||a.end.hasTime()?this.timeGrid.renderSelection(a):this.dayGrid&&this.dayGrid.renderSelection(a)},unrenderSelection:function(){this.timeGrid.unrenderSelection(),this.dayGrid&&this.dayGrid.unrenderSelection()}}),xb=5,yb=[{hours:1},{minutes:30},{minutes:15},{seconds:30},{seconds:15}];return Na.agenda={"class":wb,defaults:{allDaySlot:!0,allDayText:"all-day",slotDuration:"00:30:00",minTime:"00:00:00",maxTime:"24:00:00",slotEventOverlap:!0}},Na.agendaDay={type:"agenda",duration:{days:1}},Na.agendaWeek={type:"agenda",duration:{weeks:1}},Ma});
-
-var events = [];
  
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
@@ -46,172 +40,171 @@ var events = [];
   }
 })(function($) {
 
-
-var API_BASE = 'https://www.googleapis.com/calendar/v3/calendars';
-var fc = $.fullCalendar;
-var applyAll = fc.applyAll;
-
-
-fc.sourceNormalizers.push(function(sourceOptions) {
-  var googleCalendarId = sourceOptions.googleCalendarId;
-  var url = sourceOptions.url;
-  var match;
-
-  // if the Google Calendar ID hasn't been explicitly defined
-  if (!googleCalendarId && url) {
-
-    // detect if the ID was specified as a single string.
-    // will match calendars like "asdf1234@calendar.google.com" in addition to person email calendars.
-    if (/^[^\/]+@([^\/\.]+\.)*(google|googlemail|gmail)\.com$/.test(url)) {
-      googleCalendarId = url;
-    }
-    // try to scrape it out of a V1 or V3 API feed URL
-    else if (
-      (match = /^https:\/\/www.googleapis.com\/calendar\/v3\/calendars\/([^\/]*)/.exec(url)) ||
-      (match = /^https?:\/\/www.google.com\/calendar\/feeds\/([^\/]*)/.exec(url))
-    ) {
-      googleCalendarId = decodeURIComponent(match[1]);
-    }
-
-    if (googleCalendarId) {
-      sourceOptions.googleCalendarId = googleCalendarId;
-    }
-  }
+	var API_BASE = 'https://www.googleapis.com/calendar/v3/calendars';
+	var fc = $.fullCalendar;
+	var applyAll = fc.applyAll;
 
 
-  if (googleCalendarId) { // is this a Google Calendar?
+	fc.sourceNormalizers.push(function(sourceOptions) {
+	  var googleCalendarId = sourceOptions.googleCalendarId;
+	  var url = sourceOptions.url;
+	  var match;
 
-    // make each Google Calendar source uneditable by default
-    if (sourceOptions.editable == null) {
-      sourceOptions.editable = false;
-    }
+	  // if the Google Calendar ID hasn't been explicitly defined
+	  if (!googleCalendarId && url) {
 
-    // We want removeEventSource to work, but it won't know about the googleCalendarId primitive.
-    // Shoehorn it into the url, which will function as the unique primitive. Won't cause side effects.
-    // This hack is obsolete since 2.2.3, but keep it so this plugin file is compatible with old versions.
-    sourceOptions.url = googleCalendarId;
-  }
-});
+	    // detect if the ID was specified as a single string.
+	    // will match calendars like "asdf1234@calendar.google.com" in addition to person email calendars.
+	    if (/^[^\/]+@([^\/\.]+\.)*(google|googlemail|gmail)\.com$/.test(url)) {
+	      googleCalendarId = url;
+	    }
+	    // try to scrape it out of a V1 or V3 API feed URL
+	    else if (
+	      (match = /^https:\/\/www.googleapis.com\/calendar\/v3\/calendars\/([^\/]*)/.exec(url)) ||
+	      (match = /^https?:\/\/www.google.com\/calendar\/feeds\/([^\/]*)/.exec(url))
+	    ) {
+	      googleCalendarId = decodeURIComponent(match[1]);
+	    }
 
-
-fc.sourceFetchers.push(function(sourceOptions, start, end, timezone) {
-  if (sourceOptions.googleCalendarId) {
-    return transformOptions(sourceOptions, start, end, timezone, this); // `this` is the calendar
-  }
-});
-
-
-function transformOptions(sourceOptions, start, end, timezone, calendar) {
-  var url = API_BASE + '/' + encodeURIComponent(sourceOptions.googleCalendarId) + '/events?callback=?'; // jsonp
-  var apiKey = sourceOptions.googleCalendarApiKey || calendar.options.googleCalendarApiKey;
-  var success = sourceOptions.success;
-  var data;
-  var timezoneArg; // populated when a specific timezone. escaped to Google's liking
-
-  function reportError(message, apiErrorObjs) {
-    var errorObjs = apiErrorObjs || [ { message: message } ]; // to be passed into error handlers
-
-    // call error handlers
-    (sourceOptions.googleCalendarError || $.noop).apply(calendar, errorObjs);
-    (calendar.options.googleCalendarError || $.noop).apply(calendar, errorObjs);
-
-    // print error to debug console
-    fc.warn.apply(null, [ message ].concat(apiErrorObjs || []));
-  }
-
-  if (!apiKey) {
-    reportError("Specify a googleCalendarApiKey. See http://fullcalendar.io/docs/google_calendar/");
-    return {}; // an empty source to use instead. won't fetch anything.
-  }
-
-  // The API expects an ISO8601 datetime with a time and timezone part.
-  // Since the calendar's timezone offset isn't always known, request the date in UTC and pad it by a day on each
-  // side, guaranteeing we will receive all events in the desired range, albeit a superset.
-  // .utc() will set a zone and give it a 00:00:00 time.
-  if (!start.hasZone()) {
-    start = start.clone().utc().add(-1, 'day');
-  }
-  if (!end.hasZone()) {
-    end = end.clone().utc().add(1, 'day');
-  }
-
-  // when sending timezone names to Google, only accepts underscores, not spaces
-  if (timezone && timezone != 'local') {
-    timezoneArg = timezone.replace(' ', '_');
-  }
-
-  data = $.extend({}, sourceOptions.data || {}, {
-    key: apiKey,
-    timeMin: start.format(),
-    timeMax: end.format(),
-    timeZone: timezoneArg,
-    singleEvents: true,
-    maxResults: 9999
-  });
-
-  return $.extend({}, sourceOptions, {
-    googleCalendarId: null, // prevents source-normalizing from happening again
-    url: url,
-    data: data,
-    startParam: false, // `false` omits this parameter. we already included it above
-    endParam: false, // same
-    timezoneParam: false, // same
-    success: function(data) {
-    	// console.log(data);
-      var successArgs;
-      var successRes;
-
-      if (data.error) {
-        reportError('Google Calendar API: ' + data.error.message, data.error.errors);
-      }
-      else if (data.items) {
-        $.each(data.items, function(i, entry) {
-          var url = entry.htmlLink;
-
-          // make the URLs for each event show times in the correct timezone
-          if (timezoneArg) {
-            url = injectQsComponent(url, 'ctz=' + timezoneArg);
-          }
-
-          //console.log(entry);
-
-          events.push({
-            id: entry.id,
-            title: entry.summary,
-            start: entry.start.dateTime || entry.start.date, // try timed. will fall back to all-day
-            end: entry.end.dateTime || entry.end.date, // same
-            // url: url,
-            location: entry.location,
-            description: entry.description
-          });
-        });
-
-        // call the success handler(s) and allow it to return a new events array
-        successArgs = [ events ].concat(Array.prototype.slice.call(arguments, 1)); // forward other jq args
-        successRes = applyAll(success, this, successArgs);
-        if ($.isArray(successRes)) {
-          return successRes;
-        }
-      }
-
-      return events;
-    }
-  });
-}
+	    if (googleCalendarId) {
+	      sourceOptions.googleCalendarId = googleCalendarId;
+	    }
+	  }
 
 
-// Injects a string like "arg=value" into the querystring of a URL
-function injectQsComponent(url, component) {
-  // inject it after the querystring but before the fragment
-  return url.replace(/(\?.*?)?(#|$)/, function(whole, qs, hash) {
-    return (qs ? qs + '&' : '?') + component + hash;
-  });
-}
+	  if (googleCalendarId) { // is this a Google Calendar?
+
+	    // make each Google Calendar source uneditable by default
+	    if (sourceOptions.editable == null) {
+	      sourceOptions.editable = false;
+	    }
+
+	    // We want removeEventSource to work, but it won't know about the googleCalendarId primitive.
+	    // Shoehorn it into the url, which will function as the unique primitive. Won't cause side effects.
+	    // This hack is obsolete since 2.2.3, but keep it so this plugin file is compatible with old versions.
+	    sourceOptions.url = googleCalendarId;
+	  }
+	});
 
 
+	fc.sourceFetchers.push(function(sourceOptions, start, end, timezone) {
+	  if (sourceOptions.googleCalendarId) {
+	    return transformOptions(sourceOptions, start, end, timezone, this); // `this` is the calendar
+	  }
+	});
+
+
+	function transformOptions(sourceOptions, start, end, timezone, calendar) {
+	  var url = API_BASE + '/' + encodeURIComponent(sourceOptions.googleCalendarId) + '/events?callback=?'; // jsonp
+	  var apiKey = sourceOptions.googleCalendarApiKey || calendar.options.googleCalendarApiKey;
+	  var success = sourceOptions.success;
+	  var data;
+	  var timezoneArg; // populated when a specific timezone. escaped to Google's liking
+
+	  function reportError(message, apiErrorObjs) {
+	    var errorObjs = apiErrorObjs || [ { message: message } ]; // to be passed into error handlers
+
+	    // call error handlers
+	    (sourceOptions.googleCalendarError || $.noop).apply(calendar, errorObjs);
+	    (calendar.options.googleCalendarError || $.noop).apply(calendar, errorObjs);
+
+	    // print error to debug console
+	    fc.warn.apply(null, [ message ].concat(apiErrorObjs || []));
+	  }
+
+	  if (!apiKey) {
+	    reportError("Specify a googleCalendarApiKey. See http://fullcalendar.io/docs/google_calendar/");
+	    return {}; // an empty source to use instead. won't fetch anything.
+	  }
+
+	  // The API expects an ISO8601 datetime with a time and timezone part.
+	  // Since the calendar's timezone offset isn't always known, request the date in UTC and pad it by a day on each
+	  // side, guaranteeing we will receive all events in the desired range, albeit a superset.
+	  // .utc() will set a zone and give it a 00:00:00 time.
+	  if (!start.hasZone()) {
+	    start = start.clone().utc().add(-1, 'day');
+	  }
+	  if (!end.hasZone()) {
+	    end = end.clone().utc().add(1, 'day');
+	  }
+
+	  // when sending timezone names to Google, only accepts underscores, not spaces
+	  if (timezone && timezone != 'local') {
+	    timezoneArg = timezone.replace(' ', '_');
+	  }
+
+	  data = $.extend({}, sourceOptions.data || {}, {
+	    key: apiKey,
+	    timeMin: start.format(),
+	    timeMax: end.format(),
+	    timeZone: timezoneArg,
+	    singleEvents: true,
+	    maxResults: 9999
+	  });
+
+	  return $.extend({}, sourceOptions, {
+	    googleCalendarId: null, // prevents source-normalizing from happening again
+	    url: url,
+	    data: data,
+	    startParam: false, // `false` omits this parameter. we already included it above
+	    endParam: false, // same
+	    timezoneParam: false, // same
+	    success: function(data) {
+	    	var events = [];
+	    	// console.log(data);
+	      var successArgs;
+	      var successRes;
+
+	      if (data.error) {
+	        reportError('Google Calendar API: ' + data.error.message, data.error.errors);
+	      }
+	      else if (data.items) {
+	        $.each(data.items, function(i, entry) {
+	          var url = entry.htmlLink;
+
+	          // make the URLs for each event show times in the correct timezone
+	          if (timezoneArg) {
+	            url = injectQsComponent(url, 'ctz=' + timezoneArg);
+	          }
+
+	          //console.log(entry);
+
+	          events.push({
+	            id: entry.id,
+	            title: entry.summary,
+	            start: entry.start.dateTime || entry.start.date, // try timed. will fall back to all-day
+	            end: entry.end.dateTime || entry.end.date, // same
+	            // url: url,
+	            location: entry.location,
+	            description: entry.description
+	          });
+	        });
+
+	        // call the success handler(s) and allow it to return a new events array
+	        successArgs = [ events ].concat(Array.prototype.slice.call(arguments, 1)); // forward other jq args
+	        successRes = applyAll(success, this, successArgs);
+	        if ($.isArray(successRes)) {
+	          return successRes;
+	        }
+	      }
+
+	      return events;
+	    }
+	  });
+	}
+
+
+	// Injects a string like "arg=value" into the querystring of a URL
+	function injectQsComponent(url, component) {
+	  // inject it after the querystring but before the fragment
+	  return url.replace(/(\?.*?)?(#|$)/, function(whole, qs, hash) {
+	    return (qs ? qs + '&' : '?') + component + hash;
+	  });
+	}
 });
 
 $(document).ready(function(){
+	var calendarRendered = false;
   $('.lightbox').on('click', function(e) {
     e.preventDefault();
     $('.lightbox').colorbox({
@@ -221,194 +214,185 @@ $(document).ready(function(){
         
       },
       onComplete: function() {
-        renderCalendar();
-         $.colorbox.resize();
+         renderCalendar();
+        $.colorbox.resize();
+        calendarRendered = true;
       }
     });
   });
+
+  /* Booking form validation */
   var validator = $("#booking-form").validate({
-            rules: {
-                name: {
-                  required: true,
-                  minlength: 2
-                },
-                email: {
-                  required: true,
-                  email: true
-                },
-                number: {
-                  required: true,
-                  phonesUK: true 
-                },
-                location: {
-                  required: true,
-                  minlength: 2
-                },
-                dob: {
-                  required: true,
-                  dateITA: true
-                }
-            },
-            messages: {
-              name: {
-                required: "Please enter your name",
-                minlength: jQuery.validator.format("Enter at least {0} characters")
-              },
-              email: {
-                required: "Please enter your email address",
-                email: "Enter a valid email format"
-              },
-              number: {
-                required: "Please enter your phone number",
-                phonesUK: "Enter a valid UK telephone number"
-              },
-              location: {
-                required: "Please enter your location",
-                minlength: jQuery.validator.format("Enter at least {0} characters")
-              },
-              dob: {
-                required: "Please enter the date of birth of the trainee",
-                dateITA: "Format of date should be dd/mm/yyyy"
-              }
-            },
-            // the errorPlacement has to take the table layout into account
-            errorPlacement: function(error, element) {
-              // if (element.is(":radio"))
-              //   error.appendTo(element.parent().next().next());
-              // else if (element.is(":checkbox"))
-              //   error.appendTo(element.next());
-              // else
-                error.appendTo(element.parent());
-            },
-            // specifying a submitHandler prevents the default submit, good for the demo
-            submitHandler: function() {
-              var from,name,number,location,dob,message;
-               
-              from = $('#booking-form-email').val();
-              name = $('#booking-form-name').val();
-              number = $('#booking-form-number').val();
-              location = $('#booking-form-location').val();
-              dob = $('#booking-form-dob').val();
-              message = $('#booking-form-message').val();
+    rules: {
+      name: {
+        required: true,
+        minlength: 2
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      number: {
+        required: true,
+        phonesUK: true 
+      },
+      location: {
+        required: true,
+        minlength: 2
+      },
+      dob: {
+        required: true,
+        dateITA: true
+      }
+    },
+    messages: {
+      name: {
+        required: "Please enter your name",
+        minlength: jQuery.validator.format("Enter at least {0} characters")
+      },
+      email: {
+        required: "Please enter your email address",
+        email: "Enter a valid email format"
+      },
+      number: {
+        required: "Please enter your phone number",
+        phonesUK: "Enter a valid UK telephone number"
+      },
+      location: {
+        required: "Please enter your location",
+        minlength: jQuery.validator.format("Enter at least {0} characters")
+      },
+      dob: {
+        required: "Please enter the date of birth of the trainee",
+        dateITA: "Format of date should be dd/mm/yyyy"
+      }
+    },
+    errorPlacement: function(error, element) {
+        error.appendTo(element.parent());
+    },
+      
+    submitHandler: function() {
+      var from,name,number,location,dob,message;
+       
+      from = $('#booking-form-email').val();
+      name = $('#booking-form-name').val();
+      number = $('#booking-form-number').val();
+      location = $('#booking-form-location').val();
+      dob = $('#booking-form-dob').val();
+      message = $('#booking-form-message').val();
 
-              $('#booking-form-submit').prop('disabled', true);
+      $('#booking-form-submit').prop('disabled', true);
 
-              $.colorbox({
-                html:'<div class="processing">Sending your request... <br />Please wait</div>',
-                width:"400px", 
-                height:"200px",
-                className: 'booking-submit-message',
-                overlayClose: false 
-              });
+      $.colorbox({
+        html:'<div class="processing">Sending your request... <br />Please wait</div>',
+        width:"400px", 
+        height:"200px",
+        className: 'booking-submit-message',
+        overlayClose: false 
+      });
 
-              $.get("http://www.venturecycling.co.uk/booking-email",{from, name, number, location, dob, message},function(data){
-                if(data === "sent") {
-                  $("#colorbox").find('.processing').text("Your booking request has been sent!");
-                  setTimeout(function(){
-                      $.colorbox.close();
-                  }, 3000);
-                  $('#booking-form-submit').prop('disabled', false);
-                  $('#booking-form')[0].reset();
-                }
+      $.get("http://www.venturecycling.co.uk/booking-email",{from, name, number, location, dob, message},function(data){
+        if(data === "sent") {
+          $("#colorbox").find('.processing').text("Your booking request has been sent!");
+          setTimeout(function(){
+              $.colorbox.close();
+          }, 3000);
+          $('#booking-form-submit').prop('disabled', false);
+          $('#booking-form')[0].reset();
+        }
+      });
+    },
+      
+    success: function(label) {
+      label.html("&nbsp;").addClass("checked");
+    }
+  });
+	/* End Booking form validation */
 
-              });
-            },
-            // set this class to error-labels to indicate valid fields
-            success: function(label) {
-              // set &nbsp; as text for IE
-              label.html("&nbsp;").addClass("checked");
-            }
-        });
+	/* Contact form validation */
+	var validator = $("#contact-form").validate({
+    rules: {
+      name: {
+        required: true,
+        minlength: 2
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      number: {
+        required: false,
+        phonesUK: true 
+      },
+    },
+    messages: {
+      name: {
+        required: "Please enter your name",
+        minlength: jQuery.validator.format("Enter at least {0} characters")
+      },
+      email: {
+        required: "Please enter your email address",
+        email: "Enter a valid email format"
+      },
+      number: {
+        phonesUK: "Enter a valid UK telephone number"
+      }
+    },
+    errorPlacement: function(error, element) {
+      error.appendTo(element.parent());
+    },
+    submitHandler: function() {
+      var from,name,number,message;
+       
+      from = $('#contact-form-email').val();
+      name = $('#contact-form-name').val();
+      number = $('#contact-form-number').val();
+      message = $('#contact-form-message').val();
 
-			var validator = $("#contact-form").validate({
-            rules: {
-                name: {
-                  required: true,
-                  minlength: 2
-                },
-                email: {
-                  required: true,
-                  email: true
-                },
-                number: {
-                  required: false,
-                  phonesUK: true 
-                },
-            },
-            messages: {
-              name: {
-                required: "Please enter your name",
-                minlength: jQuery.validator.format("Enter at least {0} characters")
-              },
-              email: {
-                required: "Please enter your email address",
-                email: "Enter a valid email format"
-              },
-              number: {
-                phonesUK: "Enter a valid UK telephone number"
-              }
-            },
-            // the errorPlacement has to take the table layout into account
-            errorPlacement: function(error, element) {
-              // if (element.is(":radio"))
-              //   error.appendTo(element.parent().next().next());
-              // else if (element.is(":checkbox"))
-              //   error.appendTo(element.next());
-              // else
-                error.appendTo(element.parent());
-            },
-            // specifying a submitHandler prevents the default submit, good for the demo
-            submitHandler: function() {
-              var from,name,number,message;
-               
-              from = $('#contact-form-email').val();
-              name = $('#contact-form-name').val();
-              number = $('#contact-form-number').val();
-              message = $('#contact-form-message').val();
+      $('#contact-form-submit').prop('disabled', true);
 
-              $('#contact-form-submit').prop('disabled', true);
+      $.colorbox({
+        html:'<div class="processing">Sending your request... <br />Please wait</div>',
+        width:"400px", 
+        height:"200px",
+        className: 'booking-submit-message',
+        overlayClose: false 
+      });
 
-              $.colorbox({
-                html:'<div class="processing">Sending your request... <br />Please wait</div>',
-                width:"400px", 
-                height:"200px",
-                className: 'booking-submit-message',
-                overlayClose: false 
-              });
+      $.get("http://www.venturecycling.co.uk/contact-email",{from, name, number, message},function(data){
+        if(data === "sent") {
+          $("#colorbox").find('.processing').text("Your request has been sent!");
+          setTimeout(function(){
+              $.colorbox.close();
+          }, 3000);
+          $('#contact-form-submit').prop('disabled', false);
+          $('#contact-form')[0].reset();
+        }
+      });
+    },
+    success: function(label) {
+      label.html("&nbsp;").addClass("checked");
+    }
+  });
+	/* End Contact form validation */
+    
 
-              $.get("http://www.venturecycling.co.uk/contact-email",{from, name, number, message},function(data){
-                if(data === "sent") {
-                  $("#colorbox").find('.processing').text("Your request has been sent!");
-                  setTimeout(function(){
-                      $.colorbox.close();
-                  }, 3000);
-                  $('#contact-form-submit').prop('disabled', false);
-                  $('#contact-form')[0].reset();
-                }
+  /* Slider for mobile menu */  
+  $('.bxslider').bxSlider({
+  	auto: true,
+		controls: false,
+		pager: false,
+		mode: 'fade'
+  });
 
-              });
-            },
-            // set this class to error-labels to indicate valid fields
-            success: function(label) {
-              // set &nbsp; as text for IE
-              label.html("&nbsp;").addClass("checked");
-            }
-        });
-
-    renderCalendar();
-    $('.bxslider').bxSlider({
-    	auto: true,
-  		controls: false,
-  		pager: false,
-  		mode: 'fade'
-    });
+  renderCalendar();
 });
 
  function msToTime(duration) {
-    var milliseconds = parseInt((duration%1000)/100)
-        , seconds = parseInt((duration/1000)%60)
-        , minutes = parseInt((duration/(1000*60))%60)
-        , hours = parseInt((duration/(1000*60*60))%24);
+   var milliseconds = parseInt((duration%1000)/100)
+    , seconds = parseInt((duration/1000)%60)
+    , minutes = parseInt((duration/(1000*60))%60)
+    , hours = parseInt((duration/(1000*60*60))%24);
 
     hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
@@ -422,12 +406,12 @@ function renderCalendar() {
   $('#calendar').fullCalendar({
     googleCalendarApiKey: 'AIzaSyCCQfd9-rIPuT3u0T5-D5QN-jcnutO_B7A',
     events: {
-        googleCalendarId: 'venturecycling@gmail.com'
+    	googleCalendarId: 'venturecycling@gmail.com'
     },
 
-     eventClick: function(calEvent, jsEvent, view) {
-    $.colorbox({html:"<h1>"+calEvent.title+"</h1><br><p>"+msToTime(calEvent.start)+" TO "+msToTime(calEvent.end)+"</p>"});
-  },
+    eventClick: function(calEvent, jsEvent, view) {
+    	$.colorbox({html:"<h1>"+calEvent.title+"</h1><br><p>"+msToTime(calEvent.start)+" TO "+msToTime(calEvent.end)+"</p>"});
+  	},
     
     loading: function(bool) {
       $('#loading').toggle(bool);

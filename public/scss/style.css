@@ -26,6 +26,17 @@ a {
   line-height: 1.25;
   /* equivalent to 20px */ }
 
+.no-script {
+  background: #008080;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 0; }
+  .no-script .white {
+    color: #fff;
+    text-decoration: underline; }
+
 @font-face {
   font-family: 'responav';
   src: url("/fonts/responav.eot");
@@ -774,7 +785,8 @@ previous button's border...
 .fc .fc-button-group > * {
   /* extra precedence b/c buttons have margin set to zero */
   float: left;
-  margin: 0 0 0 -1px; }
+  margin: 0 0 0 -1px;
+  outline: none; }
 
 .fc .fc-button-group > :first-child {
   /* same */

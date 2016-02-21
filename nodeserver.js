@@ -61,16 +61,16 @@ server.get('/services', function (req, res) {
   res.render('services/services', {menu: 'Services'});
 });
 
-server.get('/services/adult-lessons', function (req, res) {
-  res.render('services/adult-lessons', {menu: 'Services', submenu: 'adult-lessons'});
+server.get('/services/learn-to-ride', function (req, res) {
+  res.render('services/learn-to-ride', {menu: 'Services', submenu: 'learn-to-ride'});
 });
 
-server.get('/services/childrens-lessons', function (req, res) {
-  res.render('services/childrens-lessons', {menu: 'Services', submenu: 'childrens-lessons'});
+server.get('/services/balanceability', function (req, res) {
+  res.render('services/balanceability', {menu: 'Services', submenu: 'balanceability'});
 });
 
-server.get('/services/group-lessons', function (req, res) {
-  res.render('services/group-lessons', {menu: 'Services', submenu: 'group-lessons'});
+server.get('/services/bikeability', function (req, res) {
+  res.render('services/bikeability', {menu: 'Services', submenu: 'bikeability'});
 });
 
 server.get('/services/ride-leading', function (req, res) {
@@ -79,6 +79,10 @@ server.get('/services/ride-leading', function (req, res) {
 
 server.get('/services/dr-bike', function (req, res) {
   res.render('services/dr-bike', {menu: 'Services', submenu: 'dr-bike'});
+});
+
+server.get('/services/schools-and-groups', function (req, res) {
+  res.render('services/schools-and-groups', {menu: 'Services', submenu: 'schools-and-groups'});
 });
 
 server.get('/booking/pricing', function (req, res) {

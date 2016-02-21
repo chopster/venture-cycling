@@ -23,15 +23,15 @@
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services/adult-lessons</loc>
+  <loc>http://www.venturecycling.co.uk/services/learn-to-ride</loc>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services/childrens-lessons</loc>
+  <loc>http://www.venturecycling.co.uk/services/balanceability</loc>
   <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services/group-lessons</loc>
+  <loc>http://www.venturecycling.co.uk/services/bikeability</loc>
   <changefreq>weekly</changefreq>
 </url>
 <url>
@@ -40,6 +40,10 @@
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services/dr-bike</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.venturecycling.co.uk/services/schools-and-groups/loc>
   <changefreq>weekly</changefreq>
 </url>
 <url>

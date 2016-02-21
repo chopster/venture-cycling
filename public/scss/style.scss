@@ -276,9 +276,19 @@ blockquote {
     float: left;
 
     .accreditations {
+      width: 100%;
+      margin-top: 40px;
+      text-align: center;
+      img {
+        padding: 0 10px 0 0;
+      }
       .breeze {
         vertical-align: top;
-        margin: 13px 15px 0 0;
+        margin: 20px 15px 0 15px;
+      }
+      .ctc {
+        vertical-align: top;
+        margin: 5px 0 0;
       }
     }
   }
@@ -344,19 +354,6 @@ blockquote {
     }
 }
 
-@media (min-width: 801px) {
-  .homepage-content {
-
-      .info {
-        width: 58%;
-      }
-
-      .facebook-feed {
-        width: 299px;
-        float: right;
-      }
-    }
-}
 
 
 
@@ -396,7 +393,6 @@ blockquote {
 
 @media (min-width: 320px) {
   .main-content {
-
     .image {
       float: left; 
       width: 100%;
@@ -404,6 +400,47 @@ blockquote {
 
       img {
         max-width: 100%;
+      }
+    }
+    h4.heading-image {
+      text-align: center;
+      overflow: hidden;
+
+      &:before, &:after {
+        background-color: #d0d0d0;
+        content: "";
+        display: inline-block;
+        height: 1px;
+        bottom: .1em;
+        position: relative;
+        vertical-align: middle;
+        width: 39%;
+        margin-top: -65px;
+      }
+
+      &:before {
+        right: 29px;
+        margin-left: -50%;
+
+      }
+
+      &:after {
+        left: 29px;
+        margin-right: -50%;
+      }
+      img {
+        width: 150px;
+      }
+    }
+  }
+  #bikeability {
+    .main-content {
+      ul {
+        list-style-type: none;
+        li {
+          background: transparent url(../images/bg-list.png) no-repeat left 5px;
+          padding: 5px 0 0 35px;
+        }
       }
     }
   }
@@ -440,6 +477,14 @@ blockquote {
             padding-bottom: 25px;
           }
        }
+    }
+  }
+}
+
+@media (min-width: 1150px) {
+  .homepage-content {
+    .info {
+      width: 65%;
     }
   }
 }

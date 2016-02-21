@@ -258,6 +258,22 @@ blockquote {
   border-bottom: 1px solid #d0d0d0;
   padding-bottom: 10px;
   margin-bottom: 40px; }
+  .testimonials p:before {
+    background: url("../images/open-quote.png") 0 0 no-repeat;
+    content: "";
+    display: inline-block;
+    position: relative;
+    height: 15px;
+    width: 17px;
+    padding-right: 10px; }
+  .testimonials p:after {
+    background: url("../images/close-quote.png") 0 0 no-repeat;
+    content: "";
+    display: inline-block;
+    position: relative;
+    height: 15px;
+    width: 17px;
+    margin-left: 10px; }
   .testimonials p.disclaimer {
     border: none;
     font-style: italic; }
@@ -295,6 +311,8 @@ blockquote {
     .main-content h4.heading-image img {
       width: 150px; }
 
+  #bikeability .main-content .sub-section {
+    display: inline-block; }
   #bikeability .main-content ul {
     list-style-type: none; }
     #bikeability .main-content ul li {

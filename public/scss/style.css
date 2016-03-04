@@ -341,6 +341,18 @@ blockquote {
 @media (min-width: 1150px) {
   .homepage-content .info {
     width: 65%; } }
+input[type=submit],
+input[type=button],
+input[type=text],
+input[type=search],
+input[type=email],
+input[type=tel],
+input[type=number],
+input[type=password],
+select {
+  -webkit-appearance: none;
+  border-radius: 0; }
+
 /* Desktop navigation */
 nav {
   width: 75.77vw;
@@ -560,7 +572,7 @@ footer {
     .field-box label.error {
       float: none;
       display: inline;
-      margin-left: 20px;
+      margin-left: 150px;
       color: #ff0000;
       font-style: italic;
       font-size: 0.9em; }
@@ -1616,38 +1628,38 @@ be a descendant of the grid when it is being dragged.
 
 #cboxTopLeft {
   width: 20px;
-  height: 35px;
+  height: 0px;
   background: #fff; }
 
 #cboxTopCenter {
-  height: 35px;
+  height: 0px;
   background: #fff; }
 
 #cboxTopRight {
   width: 20px;
-  height: 35px;
+  height: 0px;
   background: #fff; }
 
 #cboxBottomLeft {
   width: 20px;
-  height: 15px;
+  height: 0px;
   background: #fff; }
 
 #cboxBottomCenter {
-  height: 15px;
+  height: 0px;
   background: #fff; }
 
 #cboxBottomRight {
   width: 20px;
-  height: 15px;
+  height: 0px;
   background: #fff; }
 
 #cboxMiddleLeft {
-  width: 20px;
+  width: 0px;
   background: #fff; }
 
 #cboxMiddleRight {
-  width: 20px;
+  width: 0px;
   background: #fff; }
 
 #cboxContent {

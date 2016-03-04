@@ -136,11 +136,11 @@ header {
 
   .slide-checkbox {
     &:checked ~ header , &:checked~.main-content, &:checked ~ footer {
-    -webkit-transform: translateX(250px) scale(1);
-    -moz-transform: translateX(250px) scale(1);
-    -ms-transform: translateX(250px) scale(1);
-    -o-transform: translateX(250px) scale(1);
-    transform: translateX(250px) scale(1);
+    -webkit-transform: translateX(250px);
+    -moz-transform: translateX(250px);
+    -ms-transform: translateX(250px); 
+    -o-transform: translateX(250px);
+    transform: translateX(250px); 
 
       .nav-trigger:after {
         content: '"';

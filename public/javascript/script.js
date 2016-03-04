@@ -271,7 +271,9 @@ $(document).ready(function(){
       }
     },
     errorPlacement: function(error, element) {
-        error.appendTo(element.parent());
+      if(error.text().length !== 0) {
+      	error.appendTo(element.parent());
+    	}
     },
       
     submitHandler: function() {
@@ -360,7 +362,9 @@ $(document).ready(function(){
       }
     },
     errorPlacement: function(error, element) {
-      error.appendTo(element.parent());
+    	if(error.text().length !== 0) {
+      	error.appendTo(element.parent());
+    	}
     },
     submitHandler: function() {
       var from,name,number,message;

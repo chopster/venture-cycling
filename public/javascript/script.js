@@ -322,7 +322,7 @@ $(document).ready(function(){
       },
       number: {
         required: false,
-        phonesUK: true 
+        // phonesUK: true 
       },
     },
     messages: {
@@ -335,7 +335,7 @@ $(document).ready(function(){
         email: "Enter a valid email format"
       },
       number: {
-        phonesUK: "Enter a valid UK telephone number"
+        // phonesUK: "Enter a valid UK telephone number"1
       }
     },
     errorPlacement: function(error, element) {

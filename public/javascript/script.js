@@ -287,28 +287,30 @@ $(document).ready(function(){
       $('#booking-form-submit').prop('disabled', true);
 
       var colourBoxWidth = '400px';
-      var colourBoxLeft = 'auto'
-      var options = {};
+      var fixedValue = false;
+
+      var defaultValue = {
+      	html:'<div class="processing">Submitting your request... <br /><br />Please wait</div>',
+        width: colourBoxWidth, 
+        height: '200px',
+        fixed: fixedValue,
+        className: 'booking-submit-message',
+        overlayClose: false
+      }
 
       if(Modernizr.touch) {
       	windowWidth = $(window).width();
       	var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
       	
       	colourBoxWidth = (windowWidth/zoomLevel) - 5;
-      	colourBoxLeft = '15px';
-      	options = {
-      		left: colourBoxLeft
-      	}
+      	defaultValue.fixed = true;
+      	defaultValue.left = '15px'
+      	defaultValue.width = colourBoxWidth
       }
 
-      $.colorbox({
-        html:'<div class="processing">Submitting your request... <br /><br />Please wait</div>',
-        width: colourBoxWidth, 
-        height: '200px',
-        fixed: true,
-        className: 'booking-submit-message',
-        overlayClose: false 
-      }, options);
+      $.colorbox(
+        defaultValue
+      );
 
       $.get("/booking-email",{from, name, number, location, dob, message},function(data){
         if(data === "sent") {
@@ -372,27 +374,30 @@ $(document).ready(function(){
 
       var colourBoxWidth = '400px';
       var colourBoxLeft = 'auto'
-      var options = {};
+      var fixedValue = false;
+
+      var defaultValue = {
+      	html:'<div class="processing">Submitting your request... <br /><br />Please wait</div>',
+        width: colourBoxWidth, 
+        height: '200px',
+        fixed: fixedValue,
+        className: 'booking-submit-message',
+        overlayClose: false
+      }
 
       if(Modernizr.touch) {
       	windowWidth = $(window).width();
       	var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
       	
       	colourBoxWidth = (windowWidth/zoomLevel) - 5;
-      	colourBoxLeft = '15px';
-      	options = {
-      		left: colourBoxLeft
-      	}
+      	defaultValue.fixed = true;
+      	defaultValue.left = '15px'
+      	defaultValue.width = colourBoxWidth
       }
 
-      $.colorbox({
-        html:'<div class="processing">Submitting your request... <br /><br />Please wait</div>',
-        width: colourBoxWidth, 
-        height: '200px',
-        fixed: true,
-        className: 'booking-submit-message',
-        overlayClose: false 
-      }, options);
+      $.colorbox(
+        defaultValue
+      );
 
       $.get("/contact-email",{from, name, number, message},function(data){
         if(data === "sent") {

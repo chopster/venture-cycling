@@ -216,7 +216,7 @@ header {
 
   .slide-menu {
     transform: translate3d(-250px, 0, 0);
-    transition: transform .4s;
+    transition: all .4s;
     position: absolute;
     width: 250px;
     height:100vh;

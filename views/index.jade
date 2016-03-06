@@ -1,33 +1,37 @@
 doctype html
 html(class="home")
 	- var titleVar = "- Home"
-	include head.jade
-	div(class="main-content")
-		ul(class="bxslider")
-			li
-				img(src="../images/homepage-1.jpg")
-			li
-				img(src="../images/homepage-2.jpg")
-			li
-				img(src="../images/homepage-3.jpg")
+		include head.jade
+		include body.jade
+		div(id="container")
+			include navigation.jade
 
-		div(class="homepage-content")
-			div(class="info")
-				p Venture Cycling was set up by Ascot based National Standards Cycling Instructor, Kelly Koya. Kelly offers cycle training for all ages, from beginners wanting to learn to balance and ride right through to confident cyclists who want to ride on busier or more complex roads. Through enjoyable, and encouraging lessons trainees will learn to cycle safely and confidently.
+			div(class="main-content")
+				ul(class="bxslider")
+					li
+						img(src="../images/homepage-1.jpg")
+					li
+						img(src="../images/homepage-2.jpg")
+					li
+						img(src="../images/homepage-3.jpg")
 
-				p Lessons are offered in areas covered by postcodes SL5, RG12 and RG42. Surrounding areas may be considered subject to an additional fee.
+				div(class="homepage-content")
+					div(class="info")
+						p Venture Cycling was set up by Ascot based National Standards Cycling Instructor, Kelly Koya. Kelly offers cycle training for all ages, from beginners wanting to learn to balance and ride right through to confident cyclists who want to ride on busier or more complex roads. Through enjoyable, and encouraging lessons trainees will learn to cycle safely and confidently.
 
-				div(class="accreditations")
-					img(src="../images/bikeability.png" class="bikeability")
-					img(src="../images/balanceability.png" class="balanceability")
+						p Lessons are offered in areas covered by postcodes SL5, RG12 and RG42. Surrounding areas may be considered subject to an additional fee.
 
-					img(src="../images/breeze.jpg" class="breeze")
-					img(src="../images/ctc.jpg" class="ctc")
+						div(class="accreditations")
+							img(src="../images/bikeability.png" class="bikeability")
+							img(src="../images/balanceability.png" class="balanceability")
 
-			div(class="facebook-feed")
-				div(class="fb-page" data-href="https://www.facebook.com/Venturecycling" data-tabs="timeline,events,messages" data-width="500" data-height="450" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false")
-				div(class="fb-xfbml-parse-ignore")
-					blockquote(cite="https://www.facebook.com/Venturecycling")
+							img(src="../images/breeze.jpg" class="breeze")
+							img(src="../images/ctc.jpg" class="ctc")
 
-	include footer.jade
+					div(class="facebook-feed")
+						div(class="fb-page" data-href="https://www.facebook.com/Venturecycling" data-tabs="timeline,events,messages" data-width="500" data-height="450" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false")
+						div(class="fb-xfbml-parse-ignore")
+							blockquote(cite="https://www.facebook.com/Venturecycling")
+
+			include footer.jade
 

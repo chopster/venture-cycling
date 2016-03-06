@@ -2,11 +2,12 @@ doctype html
 html
 	- var titleVar = "- Calendar"
 	- var canonicalUrl = "calendar"
-
-
 	include head.jade
-	div(class="main-content")
-		h2 My Availability
-		div(id="calendar")
+	include body.jade
+	div(id="container")
+		include navigation.jade
+		div(class="main-content")
+			h2 My Availability
+			div(id="calendar")
 	
 	include footer.jade

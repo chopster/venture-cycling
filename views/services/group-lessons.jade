@@ -3,10 +3,13 @@ html
 	- var titleVar = "- Group lessons"
 	- var canonicalUrl = "services/group-lessons"
 	include ../head.jade
-	div(class="main-content")
-		h2 Group Lessons
+	include ../body.jade
+	div(id="container")
+		include ../navigation.jade
+		div(class="main-content")
+			h2 Group Lessons
 
-		p If you would like to learn with a friend of a similar ability, no problem! Please get in touch and we can discuss your requirements.
-		p Corporate rides and lessons also available. 
+			p If you would like to learn with a friend of a similar ability, no problem! Please get in touch and we can discuss your requirements.
+			p Corporate rides and lessons also available. 
 
 	include ../footer.jade

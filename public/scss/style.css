@@ -377,7 +377,7 @@ nav {
     vertical-align: middle;
     width: 50%; }
 
-.nav-trigger {
+.mobile-nav {
   display: none; }
 
 .nav-mobile-wrapper {
@@ -439,21 +439,6 @@ header .brand {
 
 /* Mobile overrides for header */
 @media (max-width: 767px) {
-  header, .main-content, footer {
-    -webkit-transition: -webkit-transform 500ms ease;
-    -moz-transition: -moz-transform 500ms ease;
-    -o-transition: -o-transform 500ms ease;
-    transition: transform 500ms ease; }
-
-  .slide-checkbox:checked ~ header, .slide-checkbox:checked ~ .main-content, .slide-checkbox:checked ~ footer {
-    -webkit-transform: translateX(250px);
-    -moz-transform: translateX(250px);
-    -ms-transform: translateX(250px);
-    -o-transform: translateX(250px);
-    transform: translateX(250px); }
-    .slide-checkbox:checked ~ header .nav-trigger:after, .slide-checkbox:checked ~ .main-content .nav-trigger:after, .slide-checkbox:checked ~ footer .nav-trigger:after {
-      content: '"'; }
-
   nav {
     display: none; }
 
@@ -464,7 +449,32 @@ header .brand {
     z-index: 1;
     display: block;
     margin: 8px 10px 0 30px; }
-    .nav-trigger:after {
+
+  html, body {
+    height: 100%; }
+
+  body {
+    overflow-x: hidden; }
+
+  #container {
+    min-height: 100%; }
+
+  input[type=checkbox] {
+    position: absolute;
+    opacity: 0; }
+
+  label.mobile-nav {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    z-index: 1;
+    display: block;
+    font-size: 3em;
+    color: #444;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0);
+    transition: transform .4s; }
+    label.mobile-nav:before {
       content: "!";
       color: #f9f9f9;
       background: #333;
@@ -476,12 +486,41 @@ header .brand {
       text-align: center;
       margin-left: -19px; }
 
-  .nav-mobile-wrapper {
+  input[type=checkbox]:checked ~ label:before {
+    transform: translate3d(250px, 0, 0);
+    content: '"';
+    color: #f9f9f9;
+    background: #333;
+    display: block;
+    height: 30px;
+    width: 38px;
+    border-radius: 3px;
+    font: 24px/30px 'responav';
+    text-align: center;
+    margin-left: -19px; }
+
+  .content {
+    transform: translate3d(0, 0, 0);
+    transition: transform .4s; }
+
+  input[type=checkbox]:checked ~ .main-content,
+  input[type=checkbox]:checked ~ header h1 {
+    transform: translate3d(250px, 0, 0); }
+
+  input[type=checkbox]:checked ~ header .slide-menu {
+    transform: translate3d(0, 0, 0); }
+
+  input[type=checkbox]:checked ~ header .slide-menu .menu li {
+    width: 100%; }
+
+  .slide-menu {
+    transform: translate3d(-250px, 0, 0);
+    transition: transform .4s;
     position: absolute;
     width: 250px;
     height: 100vh;
     padding: 26px 0 20px 0;
-    top: -30px;
+    top: 0;
     left: 0;
     border-right: 1px solid #e1e1e1;
     display: inline-table;
@@ -489,21 +528,16 @@ header .brand {
     background: #ffffff;
     text-align: center;
     text-transform: uppercase;
-    font-size: 13px;
-    -webkit-transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    -o-transform: translateX(-100%);
-    transform: translateX(-100%); }
-    .nav-mobile-wrapper ul li {
+    font-size: 13px; }
+    .slide-menu ul li {
       list-style: none;
       width: 100%;
       text-align: left; }
-      .nav-mobile-wrapper ul li ul {
+      .slide-menu ul li ul {
         width: 100%; }
-      .nav-mobile-wrapper ul li:hover > ul li a {
+      .slide-menu ul li:hover > ul li a {
         padding-left: 30px; }
-      .nav-mobile-wrapper ul li a {
+      .slide-menu ul li a {
         display: block; } }
 /* Common footer styles */
 footer {

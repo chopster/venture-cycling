@@ -1,0 +1,78 @@
+<input id="toggle" type="checkbox"><label for="toggle" class="mobile-nav"></label>
+header(role="banner")
+	div(class="nav-mobile-wrapper slide-menu")
+		div(class="nav menu")
+			ul(class="navbar")
+				li(class=(menu === 'Home' ? 'active' : ''))
+					a(href="/") Home
+				li(class=(menu === 'About' ? 'active' : ''))
+					a(href="/about") About
+					ul
+						li(class=(submenu === 'testimonials' ? 'active' : ''))
+							a(href="/about/testimonials") Testimonials 
+				li(class=(menu === 'Services' ? 'active' : ''))
+					a(href="/services") Services 
+					ul
+						li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
+							a(href="/services/learn-to-ride") Learn to ride
+						li(class=(submenu === 'balanceability' ? 'active' : ''))
+							a(href="/services/balanceability") Balanceability
+						li(class=(submenu === 'bikeability' ? 'active' : ''))
+							a(href="/services/bikeability") Bikeability
+						li(class=(submenu === 'ride-leading' ? 'active' : ''))
+							a(href="/services/ride-leading") Ride Leading
+						li(class=(submenu === 'dr-bike' ? 'active' : ''))
+							a(href="/services/dr-bike") Dr Bike
+						li(class=(submenu === 'schools-and-groups' ? 'active' : ''))
+							a(href="/services/schools-and-groups") Schools & youth groups
+				li(class=(menu === 'Booking' ? 'active' : ''))
+					a(href="/booking/make-a-booking") Booking
+					ul
+						li(class=(submenu === 'pricing' ? 'active' : ''))
+							a(href="/booking/pricing") Pricing
+						li(class=(submenu === 'make-a-booking' ? 'active' : '')) 
+							a(href="/booking/make-a-booking") Make a booking
+				li(class=(menu === 'News' ? 'active' : ''))
+					a(href="/news") News
+				li(class=(menu === 'Contact' ? 'active' : ''))
+					a(href="/contact") Contact
+
+
+	a(class="brand" href='/')
+		h1 Venture <span>Cycling</span>
+	nav(role="navigation")
+		ul(class="navbar")
+			li(class=(menu === 'Home' ? 'active' : ''))
+				a(href="/") Home
+			li(class=(menu === 'About' ? 'active' : ''))
+				a(href="/about") About
+				ul
+					li(class=(submenu === 'testimonials' ? 'active' : ''))
+						a(href="/about/testimonials") Testimonials 
+			li(class=(menu === 'Services' ? 'active' : ''))
+				a(href="/services") Services 
+				ul
+					li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
+						a(href="/services/learn-to-ride") Learn to ride
+					li(class=(submenu === 'balanceability' ? 'active' : ''))
+						a(href="/services/balanceability") Balanceability
+					li(class=(submenu === 'bikeability' ? 'active' : ''))
+						a(href="/services/bikeability") Bikeability
+					li
+					li(class=(submenu === 'ride-leading' ? 'active' : ''))
+						a(href="/services/ride-leading") Ride Leading & Breeze
+					li(class=(submenu === 'dr-bike' ? 'active' : ''))
+						a(href="/services/dr-bike") Dr Bike
+					li(class=(submenu === 'schools-and-groups' ? 'active' : ''))
+						a(href="/services/schools-and-groups") Schools & youth groups
+			li(class=(menu === 'Booking' ? 'active' : ''))
+				a(href="/booking/make-a-booking") Booking
+				ul
+					li(class=(submenu === 'pricing' ? 'active' : ''))
+						a(href="/booking/pricing") Pricing
+					li(class=(submenu === 'make-a-booking' ? 'active' : '')) 
+						a(href="/booking/make-a-booking") Make a booking
+			li(class=(menu === 'News' ? 'active' : ''))
+				a(href="/news") News
+				li(class=(menu === 'Contact' ? 'active' : ''))
+					a(href="/contact") Contact

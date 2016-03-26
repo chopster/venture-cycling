@@ -237,7 +237,6 @@ $(document).ready(function(){
       },
       number: {
         required: true
-        // phonesUK: true 
       },
       location: {
         required: true,
@@ -258,15 +257,13 @@ $(document).ready(function(){
       },
       number: {
         required: "Please enter your phone number"
-        // phonesUK: "Enter a valid UK telephone number"
       },
       location: {
         required: "Please enter your location",
         minlength: jQuery.validator.format("Enter at least {0} characters")
       },
       dob: {
-        required: "Please enter the date of birth of the trainee",
-        dateITA: "Format of date should be dd/mm/yyyy"
+        required: "Please enter the date of birth of the trainee"
       }
     },
     errorPlacement: function(error, element) {

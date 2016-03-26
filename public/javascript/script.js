@@ -244,8 +244,7 @@ $(document).ready(function(){
         minlength: 2
       },
       dob: {
-        required: true,
-        dateITA: true
+        required: true
       }
     },
     messages: {
@@ -314,6 +313,8 @@ $(document).ready(function(){
         defaultValue
       );
 
+       var _this = this;
+
       $.get("/booking-email",{from, name, number, location, dob, message},function(data){
         if(data === "sent") {
           $("#colorbox").find('.processing').text("Your booking request has been sent!");
@@ -322,6 +323,13 @@ $(document).ready(function(){
           }, 3000);
           $('#booking-form-submit').prop('disabled', false);
           $('#booking-form')[0].reset();
+      	  ga('send', 'event', { eventCategory: 'Booking Form', eventAction: 'Booking Request', eventLabel: 'Booking Form'});
+        } else {
+        	ga('send', 'event', { eventCategory: 'Booking Form Error', eventAction: 'Booking Request Error', eventLabel: 'Booking Form Error'});
+        	$("#colorbox").find('.processing').text("Sorry an error occurred, please try again or contact please call on 07725360407");
+          setTimeout(function(){
+              $.colorbox.close();
+          }, 3000);
         }
       });
     },
@@ -344,7 +352,7 @@ $(document).ready(function(){
         email: true
       },
       number: {
-        required: false,
+        required: false
         // phonesUK: true 
       },
     },

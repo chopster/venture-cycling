@@ -312,7 +312,7 @@ $(document).ready(function(){
 
        var _this = this;
 
-      $.get("/booking-email",{from, name, number, location, dob, message},function(data){
+      $.get("/booking-email",{from: from, name: name, number: number, location: location, dob: dob, message: message}).done(function( data ) {
         if(data === "sent") {
           $("#colorbox").find('.processing').text("Your booking request has been sent!");
           setTimeout(function(){
@@ -408,7 +408,7 @@ $(document).ready(function(){
         defaultValue
       );
 
-      $.get("/contact-email",{from, name, number, message},function(data){
+      $.get("/contact-email",{from: from, name: name, number: number, message: message}).done(function( data ) {
         if(data === "sent") {
           $("#colorbox").find('.processing').text("Your request has been sent!");
           setTimeout(function(){

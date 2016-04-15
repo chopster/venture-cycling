@@ -567,6 +567,8 @@ footer {
       font-size: 1.4em; }
       footer ul li a:before {
         margin-right: 5px; }
+    footer ul li ul li {
+      text-transform: capitalize; }
 
 @font-face {
   font-family: 'icomoon';
@@ -574,7 +576,7 @@ footer {
   src: url("/fonts/icomoon.eot?573dx3#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?573dx3") format("truetype"), url("/fonts/icomoon.woff?573dx3") format("woff"), url("/fonts/icomoon.svg?573dx3#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"]:before, [class*=" icon-"]:before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;

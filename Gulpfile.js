@@ -5,22 +5,21 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 // var browserSync = require('browser-sync').create();
 var imagemin = require('gulp-imagemin');
-
+var del = require('del');
 
 /*
   Config for JS file paths
 */
 
 var config = {
-  angsrc: [
-    'node_modules/angular/angular.js',
-    'node_modules/angular-route/angular-route.min.js'
-  ],
   scriptsrc: [
     'public/javascript'
   ]
 }
 
+gulp.task('clean:dist', function() {
+  return del.sync('public/css');
+})
 
 /*
   Task to covert sass files to css
@@ -64,7 +63,7 @@ gulp.task('image-optimise', function() {
 /*
   Task to watch for changes
 */
-gulp.task('watch', ['sass','minifyConcatCSS','bundle-script', 'image-optimise'], function(){
+gulp.task('watch', ['clean:dist', 'sass','minifyConcatCSS','bundle-script', 'image-optimise'], function(){
   gulp.watch('scss/**/*.scss', ['sass']); 
   gulp.watch('css/dev/*.css', ['minifyConcatCSS']);
   gulp.watch('javascript/dev/*.js', ['bundle-script']);

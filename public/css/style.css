@@ -26,12 +26,24 @@ a {
   line-height: 1.25;
   /* equivalent to 20px */ }
 
+.no-script {
+  background: #008080;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px 0; }
+  .no-script .white {
+    color: #fff;
+    text-decoration: underline; }
+
 @font-face {
   font-family: 'responav';
   src: url("/fonts/responav.eot");
   src: url("/fonts/responav.eot?#iefix") format("embedded-opentype"), url("/fonts/responav.woff") format("woff"), url("/fonts/responav.ttf") format("truetype"), url("/fonts/responav.svg#responav") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 .processing {
   font-size: 1.5em;
   top: 25%;
@@ -42,16 +54,22 @@ a {
 #colorbox.booking-submit-message #cboxClose {
   display: none; }
 
+.link {
+  font-weight: bold;
+  color: #8e8e8e;
+  text-decoration: underline; }
+
 .main-content {
   font-size: 0.9em;
   line-height: 1.5em; }
   .main-content h2 {
-    line-height: 0; }
+    line-height: 0;
+    padding-bottom: 10px;
+    color: #008080; }
   .main-content .sub-section {
     padding: 5px 15px; }
     .main-content .sub-section .heading {
-      margin: 5px 0 15px;
-      color: #008080; }
+      margin: 5px 0 15px; }
   .main-content p strong {
     font-weight: bold; }
   .main-content .pricing-structure {
@@ -79,7 +97,7 @@ h1 {
   margin: 0px; }
 
 .main-content {
-  padding: 15px; }
+  padding: 0 15px; }
   .main-content .sub-section {
     padding: 5px 2px; }
   .main-content p {
@@ -91,6 +109,7 @@ h1 {
     /* equivalent to 16px */
     line-height: 1.375;
     /* equivalent to 22px */ } }
+
 h1 {
   font-size: 2em;
   text-align: center;
@@ -103,18 +122,19 @@ h1 {
     font-size: 2.5em;
     /* 2.5x body copy size = 40px */
     line-height: 1.125; } }
+
 @media (min-width: 56.25em) {
   h1 {
     font-size: 4em;
     /* 3x body copy size = 48px */
     line-height: 1.05;
     /* keep to a multiple of the 20px line height and something more appropriate for display headings */ }
-
   .main-content {
     width: 75%;
-    margin: 15px auto 30px; }
+    margin: 0px auto 30px; }
     .main-content p {
       margin-bottom: 1.2em; } }
+
 h2 {
   font-size: 1.625em;
   /* 1.625x body copy size = 26px */
@@ -126,11 +146,13 @@ h2 {
     font-size: 2em;
     /* 2x body copy size = 32px */
     line-height: 1.25; } }
+
 @media (min-width: 56.25em) {
   h2 {
     font-size: 2.25em;
     /* 2.25x body copy size = 36px */
     line-height: 1.25; } }
+
 h3 {
   font-size: 1.375em;
   /* 1.375x body copy size = 22px */
@@ -142,11 +164,13 @@ h3 {
     font-size: 1.5em;
     /* 1.5x body copy size = 24px */
     line-height: 1.25; } }
+
 @media (min-width: 56.25em) {
   h3 {
     font-size: 1.75em;
     /* 1.75x body copy size = 28px */
     line-height: 1.25; } }
+
 h4 {
   font-size: 1.125em;
   /* 1.125x body copy size = 18px */
@@ -156,6 +180,7 @@ h4 {
   h4 {
     line-height: 1.22222222;
     /* (22px / 18px */ } }
+
 blockquote {
   font-size: 1.25em;
   /* 20px / 16px */
@@ -168,14 +193,6 @@ blockquote {
     /* 24px / 16px = */
     line-height: 1.45833333;
     /* 35px / 24px */ } }
-.homepage-content {
-  margin-top: 30px; }
-  .homepage-content .info {
-    width: 60%; }
-
-.facebook-feed {
-  width: 299px;
-  float: right; }
 
 @media (max-width: 399px) {
   .main-content .pricing-structure {
@@ -187,18 +204,173 @@ blockquote {
       float: left;
       line-height: 1em;
       margin-top: 3px; } }
+
+.homepage-content {
+  display: inline-block; }
+  .homepage-content .info {
+    float: left; }
+    .homepage-content .info .accreditations {
+      width: 100%;
+      margin-top: 40px;
+      text-align: center; }
+      .homepage-content .info .accreditations img {
+        padding: 0 10px 0 0; }
+      .homepage-content .info .accreditations .breeze {
+        vertical-align: top;
+        margin: 20px 15px 0 15px; }
+      .homepage-content .info .accreditations .ctc {
+        vertical-align: top;
+        margin: 5px 0 0; }
+
 @media (max-width: 500px) {
-  .facebook-feed {
-    width: 100%; } }
+  .homepage-content {
+    margin-top: 15px; }
+    .homepage-content .info {
+      width: 100%; }
+    .homepage-content .facebook-feed {
+      margin-top: 15px;
+      width: 100%;
+      float: left; } }
+
+@media (min-width: 501px) {
+  .homepage-content {
+    margin-top: 15px; }
+    .homepage-content .info {
+      width: 50%; }
+    .homepage-content .facebook-feed {
+      margin-top: 0px;
+      width: 50%;
+      float: right; } }
+
+@media (min-width: 600px) {
+  .homepage-content .info {
+    width: 45%; }
+  .homepage-content .facebook-feed {
+    width: 299px; } }
+
+@media (min-width: 700px) {
+  .homepage-content {
+    margin-top: 30px; }
+    .homepage-content .info {
+      width: 55%; }
+    .homepage-content .facebook-feed {
+      width: 299px;
+      float: right; } }
+
 #calendar {
-  width: 50%;
-  margin: 65px 0 0; }
+  width: 100%;
+  margin: 35px 0; }
+
+#calendar h2 {
+  font-size: 1.8em; }
 
 #colorbox #calendar {
   margin: 10px 0 0;
   width: 100%; }
 
+.testimonials p {
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 10px;
+  margin-bottom: 40px; }
+  .testimonials p:before {
+    background: url("../images/open-quote.png") 0 0 no-repeat;
+    content: "";
+    display: inline-block;
+    position: relative;
+    height: 15px;
+    width: 17px;
+    padding-right: 10px; }
+  .testimonials p:after {
+    background: url("../images/close-quote.png") 0 0 no-repeat;
+    content: "";
+    display: inline-block;
+    position: relative;
+    height: 15px;
+    width: 17px;
+    margin-left: 10px; }
+  .testimonials p.disclaimer {
+    border: none;
+    font-style: italic; }
+
+.home .main-content {
+  margin-top: 15px;
+  padding-top: 15px; }
+
+#news .sub-section {
+  border-bottom: 1px solid #d0d0d0; }
+  #news .sub-section:last-child {
+    border-bottom: none; }
+
+@media (min-width: 320px) {
+  .main-content .image {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px; }
+    .main-content .image img {
+      max-width: 100%; }
+  .main-content h4.heading-image {
+    text-align: center;
+    overflow: hidden; }
+    .main-content h4.heading-image:before, .main-content h4.heading-image:after {
+      background-color: #d0d0d0;
+      content: "";
+      display: inline-block;
+      height: 1px;
+      bottom: .1em;
+      position: relative;
+      vertical-align: middle;
+      width: 39%;
+      margin-top: -65px; }
+    .main-content h4.heading-image:before {
+      right: 29px;
+      margin-left: -50%; }
+    .main-content h4.heading-image:after {
+      left: 29px;
+      margin-right: -50%; }
+    .main-content h4.heading-image img {
+      width: 150px; }
+  #bikeability .main-content .sub-section {
+    display: inline-block; }
+  #bikeability .main-content ul {
+    list-style-type: none; }
+    #bikeability .main-content ul li {
+      background: transparent url(../images/bg-list.png) no-repeat left 5px;
+      padding: 5px 0 0 35px; } }
+
+@media (min-width: 600px) {
+  .main-content .image {
+    float: right;
+    width: 35%;
+    padding: 5px 0 5px 10px; }
+    .main-content .image img {
+      max-width: 100%; }
+  .about .main-content .image {
+    width: 25%; }
+  #childrens-lessons .main-content .image {
+    padding-top: 45px; }
+    #childrens-lessons .main-content .image img {
+      padding-bottom: 25px; } }
+
+@media (min-width: 1150px) {
+  .homepage-content .info {
+    width: 65%; } }
+
+input[type=submit],
+input[type=button],
+input[type=text],
+input[type=search],
+input[type=email],
+input[type=tel],
+input[type=number],
+input[type=password],
+select {
+  -webkit-appearance: none;
+  border-radius: 0; }
+
 /* Desktop navigation */
+#toggle {
+  display: none; }
+
 nav {
   width: 75.77vw;
   margin: auto;
@@ -222,7 +394,7 @@ nav {
     vertical-align: middle;
     width: 50%; }
 
-.nav-trigger {
+.mobile-nav {
   display: none; }
 
 .nav-mobile-wrapper {
@@ -284,24 +456,8 @@ header .brand {
 
 /* Mobile overrides for header */
 @media (max-width: 767px) {
-  header, .main-content {
-    -webkit-transition: -webkit-transform 500ms ease;
-    -moz-transition: -moz-transform 500ms ease;
-    -o-transition: -o-transform 500ms ease;
-    transition: transform 500ms ease; }
-
-  .slide-checkbox:checked ~ header, .slide-checkbox:checked ~ .main-content {
-    -webkit-transform: translateX(250px) scale(1);
-    -moz-transform: translateX(250px) scale(1);
-    -ms-transform: translateX(250px) scale(1);
-    -o-transform: translateX(250px) scale(1);
-    transform: translateX(250px) scale(1); }
-    .slide-checkbox:checked ~ header .nav-trigger:after, .slide-checkbox:checked ~ .main-content .nav-trigger:after {
-      content: '"'; }
-
   nav {
     display: none; }
-
   .nav-trigger {
     float: left;
     cursor: pointer;
@@ -309,7 +465,27 @@ header .brand {
     z-index: 1;
     display: block;
     margin: 8px 10px 0 30px; }
-    .nav-trigger:after {
+  html, body {
+    height: 100%; }
+  body {
+    overflow-x: hidden; }
+  #container {
+    min-height: 100%; }
+  input[type=checkbox] {
+    position: absolute;
+    opacity: 0; }
+  label.mobile-nav {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    z-index: 1;
+    display: block;
+    font-size: 3em;
+    color: #444;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0);
+    transition: transform .4s; }
+    label.mobile-nav:before {
       content: "!";
       color: #f9f9f9;
       background: #333;
@@ -320,13 +496,36 @@ header .brand {
       font: 24px/30px 'responav';
       text-align: center;
       margin-left: -19px; }
-
-  .nav-mobile-wrapper {
+  input[type=checkbox]:checked ~ label:before {
+    transform: translate3d(250px, 0, 0);
+    content: '"';
+    color: #f9f9f9;
+    background: #333;
+    display: block;
+    height: 30px;
+    width: 38px;
+    border-radius: 3px;
+    font: 24px/30px 'responav';
+    text-align: center;
+    margin-left: -19px; }
+  .content {
+    transform: translate3d(0, 0, 0);
+    transition: transform .4s; }
+  input[type=checkbox]:checked ~ .main-content,
+  input[type=checkbox]:checked ~ header h1 {
+    transform: translate3d(250px, 0, 0); }
+  input[type=checkbox]:checked ~ header .slide-menu {
+    transform: translate3d(0, 0, 0); }
+  input[type=checkbox]:checked ~ header .slide-menu .menu li {
+    width: 100%; }
+  .slide-menu {
+    transform: translate3d(-250px, 0, 0);
+    transition: all .4s;
     position: absolute;
     width: 250px;
     height: 100vh;
     padding: 26px 0 20px 0;
-    top: -30px;
+    top: 0;
     left: 0;
     border-right: 1px solid #e1e1e1;
     display: inline-table;
@@ -334,28 +533,30 @@ header .brand {
     background: #ffffff;
     text-align: center;
     text-transform: uppercase;
-    font-size: 13px;
-    -webkit-transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    -o-transform: translateX(-100%);
-    transform: translateX(-100%); }
-    .nav-mobile-wrapper ul li {
+    font-size: 13px; }
+    .slide-menu ul li {
       list-style: none;
       width: 100%;
       text-align: left; }
-      .nav-mobile-wrapper ul li ul {
+      .slide-menu ul li ul {
         width: 100%; }
-      .nav-mobile-wrapper ul li:hover > ul li a {
+      .slide-menu ul li:hover > ul li a {
         padding-left: 30px; }
-      .nav-mobile-wrapper ul li a {
+      .slide-menu ul li a {
         display: block; } }
+
 /* Common footer styles */
 footer {
   border-top: 1px solid #d0d0d0;
   width: 72.77vw;
-  margin: auto;
-  padding: 20px; }
+  margin: auto auto 40px;
+  padding: 20px;
+  clear: both;
+  position: relative; }
+  footer small {
+    position: absolute;
+    bottom: -15px;
+    right: 10px; }
   footer ul li {
     list-style: none;
     float: left;
@@ -367,11 +568,42 @@ footer {
     footer ul li a {
       color: #8E8E8E;
       font-size: 1.4em; }
+      footer ul li a:before {
+        margin-right: 5px; }
+    footer ul li ul li {
+      text-transform: capitalize; }
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("/fonts/icomoon.eot?573dx3");
+  src: url("/fonts/icomoon.eot?573dx3#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?573dx3") format("truetype"), url("/fonts/icomoon.woff?573dx3") format("woff"), url("/fonts/icomoon.svg?573dx3#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-calendar:before {
+  content: "\e900"; }
+
+.icon-facebook:before {
+  content: "\e901"; }
 
 /* Footer overrides */
 @media (max-width: 767px) {
   footer {
     width: 100%; } }
+
 #booking-form {
   width: 630px; }
 
@@ -384,7 +616,7 @@ footer {
     .field-box label.error {
       float: none;
       display: inline;
-      margin-left: 20px;
+      margin-left: 150px;
       color: #ff0000;
       font-style: italic;
       font-size: 0.9em; }
@@ -425,6 +657,7 @@ footer {
       float: left; }
     #booking-form .button-cont {
       margin-left: 0px; } }
+
 /*!
  * FullCalendar v2.4.0 Stylesheet
  * Docs & License: http://fullcalendar.io/
@@ -665,7 +898,8 @@ previous button's border...
 .fc .fc-button-group > * {
   /* extra precedence b/c buttons have margin set to zero */
   float: left;
-  margin: 0 0 0 -1px; }
+  margin: 0 0 0 -1px;
+  outline: none; }
 
 .fc .fc-button-group > :first-child {
   /* same */
@@ -777,7 +1011,7 @@ hr.fc-divider {
 
 .fc-row table {
   /* don't put left/right border on anything within a fake row.
-     the outer tbody will worry about this */
+	   the outer tbody will worry about this */
   border-left: 0 hidden transparent;
   border-right: 0 hidden transparent;
   /* no bottom borders on rows */
@@ -1144,8 +1378,8 @@ a.fc-more:hover {
   filter: alpha(opacity=30);
   /* for IE */
   /* opacity with small font can sometimes look too faded
-     might want to set the 'color' property instead
-     making day-numbers bold also fixes the problem */ }
+	   might want to set the 'color' property instead
+	   making day-numbers bold also fixes the problem */ }
 
 /* AgendaView all-day area
 --------------------------------------------------------------------------------------------------*/
@@ -1439,38 +1673,38 @@ be a descendant of the grid when it is being dragged.
 
 #cboxTopLeft {
   width: 20px;
-  height: 35px;
+  height: 0px;
   background: #fff; }
 
 #cboxTopCenter {
-  height: 35px;
+  height: 0px;
   background: #fff; }
 
 #cboxTopRight {
   width: 20px;
-  height: 35px;
+  height: 0px;
   background: #fff; }
 
 #cboxBottomLeft {
   width: 20px;
-  height: 15px;
+  height: 0px;
   background: #fff; }
 
 #cboxBottomCenter {
-  height: 15px;
+  height: 0px;
   background: #fff; }
 
 #cboxBottomRight {
   width: 20px;
-  height: 15px;
+  height: 0px;
   background: #fff; }
 
 #cboxMiddleLeft {
-  width: 20px;
+  width: 0px;
   background: #fff; }
 
 #cboxMiddleRight {
-  width: 20px;
+  width: 0px;
   background: #fff; }
 
 #cboxContent {
@@ -1566,7 +1800,8 @@ be a descendant of the grid when it is being dragged.
   padding: 0;
   *zoom: 1;
   -ms-touch-action: pan-y;
-  touch-action: pan-y; }
+  touch-action: pan-y;
+  max-width: 927px !important; }
 
 .bx-wrapper img {
   max-width: 100%;
@@ -1601,7 +1836,6 @@ ul.bxslider {
 /* LOADER */
 .bx-wrapper .bx-loading {
   min-height: 50px;
-  background: url("images/bx_loader.gif") center center no-repeat #ffffff;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -1734,7 +1968,5 @@ ul.bxslider {
 
 .bxslider li img {
   max-width: 100%; }
-
-/*# sourceMappingURL=style.css.map */
 
 /*# sourceMappingURL=style.css.map */

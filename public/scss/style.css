@@ -72,7 +72,7 @@ a {
   .main-content p strong {
     font-weight: bold; }
   .main-content .pricing-structure {
-    width: 400px;
+    width: 550px;
     display: inline-block;
     padding: 10px 0; }
     .main-content .pricing-structure .lesson-type {
@@ -82,13 +82,13 @@ a {
       .main-content .pricing-structure .lesson-type h4 {
         font-weight: bold;
         color: #008080;
-        width: 45%;
+        width: 35%;
         float: left;
         line-height: 0;
         margin-top: 10px; }
       .main-content .pricing-structure .lesson-type .prices {
         float: left;
-        width: 55%; }
+        width: 66%; }
         .main-content .pricing-structure .lesson-type .prices p {
           margin-bottom: 0px; }
 

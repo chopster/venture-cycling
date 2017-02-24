@@ -426,12 +426,7 @@ $(document).ready(function(){
     
 
   /* Slider for mobile menu */  
-  $('.bxslider').bxSlider({
-  	auto: true,
-		controls: false,
-		pager: false,
-		mode: 'fade'
-  });
+
 
   renderCalendar();
 });
@@ -466,3 +461,12 @@ function renderCalendar() {
     }
   });
 }
+
+$(document).ready(function(){
+	$('.bxslider').show().bxSlider({
+		auto: true,
+		controls: false,
+		pager: false,
+		mode: 'fade'
+	});
+});

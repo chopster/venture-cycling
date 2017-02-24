@@ -8,58 +8,62 @@
 
 <url>
   <loc>http://www.venturecycling.co.uk/</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/about</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/about/testimonials</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://www.venturecycling.co.uk/coaching</loc>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services/learn-to-ride</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services/balanceability</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services/bikeability</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services/ride-leading</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services/dr-bike</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/services/schools-and-groups/loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/booking/make-a-booking</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/booking/pricing</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/contact</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://www.venturecycling.co.uk/calendar</loc>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 </urlset>

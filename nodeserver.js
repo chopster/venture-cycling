@@ -90,6 +90,10 @@ server.get('/services/schools-and-groups', function (req, res) {
   res.render('services/schools-and-groups', {menu: 'Services', submenu: 'schools-and-groups'});
 });
 
+server.get('/coaching', function (req, res) {
+  res.render('coaching', {menu: 'Coaching'});
+});
+
 server.get('/news', function (req, res) {
   res.render('news', {menu: 'News', submenu: 'news'});
 });

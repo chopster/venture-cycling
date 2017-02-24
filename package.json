@@ -5,6 +5,7 @@
   "main": "example.js",
   "dependencies": {
     "express": "^4.13.3",
+    "compression": "^1.6.2",
     "googleapis": "^2.1.3",
     "jade": "^1.11.0",
     "moment": "^2.10.6",

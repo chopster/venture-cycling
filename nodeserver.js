@@ -1,6 +1,8 @@
+
 var express = require('express');
 var stylus = require('stylus');
 var nodemailer = require('nodemailer');
+var compression = require('compression');
 var server = express();
 
 console.log(__dirname);
@@ -37,6 +39,8 @@ server.use(stylus.middleware({
     src: __dirname + '/views',
     dest: __dirname + '/public'
   }));  
+
+server.use(compression({ threshold: 9 }));
 server.use(express.static(__dirname + '/public'));
 
 server.get('/sitemap.xml', function(req, res) {
@@ -46,6 +50,7 @@ server.get('/sitemap.xml', function(req, res) {
 })
 
 server.get('/', function (req, res) {
+
   res.render('index', {menu: 'Home'});
 });
 

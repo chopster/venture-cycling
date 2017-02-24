@@ -604,7 +604,7 @@ footer {
   footer small {
     position: absolute;
     bottom: -25px;
-    right: 40px; }
+    right: 5px; }
   footer ul li {
     list-style: none;
     float: left;
@@ -654,7 +654,7 @@ footer {
 /* Footer overrides */
 @media (max-width: 767px) {
   footer {
-    width: 100%; } }
+    width: 90%; } }
 
 #booking-form {
   width: 630px; }

@@ -63,7 +63,7 @@ gulp.task('image-optimise', function() {
 /*
   Task to watch for changes
 */
-gulp.task('watch', ['clean:dist', 'sass','minifyConcatCSS','bundle-script', 'image-optimise'], function(){
+gulp.task('watch', ['clean:dist', 'sass','minifyConcatCSS','bundle-script'], function(){
   gulp.watch('scss/**/*.scss', ['sass']); 
   gulp.watch('css/dev/*.css', ['minifyConcatCSS']);
   gulp.watch('javascript/dev/*.js', ['bundle-script']);

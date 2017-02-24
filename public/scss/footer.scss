@@ -9,8 +9,8 @@ footer {
 
   small {
     position: absolute;
-    bottom: -15px;
-    right: 10px;
+    bottom: -25px;
+    right: 40px;
   }
 
   ul {
@@ -22,6 +22,12 @@ footer {
       text-transform: uppercase;
       line-height: 2em;
       color: #008080;
+
+      &.copy {
+        color: #808080;
+        text-transform: none;
+        font-size: 0.9em;
+      }
 
       a {
         color: #8E8E8E;

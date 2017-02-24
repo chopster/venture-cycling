@@ -603,8 +603,8 @@ footer {
   position: relative; }
   footer small {
     position: absolute;
-    bottom: -15px;
-    right: 10px; }
+    bottom: -25px;
+    right: 40px; }
   footer ul li {
     list-style: none;
     float: left;
@@ -613,6 +613,10 @@ footer {
     text-transform: uppercase;
     line-height: 2em;
     color: #008080; }
+    footer ul li.copy {
+      color: #808080;
+      text-transform: none;
+      font-size: 0.9em; }
     footer ul li a {
       color: #8E8E8E;
       font-size: 1.4em; }

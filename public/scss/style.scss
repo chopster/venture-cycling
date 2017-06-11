@@ -140,7 +140,7 @@ a {
       margin: 5px 0 15px;
     }
   }
-  p strong {
+  .strong {
     font-weight: bold;
   }
   .pricing-structure {
@@ -156,8 +156,11 @@ a {
         color: #008080;
         width: 35%;
         float: left;
-        line-height: 0;
-        margin-top: 10px;
+        margin-top: 0px;
+        span {
+          font-size: .9em;
+          color: #8c8e8e;
+        }
       }
       .prices {
         float: left;
@@ -471,7 +474,7 @@ blockquote {
 @media (min-width: 320px) {
   .main-content {
     .image {
-      float: left; 
+      float: left;
       width: 100%;
       margin-bottom: 20px;
 
@@ -530,7 +533,7 @@ blockquote {
   .main-content {
 
     .image {
-      float: right; 
+      float: right;
       width: 35%;
       padding: 5px 0 5px 10px;
 

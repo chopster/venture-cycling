@@ -121,7 +121,6 @@ a {
   .main-content .strong {
     font-weight: bold; }
   .main-content .pricing-structure {
-    width: 550px;
     display: inline-block;
     padding: 10px 0; }
     .main-content .pricing-structure .lesson-type {
@@ -134,7 +133,7 @@ a {
         width: 35%;
         float: left;
         margin-top: 0px; }
-        .main-content .pricing-structure .lesson-type h4 p {
+        .main-content .pricing-structure .lesson-type h4 span {
           font-size: .9em;
           color: #8c8e8e; }
       .main-content .pricing-structure .lesson-type .prices {
@@ -280,7 +279,9 @@ blockquote {
     .homepage-content .facebook-feed {
       margin-top: 15px;
       width: 100%;
-      float: left; } }
+      float: left; }
+  .main-content .pricing-structure {
+    width: 100%; } }
 
 @media (min-width: 501px) {
   .homepage-content {
@@ -290,7 +291,9 @@ blockquote {
     .homepage-content .facebook-feed {
       margin-top: 0px;
       width: 50%;
-      float: right; } }
+      float: right; }
+  .main-content .pricing-structure {
+    width: 550px; } }
 
 @media (min-width: 600px) {
   .homepage-content .info {

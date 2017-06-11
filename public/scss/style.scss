@@ -144,7 +144,6 @@ a {
     font-weight: bold;
   }
   .pricing-structure {
-    width: 550px;
     display: inline-block;
     padding: 10px 0;
     .lesson-type {
@@ -347,8 +346,8 @@ blockquote {
 }
 
 @media (max-width: 500px) {
-.homepage-content {
-  margin-top: 15px;
+  .homepage-content {
+    margin-top: 15px;
 
     .info {
       width: 100%;
@@ -358,6 +357,11 @@ blockquote {
       margin-top: 15px;
       width: 100%;
       float: left;
+    }
+  }
+  .main-content {
+    .pricing-structure {
+      width: 100%;
     }
   }
 }
@@ -376,6 +380,11 @@ blockquote {
         float: right;
       }
     }
+  .main-content {
+    .pricing-structure {
+        width: 550px;
+    }
+  }
 }
 
 @media (min-width: 600px) {

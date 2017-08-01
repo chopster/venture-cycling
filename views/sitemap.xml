@@ -30,10 +30,10 @@
   <loc>http://www.venturecycling.co.uk/services/learn-to-ride</loc>
   <changefreq>monthly</changefreq>
 </url>
-<url>
+<!-- <url>
   <loc>http://www.venturecycling.co.uk/services/balanceability</loc>
   <changefreq>monthly</changefreq>
-</url>
+</url> -->
 <url>
   <loc>http://www.venturecycling.co.uk/services/bikeability</loc>
   <changefreq>monthly</changefreq>
@@ -46,10 +46,10 @@
   <loc>http://www.venturecycling.co.uk/services/dr-bike</loc>
   <changefreq>monthly</changefreq>
 </url>
-<url>
+<!-- <url>
   <loc>http://www.venturecycling.co.uk/services/schools-and-groups/loc>
   <changefreq>monthly</changefreq>
-</url>
+</url> -->
 <url>
   <loc>http://www.venturecycling.co.uk/booking/make-a-booking</loc>
   <changefreq>monthly</changefreq>

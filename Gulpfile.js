@@ -18,7 +18,7 @@ var config = {
 }
 
 gulp.task('clean:dist', function() {
-  return del.sync('public/css');
+  return del.sync(['public/css', 'public/javascript/script.min.js']);
 })
 
 /*

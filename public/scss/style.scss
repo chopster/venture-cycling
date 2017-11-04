@@ -148,14 +148,6 @@ a {
   position: absolute;
 }
 
-#colorbox {
-  &.booking-submit-message {
-    #cboxClose {
-      display: none;
-    }
-  }
-}
-
 .link {
   font-weight: bold;
   color: #8e8e8e;
@@ -628,7 +620,7 @@ input[type=tel],
 input[type=number],
 input[type=password],
 select {
-   -webkit-appearance: none;
+  //  border-color: #ccc;
    border-radius: 0;
 }
 

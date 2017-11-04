@@ -124,9 +124,6 @@ a {
   text-align: center;
   position: absolute; }
 
-#colorbox.booking-submit-message #cboxClose {
-  display: none; }
-
 .link {
   font-weight: bold;
   color: #8e8e8e;
@@ -442,7 +439,6 @@ input[type=tel],
 input[type=number],
 input[type=password],
 select {
-  -webkit-appearance: none;
   border-radius: 0; }
 
 /* Desktop navigation */
@@ -715,7 +711,7 @@ footer {
     padding: 5px;
     width: 180px; }
   .field-box textarea {
-    border: 1px solid #eee; }
+    border: 1px solid #ccc; }
   .field-box.button-cont {
     margin-left: 150px; }
   .field-box .button {
@@ -1761,39 +1757,39 @@ be a descendant of the grid when it is being dragged.
   outline: 0; }
 
 #cboxTopLeft {
-  width: 20px;
-  height: 0px;
+  width: 30px;
+  height: 30px;
   background: #fff; }
 
 #cboxTopCenter {
-  height: 0px;
+  height: 30px;
   background: #fff; }
 
 #cboxTopRight {
-  width: 20px;
-  height: 0px;
+  width: 30px;
+  height: 30px;
   background: #fff; }
 
 #cboxBottomLeft {
-  width: 20px;
-  height: 0px;
+  width: 30px;
+  height: 30px;
   background: #fff; }
 
 #cboxBottomCenter {
-  height: 0px;
+  height: 30px;
   background: #fff; }
 
 #cboxBottomRight {
-  width: 20px;
-  height: 0px;
+  width: 30px;
+  height: 30px;
   background: #fff; }
 
 #cboxMiddleLeft {
-  width: 0px;
+  width: 30px;
   background: #fff; }
 
 #cboxMiddleRight {
-  width: 0px;
+  width: 30px;
   background: #fff; }
 
 #cboxContent {
@@ -1840,7 +1836,7 @@ be a descendant of the grid when it is being dragged.
   overflow: visible;
   position: absolute;
   top: -29px;
-  background: url(http://www.jacklmoore.com/colorbox/example5/images/controls.png) no-repeat 0px 0px;
+  background: url(http://www.jacklmoore.com/colorbox/example2/images/controls.png) no-repeat 0px 0px;
   width: 23px;
   height: 23px;
   text-indent: -9999px; }
@@ -1862,10 +1858,12 @@ be a descendant of the grid when it is being dragged.
     background-position: -75px 0px; }
 
 #cboxClose {
-  right: 0;
-  background-position: -100px -25px; }
+  right: -20px;
+  top: -20px;
+  background-position: -50px -25px;
+  outline: none; }
   #cboxClose:hover {
-    background-position: -100px 0px; }
+    background-position: -50px 0px; }
 
 .cboxSlideshow_on #cboxSlideshow {
   background-position: -125px 0px;

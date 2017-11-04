@@ -182,6 +182,8 @@ h1 {
   padding: 0 15px; }
   .main-content .sub-section {
     padding: 5px 2px; }
+    .main-content .sub-section ul {
+      padding-left: 1rem; }
   .main-content p {
     margin-bottom: 15px; }
 

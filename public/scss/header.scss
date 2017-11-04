@@ -36,6 +36,11 @@ nav {
 
 .mobile-nav {
   display: none;
+
+  span {
+    text-indent: -9999px;
+    position: inherit;
+  }
 }
 
 .nav-mobile-wrapper {
@@ -71,7 +76,7 @@ header {
 .navbar {
   li {
     display: inline-block;
-    list-style: none; 
+    list-style: none;
 
     ul {
       display: none;
@@ -102,7 +107,7 @@ header {
     &:hover, &.active {
       background: #008080;
       color: #fff;
-  
+
       ul {
         li {
           &.active {
@@ -236,7 +241,7 @@ header {
 
       ul {
         li {
-          list-style: none; 
+          list-style: none;
           width: 100%;
           text-align: left;
 
@@ -259,6 +264,3 @@ header {
       }
     }
 }
-
-
-

@@ -449,6 +449,9 @@ nav {
 
 .mobile-nav {
   display: none; }
+  .mobile-nav span {
+    text-indent: -9999px;
+    position: inherit; }
 
 .nav-mobile-wrapper {
   display: none; }

@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang="en")
 	- var titleVar = "- Learn to ride"
 	- var canonicalUrl = "services/learn-to-ride"
 	include ../head.jade
@@ -12,7 +12,7 @@ html
 			div(class="sub-section")
 				h4(class="heading") Learn to Ride - Children
 				div(class="image")
-					img(src="../images/childrens-lesson.jpg")
+					img(src="../images/childrens-lesson.jpg" alt="")
 				p Teaching children to cycle is a challenge for many parents. Kelly can take the stress out of the process by providing fun, relaxed lessons to promote excellent early riding skills. Lessons are structured for development through fun, game based methods that children really enjoy.
 
 				p For younger children, Kelly offers a balance program designed to improve their co-ordination, and balance bike riding skills ready for cycling independently. Kelly is a fully qualified Balanceability instructor and can teach children from 2.5 years upwards the skills needed to start riding a balance bike before moving to pedal bikes.
@@ -22,7 +22,8 @@ html
 			div(class="sub-section")
 				h4(class="heading") Learn to Ride - Adults
 				div(class="image")
-					img(src="../images/adult-lesson.jpg")
+					img(src="../images/adult-lesson.jpg" alt="")
 				p Even if you have never ridden a bike, or not ridden since childhood, you will be surprised at your how quickly you can make progress with an encouraging and experienced teacher. Adult lessons are available on a 1:1 basis, or contact me for details of any group lessons currently running. For the latest course information please <a href="/news" class="link">click here</a>
 
 	include ../footer.jade
+	|</body>

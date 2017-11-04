@@ -1,5 +1,5 @@
 <input id="toggle" type="checkbox"><label for="toggle" class="mobile-nav"><span>Mobile menu toggle</span></label>
-header(role="banner")
+header
 	div(class="nav-mobile-wrapper slide-menu")
 		div(class="nav menu")
 			ul(class="navbar")
@@ -39,9 +39,9 @@ header(role="banner")
 				li(class=(menu === 'Contact' ? 'active' : ''))
 					a(href="/contact" title="Contact Venture Cycling") Contact
 
-
-	a(class="brand" href='/')
-		h1 Venture <span>Cycling</span>
+	div(class="logo")
+		a(class="brand" href='/')
+			h1 Venture <span>Cycling</span>
 	nav(role="navigation")
 		ul(class="navbar")
 			li(class=(menu === 'Home' ? 'active' : ''))
@@ -78,5 +78,5 @@ header(role="banner")
 					//a(href="/coaching") Coaching
 			//li(class=(menu === 'News' ? 'active' : ''))
 				//a(href="/news") News
-				li(class=(menu === 'Contact' ? 'active' : ''))
-					a(href="/contact" title="Contact Venture Cycling") Contact
+			li(class=(menu === 'Contact' ? 'active' : ''))
+				a(href="/contact" title="Contact Venture Cycling") Contact

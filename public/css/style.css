@@ -68,6 +68,21 @@ ul, ol, li, pre, form, body, html, p, blockquote, fieldset, input {
 a {
   text-decoration: none; }
 
+.skip {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  height: 1px;
+  width: 1px;
+  text-align: left;
+  overflow: hidden; }
+  .skip:active, .skip:focus, .skip:hover {
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    overflow: visible; }
+
 #page {
   font-size: 1em;
   /* equivalent to 16px */
@@ -462,17 +477,21 @@ nav {
   left: -9999px; }
 
 /* Common header styles */
-header .brand {
-  display: block;
-  margin: 0 auto;
-  /*width: 400px;*/ }
-  header .brand h1 {
-    color: #707070;
-    font-family: 'Lobster', cursive;
-    margin: 30px 0;
-    font-weight: normal; }
-    header .brand h1 span {
-      color: #008080; }
+header .logo {
+  width: 100%;
+  display: inline-flex;
+  margin: 0 auto; }
+  header .logo a {
+    display: inline-block;
+    margin: 0 auto;
+    /*width: 400px;*/ }
+    header .logo a h1 {
+      color: #707070;
+      font-family: 'Lobster', cursive;
+      margin: 30px 0;
+      font-weight: normal; }
+      header .logo a h1 span {
+        color: #008080; }
 
 .navbar li {
   display: inline-block;

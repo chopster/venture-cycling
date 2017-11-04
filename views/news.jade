@@ -1,11 +1,13 @@
 doctype html
-html(class="news")
+html(class="news" lang="en")
 	- var titleVar = "- News"
 	- var canonicalUrl = "news"
 	include head.jade
 	include body.jade
+
 	div(id="container")
 		include navigation.jade
 		div(class="main-content")
 
 		include footer.jade
+	|</body>

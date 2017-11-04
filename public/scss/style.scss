@@ -54,6 +54,10 @@
   max-width: 100%;
   margin: 0 auto;
   display: block;
+  border: 5px solid #fff;
+  -moz-box-shadow: 0 0 5px #ccc;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
 }
 
 .level-1,
@@ -634,7 +638,6 @@ select {
 @import 'header';
 @import 'footer';
 @import 'form';
-@import 'calendar';
 @import 'colorbox';
 @import 'slider';
 

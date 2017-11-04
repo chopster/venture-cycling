@@ -26,9 +26,13 @@
   input {
     padding: 5px;
     width: 180px;
+    border: 1px solid #ccc;
+    -webkit-appearance: none;
   }
   textarea {
     border: 1px solid #ccc;
+    border-radius: 0;
+    -webkit-appearance: none;
   }
 
   &.button-cont {
@@ -41,6 +45,7 @@
     padding: 5px;
     font-size: 1.1em;
     width: 195px;
+    -webkit-appearance: none;
 
     &[disabled] {
       opacity: 0.5;

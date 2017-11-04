@@ -13,9 +13,8 @@ server.set('view engine', 'jade');
 
 function generate_xml_sitemap() {
     // this is the source of the URLs on your site, in this case we use a simple array, actually it could come from the database
-  var urls = ['', 'about', 'about/testimonials', 'services', 'services/learn-to-ride', 
-  'services/balanceability','services/bikeability','services/ride-leading','services/dr-bike','services/schools-and-groups','booking/make-a-booking',
-  'booking/pricing','contact','calendar','news'];
+  var urls = ['', 'about', 'about/testimonials', 'services', 'services/learn-to-ride', 'services/bikeability','services/ride-leading','services/dr-bike','booking/make-a-booking',
+  'booking/pricing','contact'];
   // the root of your website - the protocol and the domain name with a trailing slash
   var root_path = 'http://www.venturecycling.co.uk/';
   // XML sitemap generation starts here
@@ -38,7 +37,7 @@ server.use(stylus.middleware({
     debug: true,
     src: __dirname + '/views',
     dest: __dirname + '/public'
-  }));  
+  }));
 
 server.use(compression({ threshold: 9 }));
 server.use(express.static(__dirname + '/public'));
@@ -46,11 +45,10 @@ server.use(express.static(__dirname + '/public'));
 server.get('/sitemap.xml', function(req, res) {
   var sitemap = generate_xml_sitemap(); // get the dynamically generated XML sitemap
   res.header('Content-Type', 'text/xml');
-  res.send(sitemap);     
+  res.send(sitemap);
 })
 
 server.get('/', function (req, res) {
-
   res.render('index', {menu: 'Home'});
 });
 
@@ -86,17 +84,6 @@ server.get('/services/dr-bike', function (req, res) {
   res.render('services/dr-bike', {menu: 'Services', submenu: 'dr-bike'});
 });
 
-server.get('/services/schools-and-groups', function (req, res) {
-  res.render('services/schools-and-groups', {menu: 'Services', submenu: 'schools-and-groups'});
-});
-
-server.get('/coaching', function (req, res) {
-  res.render('coaching', {menu: 'Coaching'});
-});
-
-server.get('/news', function (req, res) {
-  res.render('news', {menu: 'News', submenu: 'news'});
-});
 
 server.get('/booking/pricing', function (req, res) {
   res.render('booking/pricing', {menu: 'Booking', submenu: 'pricing'});
@@ -104,10 +91,6 @@ server.get('/booking/pricing', function (req, res) {
 
 server.get('/booking/make-a-booking', function (req, res) {
   res.render('booking/make-a-booking', {menu: 'Booking', submenu: 'make-a-booking'});
-});
-
-server.get('/calendar', function (req, res) {
-  res.render('calendar');
 });
 
 server.get('/contact', function (req, res) {
@@ -132,11 +115,11 @@ server.get('/booking-email', function (req, res) {
     to: 'kelly@venturecycling.co.uk', // list of receivers. This is whoever you want to get the email when someone hits submit
     subject: 'Venture Cycling - booking', // Subject line
     html: '<p>Email: ' + '<a href="mailto:' + req.query.from + '?Subject=Venture Cycling - Booking&body=Hi ' + req.query.name + ',' + '%0D%0A%0D%0AThank you for your booking enquiry,"' +'>' + req.query.from + '</a></p>' +
-    			'<p>Name: ' + req.query.name + '</p>' + 
-    			'<p>Number: ' + req.query.number + '</p>' + 
+    			'<p>Name: ' + req.query.name + '</p>' +
+    			'<p>Number: ' + req.query.number + '</p>' +
     			'<p>Location: ' + req.query.location + '</p>' +
     			'<p>DOB: ' + req.query.dob + '</p>' +
-    			'<p>Message: ' + req.query.message + '</p>' 
+    			'<p>Message: ' + req.query.message + '</p>'
 
   };
 
@@ -157,9 +140,9 @@ server.get('/contact-email', function (req, res) {
     to: 'kelly@venturecycling.co.uk', // list of receivers. This is whoever you want to get the email when someone hits submit
     subject: 'Venture Cycling - contact', // Subject line
     html: '<p>Email: ' + '<a href="mailto:' + req.query.from + '?Subject=Venture Cycling - contact&body=Hi ' + req.query.name + ',' + '%0D%0A%0D%0AThank you for your enquiry,"' +'>' + req.query.from + '</a></p>' +
-          '<p>Name: ' + req.query.name + '</p>' + 
-          '<p>Number: ' + req.query.number + '</p>' + 
-          '<p>Message: ' + req.query.message + '</p>' 
+          '<p>Name: ' + req.query.name + '</p>' +
+          '<p>Number: ' + req.query.number + '</p>' +
+          '<p>Message: ' + req.query.message + '</p>'
 
   };
 

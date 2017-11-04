@@ -3,6 +3,9 @@ header
 	div(class="nav-mobile-wrapper slide-menu")
 		div(class="nav menu")
 			ul(class="navbar")
+				if(menu !== 'Home')
+					li
+						a(href="/" title="Homepage") Home
 				li(class=(menu === 'About' ? 'active' : ''))
 					a(href="/about" title="About Venture Cycling") About
 					ul
@@ -42,6 +45,9 @@ header
 			h1 Venture <span>Cycling</span>
 	nav
 		ul(class="navbar")
+			if(menu !== 'Home')
+				li
+					a(href="/" title="Homepage") Home
 			li(class=(menu === 'About' ? 'active' : ''))
 				a(href="/about" title="About Venture Cycling") About
 				ul

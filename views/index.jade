@@ -1,6 +1,6 @@
 doctype html
-html(class="home")
-	- var titleVar = "- Home"
+html(class="home" lang="en")
+	- var titleVar = "- Home | Learn to cycle"
 		include head.jade
 		include body.jade
 		div(id="container")
@@ -9,11 +9,11 @@ html(class="home")
 			div(class="main-content")
 				ul(class="bxslider")
 					li
-						img(src="../images/homepage-1.jpg")
+						img(src="../images/homepage-1.jpg" alt="Bike image near lake")
 					li
-						img(src="../images/homepage-2.jpg")
+						img(src="../images/homepage-2.jpg" alt="Children learning to ride")
 					li
-						img(src="../images/homepage-3.jpg")
+						img(src="../images/homepage-3.jpg" alt="Social bike ride with Breeze")
 
 				div(class="homepage-content")
 					div(class="info")
@@ -22,11 +22,11 @@ html(class="home")
 						p Lessons are offered in areas covered by postcodes SL5, RG12 and RG42. Surrounding areas may be considered subject to an additional fee.
 
 						div(class="accreditations")
-							img(src="../images/bikeability.png" class="bikeability")
-							img(src="../images/balanceability.png" class="balanceability")
+							img(src="../images/bikeability.png" class="bikeability" alt="Bikeability accreditation")
+							img(src="../images/balanceability.png" class="balanceability" alt="Bikeability accreditation")
 
-							img(src="../images/breeze.jpg" class="breeze")
-							img(src="../images/ctc.jpg" class="ctc")
+							img(src="../images/breeze.jpg" class="breeze" alt="Breeze champion")
+							img(src="../images/ctc.jpg" class="ctc" alt="National cycling charity")
 
 					div(class="facebook-feed")
 						div(class="fb-page" data-href="https://www.facebook.com/Venturecycling" data-tabs="timeline,events,messages" data-width="500" data-height="450" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false")
@@ -34,4 +34,3 @@ html(class="home")
 							blockquote(cite="https://www.facebook.com/Venturecycling")
 
 			include footer.jade
-

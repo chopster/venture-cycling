@@ -129,6 +129,13 @@ a {
   color: #8e8e8e;
   text-decoration: underline; }
 
+.no-touch .tel-link {
+  font-weight: normal;
+  pointer-events: none;
+  cursor: text;
+  text-decoration: none;
+  color: #707070; }
+
 .main-content {
   font-size: 0.9em;
   line-height: 1.5em; }

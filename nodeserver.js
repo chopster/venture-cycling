@@ -97,6 +97,11 @@ server.get('/contact', function (req, res) {
   res.render('contact', {menu: 'Contact'});
 });
 
+server.get('/faqs', function (req, res) {
+  res.render('faqs', {menu: 'Faqs'});
+});
+
+
 var transport = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {

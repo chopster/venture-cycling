@@ -219,6 +219,49 @@ $(document).ready(function(){
 	/* End Contact form validation */
 });
 
+var accItem = document.querySelectorAll('.accordion-item');
+var accContent = document.querySelectorAll('.accordion-content');
+
+
+for (i = 0; i < accItem.length; i++) {
+  accItem[i].addEventListener('click', toggleItem, false);
+}
+
+function toggleItem(e) {
+  if($(e.target.parentElement).hasClass('active')) {
+    removeClass(e.target.parentElement, "active");
+    addClass(e.target.parentElement.children[1], "hidden");
+    removeClass(e.target.parentElement.children[1], "show");
+  } else {
+    addClass(e.target.parentElement, "active");
+    removeClass(e.target.parentElement.children[1], "hidden");
+    addClass(e.target.parentElement.children[1], "show");
+  }
+  // accordionContentPanes.forEach(function(content) {
+  //   // Check if clicked row matches the content's previous element sibling
+  //   console.log(content.parentElement.class('active'));
+  //   // console.log(content.previousElementSibling);
+  //   // console.log(e.target);
+
+
+
+  //   if (!content.parentElement.hasClass('active')) {
+  //     removeClass(content, "hidden");
+  //     addClass(content.parentElement, "active");
+  //   } else {
+  //     removeClass(content.parentElement, "active");
+  //     addClass(content, "hidden");
+  //   }
+  // });
+}
+
+function addClass(el, _class) {
+  el.classList.add(_class);
+}
+
+function removeClass(el, _class) {
+  el.classList.remove(_class);
+}
 
 $(document).ready(function(){
 	$('.bxslider').show().bxSlider({

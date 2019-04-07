@@ -97,6 +97,27 @@ a {
     height: auto;
     overflow: visible; }
 
+.faqs .content div.content-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #d0d0d0; }
+  .faqs .content div.content-item span {
+    cursor: pointer;
+    display: block; }
+    .faqs .content div.content-item span svg {
+      color: #707070;
+      float: right; }
+  .faqs .content div.content-item.active svg {
+    transform: translate(0%, 5%) rotate(-180deg); }
+  .faqs .content div.content-item .accordion-content {
+    display: none;
+    padding: 10px 0; }
+    .faqs .content div.content-item .accordion-content.hidden {
+      display: none; }
+    .faqs .content div.content-item .accordion-content.show {
+      display: block; }
+    .faqs .content div.content-item .accordion-content ul {
+      padding-left: 17px; }
+
 #page {
   font-size: 1em;
   /* equivalent to 16px */
@@ -148,7 +169,8 @@ a {
     padding-bottom: 10px;
     color: #008080; }
   .main-content .sub-section {
-    padding: 5px 15px; }
+    padding: 5px 15px;
+    clear: both; }
     .main-content .sub-section .heading {
       margin: 5px 0 15px; }
   .main-content .strong {

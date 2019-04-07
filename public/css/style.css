@@ -100,14 +100,14 @@ a {
 .faqs .content div.content-item {
   padding: 10px 0;
   border-bottom: 1px solid #d0d0d0; }
-  .faqs .content div.content-item span {
+  .faqs .content div.content-item span.accordion-item {
     cursor: pointer;
     display: block; }
-    .faqs .content div.content-item span svg {
-      color: #707070;
-      float: right; }
+  .faqs .content div.content-item span svg {
+    color: #707070;
+    float: right; }
   .faqs .content div.content-item.active svg {
-    transform: translate(0%, 5%) rotate(-180deg); }
+    transform: translate(0%, 5%) rotate(180deg); }
   .faqs .content div.content-item .accordion-content {
     display: none;
     padding: 10px 0; }

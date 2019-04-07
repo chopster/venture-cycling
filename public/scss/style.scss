@@ -123,8 +123,10 @@ a {
         border-bottom: 1px solid #d0d0d0;
 
         span {
-          cursor: pointer;
-          display: block;
+          &.accordion-item {
+            cursor: pointer;
+            display: block;
+          }
         
           svg {
             color: #707070;
@@ -134,7 +136,7 @@ a {
         
         &.active {
           svg {
-            transform: translate(0%, 5%) rotate(-180deg);
+            transform: translate(0%, 5%) rotate(180deg);
           }
         }
     

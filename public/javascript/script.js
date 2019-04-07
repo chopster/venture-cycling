@@ -230,29 +230,13 @@ for (i = 0; i < accItem.length; i++) {
 function toggleItem(e) {
   if($(e.target.parentElement).hasClass('active')) {
     removeClass(e.target.parentElement, "active");
-    addClass(e.target.parentElement.children[1], "hidden");
-    removeClass(e.target.parentElement.children[1], "show");
+    addClass(e.target.nextSibling, "hidden");
+    removeClass(e.target.nextSibling, "show");
   } else {
     addClass(e.target.parentElement, "active");
-    removeClass(e.target.parentElement.children[1], "hidden");
-    addClass(e.target.parentElement.children[1], "show");
+    removeClass(e.target.nextSibling, "hidden");
+    addClass(e.target.nextSibling, "show");
   }
-  // accordionContentPanes.forEach(function(content) {
-  //   // Check if clicked row matches the content's previous element sibling
-  //   console.log(content.parentElement.class('active'));
-  //   // console.log(content.previousElementSibling);
-  //   // console.log(e.target);
-
-
-
-  //   if (!content.parentElement.hasClass('active')) {
-  //     removeClass(content, "hidden");
-  //     addClass(content.parentElement, "active");
-  //   } else {
-  //     removeClass(content.parentElement, "active");
-  //     addClass(content, "hidden");
-  //   }
-  // });
 }
 
 function addClass(el, _class) {

@@ -76,9 +76,9 @@ server.get('/services/bikeability', function (req, res) {
   res.render('services/bikeability', {menu: 'Services', submenu: 'bikeability'});
 });
 
-server.get('/services/ride-leading', function (req, res) {
-  res.render('services/ride-leading', {menu: 'Services', submenu: 'ride-leading'});
-});
+// server.get('/services/ride-leading', function (req, res) {
+//   res.render('services/ride-leading', {menu: 'Services', submenu: 'ride-leading'});
+// });
 
 server.get('/services/dr-bike', function (req, res) {
   res.render('services/dr-bike', {menu: 'Services', submenu: 'dr-bike'});

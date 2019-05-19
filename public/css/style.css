@@ -99,18 +99,24 @@ a {
 
 .faqs .content div.content-item {
   padding: 10px 0;
-  border-bottom: 1px solid #d0d0d0; }
+  border-bottom: 1px solid #d0d0d0;
+  position: relative; }
+  .faqs .content div.content-item.last {
+    border: 0px; }
   .faqs .content div.content-item span.accordion-item {
     cursor: pointer;
-    display: block; }
-  .faqs .content div.content-item span svg {
+    display: inline-block;
+    width: 90%; }
+  .faqs .content div.content-item svg {
     color: #707070;
-    float: right; }
+    position: absolute;
+    right: 0px; }
   .faqs .content div.content-item.active svg {
     transform: translate(0%, 5%) rotate(180deg); }
   .faqs .content div.content-item .accordion-content {
     display: none;
-    padding: 10px 0; }
+    padding: 10px 0;
+    width: 90%; }
     .faqs .content div.content-item .accordion-content.hidden {
       display: none; }
     .faqs .content div.content-item .accordion-content.show {
@@ -163,11 +169,13 @@ a {
 
 .main-content {
   font-size: 0.9em;
-  line-height: 1.5em; }
+  line-height: 1.5em;
+  width: 75.77vw;
+  margin: 0 auto; }
   .main-content h2 {
-    line-height: 0;
     padding-bottom: 10px;
-    color: #008080; }
+    color: #008080;
+    margin: 10px 0 0; }
   .main-content .sub-section {
     padding: 5px 15px;
     clear: both; }
@@ -181,21 +189,22 @@ a {
     display: inline-block;
     padding: 10px 0; }
     .main-content .pricing-structure .lesson-type {
-      float: left;
       width: 100%;
       padding: 10px 0; }
       .main-content .pricing-structure .lesson-type h4 {
         font-weight: bold;
         color: #008080;
+        vertical-align: top;
         width: 35%;
-        float: left;
+        margin-right: 5%;
+        display: inline-block;
         margin-top: 0px; }
         .main-content .pricing-structure .lesson-type h4 span {
           font-size: .9em;
           color: #8c8e8e; }
       .main-content .pricing-structure .lesson-type .prices {
-        float: left;
-        width: 65%; }
+        display: inline-block;
+        width: 60%; }
         .main-content .pricing-structure .lesson-type .prices p {
           margin-bottom: 0px; }
 
@@ -203,7 +212,7 @@ h1 {
   margin: 0px; }
 
 .main-content {
-  padding: 0 15px; }
+  padding: 0; }
   .main-content .sub-section {
     padding: 5px 2px; }
     .main-content .sub-section ul {
@@ -238,7 +247,6 @@ h1 {
     line-height: 1.05;
     /* keep to a multiple of the 20px line height and something more appropriate for display headings */ }
   .main-content {
-    width: 75%;
     margin: 0px auto 30px; }
     .main-content p {
       margin-bottom: 1.2em; } }
@@ -303,15 +311,8 @@ blockquote {
     /* 35px / 24px */ } }
 
 @media (max-width: 399px) {
-  .main-content .pricing-structure {
-    width: 100%; }
-    .main-content .pricing-structure .lesson-type h4 {
-      font-weight: bold;
-      color: #008080;
-      width: 45%;
-      float: left;
-      line-height: 1em;
-      margin-top: 3px; } }
+  .main-content .pricing-structure .lesson-type h4, .main-content .pricing-structure .lesson-type .prices {
+    width: 100%; } }
 
 .homepage-content {
   display: inline-block; }
@@ -325,12 +326,12 @@ blockquote {
         padding: 0 10px 0 0; }
       .homepage-content .info .accreditations .breeze {
         vertical-align: top;
-        margin: 20px 15px 0 15px; }
+        margin: 20px 3px 0; }
       .homepage-content .info .accreditations .ctc {
         vertical-align: top;
         margin: 5px 0 0; }
 
-@media (max-width: 500px) {
+@media (max-width: 568px) {
   .homepage-content {
     margin-top: 15px; }
     .homepage-content .info {
@@ -342,29 +343,13 @@ blockquote {
   .main-content .pricing-structure {
     width: 100%; } }
 
-@media (min-width: 501px) {
-  .homepage-content {
+@media (min-width: 768px) {
+  .main-content {
     margin-top: 15px; }
-    .homepage-content .info {
-      width: 50%; }
-    .homepage-content .facebook-feed {
-      margin-top: 0px;
-      width: 50%;
-      float: right; }
-  .main-content .pricing-structure {
-    width: 550px; } }
-
-@media (min-width: 600px) {
-  .homepage-content .info {
-    width: 45%; }
-  .homepage-content .facebook-feed {
-    width: 299px; } }
-
-@media (min-width: 700px) {
   .homepage-content {
     margin-top: 30px; }
     .homepage-content .info {
-      width: 55%; }
+      width: calc(100% - 319px); }
     .homepage-content .facebook-feed {
       width: 299px;
       float: right; } }
@@ -403,10 +388,6 @@ blockquote {
   .testimonials p.disclaimer {
     border: none;
     font-style: italic; }
-
-.home .main-content {
-  margin-top: 15px;
-  padding-top: 15px; }
 
 #news .sub-section {
   border-bottom: 1px solid #d0d0d0; }
@@ -466,6 +447,12 @@ blockquote {
 @media (min-width: 1150px) {
   .homepage-content .info {
     width: 65%; } }
+
+@media (max-width: 767px) {
+  .main-content {
+    padding: 0 20px;
+    width: 87.5%;
+    margin: 0 auto; } }
 
 input[type=submit],
 input[type=button],
@@ -583,8 +570,6 @@ header .logo {
     z-index: 1;
     display: block;
     margin: 8px 10px 0 30px; }
-  html, body {
-    height: 100%; }
   body {
     overflow-x: hidden; }
   #container {
@@ -666,34 +651,30 @@ header .logo {
 /* Common footer styles */
 footer {
   border-top: 1px solid #d0d0d0;
-  width: 72.77vw;
-  margin: auto auto 40px;
-  padding: 20px;
-  clear: both;
-  position: relative; }
-  footer small {
-    position: absolute;
-    bottom: -25px;
-    right: 5px; }
-  footer ul li {
-    list-style: none;
-    float: left;
-    width: 25%;
-    font-size: 0.75em;
-    text-transform: uppercase;
-    line-height: 2em;
-    color: #008080; }
-    footer ul li.copy {
-      color: #707070;
-      text-transform: none;
-      font-size: 0.9em; }
-    footer ul li a {
-      color: #707070;
-      font-size: 1.4em; }
-      footer ul li a:before {
-        margin-right: 5px; }
-    footer ul li ul li {
-      text-transform: capitalize; }
+  width: 75.77vw;
+  margin: auto; }
+  footer ul {
+    display: inline-block;
+    margin: 10px 0;
+    width: 100%; }
+    footer ul li {
+      list-style: none;
+      font-size: 0.75em;
+      line-height: 2em;
+      width: 6%;
+      display: inline-block; }
+      footer ul li.copy {
+        color: #707070;
+        text-transform: none;
+        font-size: 0.9em;
+        width: 94%;
+        text-align: right; }
+      footer ul li a {
+        color: #707070; }
+        footer ul li a:before {
+          margin-right: 5px; }
+      footer ul li ul li {
+        text-transform: capitalize; }
 
 @font-face {
   font-family: 'icomoon';
@@ -724,7 +705,7 @@ footer {
 /* Footer overrides */
 @media (max-width: 767px) {
   footer {
-    width: 90%; } }
+    width: 93%; } }
 
 #booking-form {
   width: 630px; }

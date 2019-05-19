@@ -4,7 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
   <loc>http://www.venturecycling.co.uk/</loc>
@@ -31,19 +30,15 @@
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services/ride-leading</loc>
-  <changefreq>monthly</changefreq>
-</url>
-<url>
   <loc>http://www.venturecycling.co.uk/services/dr-bike</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/booking/make-a-booking</loc>
+  <loc>http://www.venturecycling.co.uk/make-a-booking</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/booking/pricing</loc>
+  <loc>http://www.venturecycling.co.uk/pricing</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>

@@ -121,17 +121,24 @@ a {
       &.content-item {
         padding: 10px 0;
         border-bottom: 1px solid #d0d0d0;
+        position: relative;
+
+        &.last {
+          border: 0px;
+        }
 
         span {
           &.accordion-item {
             cursor: pointer;
-            display: block;
+            display: inline-block;
+            width: 90%;
           }
-        
-          svg {
-            color: #707070;
-            float: right;
-          }
+        }
+
+        svg {
+          color: #707070;
+          position: absolute;
+          right: 0px;
         }
         
         &.active {
@@ -143,6 +150,7 @@ a {
         .accordion-content {
           display: none;
           padding: 10px 0;
+          width: 90%;
 
           &.hidden {
             display: none;
@@ -222,11 +230,13 @@ a {
 .main-content {
   font-size: 0.9em;
   line-height: 1.5em;
+  width: 75.77vw;
+  margin: 0 auto;
 
   h2 {
-    line-height: 0;
     padding-bottom: 10px;
     color: #008080;
+    margin: 10px 0 0;
   }
   .sub-section {
     padding: 5px 15px;
@@ -247,14 +257,15 @@ a {
     display: inline-block;
     padding: 10px 0;
     .lesson-type {
-      float: left;
       width: 100%;
       padding: 10px 0;
       h4 {
         font-weight: bold;
         color: #008080;
+        vertical-align: top;
         width: 35%;
-        float: left;
+        margin-right: 5%;
+        display: inline-block;
         margin-top: 0px;
         span {
           font-size: .9em;
@@ -262,8 +273,8 @@ a {
         }
       }
       .prices {
-        float: left;
-        width: 65%;
+        display: inline-block;
+        width: 60%;
         p {
           margin-bottom: 0px;
         }
@@ -277,7 +288,7 @@ h1 {
 }
 
 .main-content {
-  padding: 0 15px;
+  padding: 0;
   .sub-section {
     padding: 5px 2px;
 
@@ -323,7 +334,6 @@ h1 {
     /* keep to a multiple of the 20px line height and something more appropriate for display headings */
   }
   .main-content {
-    width: 75%;
     margin: 0px auto 30px;
     p {
       margin-bottom: 1.2em;
@@ -410,15 +420,10 @@ blockquote {
 @media (max-width: 399px) {
   .main-content {
     .pricing-structure {
-      width: 100%;
+
       .lesson-type {
-        h4 {
-          font-weight: bold;
-          color: #008080;
-          width: 45%;
-          float: left;
-          line-height: 1em;
-          margin-top: 3px;
+        h4, .prices {
+          width: 100%;
         }
       }
     }
@@ -439,7 +444,7 @@ blockquote {
       }
       .breeze {
         vertical-align: top;
-        margin: 20px 15px 0 15px;
+        margin: 20px 3px 0;
       }
       .ctc {
         vertical-align: top;
@@ -449,7 +454,7 @@ blockquote {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 568px) {
   .homepage-content {
     margin-top: 15px;
 
@@ -470,46 +475,17 @@ blockquote {
   }
 }
 
-@media (min-width: 501px) {
-  .homepage-content {
-    margin-top: 15px;
 
-      .info {
-        width: 50%;
-      }
-
-      .facebook-feed {
-        margin-top: 0px;
-        width: 50%;
-        float: right;
-      }
-    }
+@media (min-width: 768px) {
   .main-content {
-    .pricing-structure {
-        width: 550px;
-    }
+    margin-top: 15px;
   }
-}
 
-@media (min-width: 600px) {
-  .homepage-content {
-
-      .info {
-        width: 45%;
-      }
-
-      .facebook-feed {
-        width: 299px;
-      }
-    }
-}
-
-@media (min-width: 700px) {
   .homepage-content {
     margin-top: 30px;
 
       .info {
-        width: 55%;
+        width: calc(100% - 319px);
       }
 
       .facebook-feed {
@@ -568,11 +544,6 @@ blockquote {
     border: none;
     font-style: italic;
   }
-}
-
-.home .main-content {
-  margin-top: 15px;
-  padding-top: 15px;
 }
 
 #news .sub-section {
@@ -682,6 +653,14 @@ blockquote {
     .info {
       width: 65%;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    padding: 0 20px;
+    width: 87.5%;
+    margin: 0 auto;
   }
 }
 

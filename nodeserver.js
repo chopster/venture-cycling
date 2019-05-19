@@ -85,12 +85,12 @@ server.get('/services/dr-bike', function (req, res) {
 });
 
 
-server.get('/booking/pricing', function (req, res) {
-  res.render('booking/pricing', {menu: 'Booking', submenu: 'pricing'});
+server.get('/pricing', function (req, res) {
+  res.render('pricing', {menu: 'Pricing'});
 });
 
-server.get('/booking/make-a-booking', function (req, res) {
-  res.render('booking/make-a-booking', {menu: 'Booking', submenu: 'make-a-booking'});
+server.get('/make-a-booking', function (req, res) {
+  res.render('make-a-booking', {menu: 'Booking'});
 });
 
 server.get('/contact', function (req, res) {

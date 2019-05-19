@@ -1,37 +1,31 @@
 /* Common footer styles */
 footer {
   border-top: 1px solid #d0d0d0;
-  width: 72.77vw;
-  margin: auto auto 40px;
-  padding: 20px;
-  clear: both;
-  position: relative;
-
-  small {
-    position: absolute;
-    bottom: -25px;
-    right: 5px;
-  }
+  width: 75.77vw;
+  margin: auto;
 
   ul {
+    display: inline-block;
+    margin: 10px 0;
+    width: 100%;
+
     li {
       list-style: none;
-      float: left;
-      width: 25%;
       font-size: 0.75em;
-      text-transform: uppercase;
       line-height: 2em;
-      color: #008080;
+      width: 6%;
+      display: inline-block;
 
       &.copy {
         color: #707070;
         text-transform: none;
         font-size: 0.9em;
+        width: 94%;
+        text-align: right;
       }
 
       a {
         color: #707070;
-        font-size: 1.4em;
 
         &:before {
           margin-right: 5px;
@@ -82,6 +76,6 @@ footer {
 /* Footer overrides */
 @media (max-width: 767px) {
   footer {
-    width: 90%;
+    width: 93%;
   }
 }

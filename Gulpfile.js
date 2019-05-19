@@ -6,6 +6,7 @@ var uglify = require('gulp-uglify');
 // var browserSync = require('browser-sync').create();
 var imagemin = require('gulp-imagemin');
 var del = require('del');
+var clean = require('gulp-clean');
 
 /*
   Config for JS file paths
@@ -30,10 +31,16 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('public/css'))
 });
 
+gulp.task('cleanSass', function () {
+  return del.sync(['public/css', 'public/javascript/script.min.js']);
+  return gulp.src('public/css/style.min.css', {read: false})
+      .pipe(clean());
+});
+
 /*
   Task to concat and minify css
 */
-gulp.task('minifyConcatCSS', ['sass'], function(){
+gulp.task('minifyConcatCSS', ['cleanSass', 'sass'], function(){
   return gulp.src('public/css/*.css')
     .pipe(concat('style.min.css'))
     .pipe(minifyCSS())

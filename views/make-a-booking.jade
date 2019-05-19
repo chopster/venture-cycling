@@ -3,10 +3,10 @@ html(class="make-a-booking" lang="en")
 	- var titleVar = "- Make a booking"
 	- var canonicalUrl = "booking/make-a-booking"
 
-	include ../head.jade
-	include ../body.jade
+	include head.jade
+	include body.jade
 	div(id="container")
-		include ../navigation.jade
+		include navigation.jade
 		div(class="main-content")
 			h2 Make a booking
 			p To make a booking please fill out the form below and submit, once submitted I will be in touch shortly with details. Alternatively, please call on <a href="tel:07725360407" class="tel-link link">07725360407</a>.
@@ -40,5 +40,5 @@ html(class="make-a-booking" lang="en")
 					div(class="field-box button-cont")
 						input(type="submit" id="booking-form-submit" name="booking-form-submit" class="button" value="Submit")
 
-	include ../footer.jade
+	include footer.jade
 	|</body>

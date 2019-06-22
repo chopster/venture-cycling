@@ -3,9 +3,8 @@ header
 	div(class="nav-mobile-wrapper slide-menu")
 		div(class="nav menu")
 			ul(class="navbar")
-				if(menu !== 'Home')
-					li
-						a(href="/" title="Homepage") Home
+				li(class=(menu === 'Home' ? 'active' : ''))
+					a(href="/" title="Homepage") Home
 				li(class=(menu === 'About' ? 'active' : ''))
 					a(href="/about" title="About Venture Cycling") About
 					ul
@@ -16,27 +15,14 @@ header
 					ul
 						li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
 							a(href="/services/learn-to-ride" title="Learn to ride with Venture Cycling") Learn to ride
-						//li(class=(submenu === 'balanceability' ? 'active' : ''))
-							//a(href="/services/balanceability") Balanceability
 						li(class=(submenu === 'bikeability' ? 'active' : ''))
 							a(href="/services/bikeability" title="Bikeability with Venture Cycling") Bikeability
-						//- li(class=(submenu === 'ride-leading' ? 'active' : ''))
-						//- 	a(href="/services/ride-leading" title="Ride leading with Venture Cycling") Ride Leading
 						li(class=(submenu === 'dr-bike' ? 'active' : ''))
 							a(href="/services/dr-bike" title="Dr Bike Venture Cycling") Dr Bike
-						//li(class=(submenu === 'schools-and-groups' ? 'active' : ''))
-							//a(href="/services/schools-and-groups") Schools & youth groups
 				li(class=(menu === 'Pricing' ? 'active' : ''))
 					a(href="/pricing" title="Pricing") Pricing
 				li(class=(menu === 'Booking' ? 'active' : ''))
 					a(href="/make-a-booking" title="Make a booking") Booking
-					//- ul
-					//- 	li(class=(submenu === 'make-a-booking' ? 'active' : ''))
-					//- 		a(href="/booking/make-a-booking" title="Make a booking") Make a booking
-				//li(class=(menu === 'Coaching' ? 'active' : ''))
-					//a(href="/coaching") Coaching
-				//li(class=(menu === 'News' ? 'active' : ''))
-					//a(href="/news") News
 				li(class=(menu === 'Contact' ? 'active' : ''))
 					a(href="/contact" title="Contact Venture Cycling") Contact
 				li(class=(menu === 'FAQs' ? 'active' : ''))
@@ -47,9 +33,8 @@ header
 			h1 Venture <span>Cycling</span>
 	nav
 		ul(class="navbar")
-			if(menu !== 'Home')
-				li
-					a(href="/" title="Homepage") Home
+			li(class=(menu === 'Home' ? 'active' : ''))
+				a(href="/" title="Homepage") Home
 			li(class=(menu === 'About' ? 'active' : ''))
 				a(href="/about" title="About Venture Cycling") About
 				ul
@@ -60,30 +45,15 @@ header
 				ul
 					li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
 						a(href="/services/learn-to-ride" title="Learn to ride with Venture Cycling") Learn to ride
-					//li(class=(submenu === 'balanceability' ? 'active' : ''))
-						//a(href="/services/balanceability") Balanceability
 					li(class=(submenu === 'bikeability' ? 'active' : ''))
 						a(href="/services/bikeability" title="Bikeability with Venture Cycling") Bikeability
 					li
-					//- li(class=(submenu === 'ride-leading' ? 'active' : ''))
-					//- 	a(href="/services/ride-leading" title="Ride leading with Venture Cycling") Ride Leading & Breeze
 					li(class=(submenu === 'dr-bike' ? 'active' : ''))
 						a(href="/services/dr-bike" title="Dr Bike Venture Cycling") Dr Bike
-					//li(class=(submenu === 'schools-and-groups' ? 'active' : ''))
-						//a(href="/services/schools-and-groups") Schools & youth groups
 			li(class=(menu === 'Pricing' ? 'active' : ''))
 				a(href="/pricing" title="Pricing") Pricing
 			li(class=(menu === 'Booking' ? 'active' : ''))
 				a(href="/make-a-booking" title="Make a booking") Booking
-				//- ul
-				//- 	li(class=(submenu === 'pricing' ? 'active' : ''))
-				//- 		a(href="/booking/pricing" title="Pricing") Pricing
-					//- li(class=(submenu === 'make-a-booking' ? 'active' : ''))
-					//- 	a(href="/booking/make-a-booking" title="Make a booking") Make a booking
-			//li(class=(menu === 'Coaching' ? 'active' : ''))
-					//a(href="/coaching") Coaching
-			//li(class=(menu === 'News' ? 'active' : ''))
-				//a(href="/news") News
 			li(class=(menu === 'Contact' ? 'active' : ''))
 				a(href="/contact" title="Contact Venture Cycling") Contact
 			li(class=(menu === 'FAQs' ? 'active' : ''))

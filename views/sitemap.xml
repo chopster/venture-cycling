@@ -45,4 +45,8 @@
   <loc>http://www.venturecycling.co.uk/contact</loc>
   <changefreq>monthly</changefreq>
 </url>
+<url>
+  <loc>http://www.venturecycling.co.uk/faqs</loc>
+  <changefreq>monthly</changefreq>
+</url>
 </urlset>

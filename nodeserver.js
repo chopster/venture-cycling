@@ -13,8 +13,8 @@ server.set('view engine', 'jade');
 
 function generate_xml_sitemap() {
     // this is the source of the URLs on your site, in this case we use a simple array, actually it could come from the database
-  var urls = ['', 'about', 'about/testimonials', 'services', 'services/learn-to-ride', 'services/bikeability','services/ride-leading','services/dr-bike','booking/make-a-booking',
-  'booking/pricing','contact'];
+  var urls = ['', 'about', 'about/testimonials', 'services', 'services/learn-to-ride', 'services/bikeability','services/ride-leading','services/dr-bike','make-a-booking',
+  'pricing','contact', 'faqs'];
   // the root of your website - the protocol and the domain name with a trailing slash
   var root_path = 'http://www.venturecycling.co.uk/';
   // XML sitemap generation starts here
@@ -75,10 +75,6 @@ server.get('/services/balanceability', function (req, res) {
 server.get('/services/bikeability', function (req, res) {
   res.render('services/bikeability', {menu: 'Services', submenu: 'bikeability'});
 });
-
-// server.get('/services/ride-leading', function (req, res) {
-//   res.render('services/ride-leading', {menu: 'Services', submenu: 'ride-leading'});
-// });
 
 server.get('/services/dr-bike', function (req, res) {
   res.render('services/dr-bike', {menu: 'Services', submenu: 'dr-bike'});

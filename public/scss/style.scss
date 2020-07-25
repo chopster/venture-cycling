@@ -12,11 +12,6 @@
   display: none;
 }
 
-.level-1,
-.level-2,
-.level-3 {
-  clear:both;
-}
 
 
 body {
@@ -25,7 +20,7 @@ body {
   font-weight: 500;
   color: #707070;
   min-height: 100%;
-  background: #f9f9f9;
+  background: #f2f3f4;
   -webkit-font-smoothing: antialiased;
   margin: 0 !important;
   padding: 0 !important;
@@ -179,56 +174,130 @@ a {
   color: #707070;
 }
 
-.main-content {
-  font-size: 0.9em;
-  line-height: 1.5em;
-  width: 75.77vw;
+main {
+  font-size: 1rem;
+  max-width: 1140px;
+  display: flex;
   margin: 0 auto;
 
-  h2 {
-    padding-bottom: 10px;
-    color: #008080;
-    margin: 10px 0 0;
-  }
-  .sub-section {
-    padding: 5px 15px;
-    clear: both;
-    .heading {
-      margin: 5px 0 15px;
-    }
-  }
-  .strong {
-    font-weight: bold;
-  }
+  .main-content {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
 
-  .marginS {
-    margin-top: 1.2em;
-  }
+    h4{
+      margin-top: 0px;
+      
+      &.heading {
+        text-align: center;
+        overflow: hidden;
+        width: 100%;
 
-  .pricing-structure {
-    display: inline-block;
-    padding: 10px 0;
-    .lesson-type {
-      width: 100%;
-      padding: 10px 0;
-      h4 {
-        font-weight: bold;
-        color: #008080;
-        vertical-align: top;
-        width: 35%;
-        margin-right: 5%;
-        display: inline-block;
-        margin-top: 0px;
-        span {
-          font-size: .9em;
-          color: #8c8e8e;
+        &:before, &:after {
+          background-color: #d0d0d0;
+          content: "";
+          display: inline-block;
+          height: 1px;
+          bottom: .1em;
+          position: relative;
+          vertical-align: middle;
+          width: 50%;
+          margin-top: -65px;
+        }
+
+        &:before {
+          right: 29px;
+          margin-left: -50%;
+        }
+
+        &:after {
+          left: 29px;
+          margin-right: -50%;
+        }
+
+        img {
+          width: 150px;
         }
       }
-      .prices {
-        display: inline-block;
-        width: 60%;
-        p {
-          margin-bottom: 0px;
+    }
+
+    section {
+      display: flex;
+      padding-bottom: 30px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      .image {
+        display: flex;
+        margin-left: auto;
+      }
+    }
+
+    h2 {
+      padding-bottom: 10px;
+      color: #008080;
+      margin: 10px 0 0;
+      width: 100%;
+      font-size: 2em;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 100%;
+      flex: 0 60%;
+      margin-right: 30px;
+    }
+
+    .homepage-image {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 100%;
+      flex: 1;
+    }
+
+    p {
+      line-height: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+
+    .strong {
+      font-weight: bold;
+    }
+
+    .marginS {
+      margin-top: 1.2em;
+    }
+
+    .pricing-structure {
+      display: inline-block;
+      padding: 10px 0;
+      .lesson-type {
+        width: 100%;
+        padding: 10px 0;
+        h4 {
+          font-weight: bold;
+          color: #008080;
+          vertical-align: top;
+          width: 35%;
+          margin-right: 5%;
+          display: inline-block;
+          margin-top: 0px;
+          span {
+            font-size: .9em;
+            color: #8c8e8e;
+          }
+        }
+        .prices {
+          display: inline-block;
+          width: 60%;
+          p {
+            margin-bottom: 0px;
+          }
         }
       }
     }
@@ -239,19 +308,6 @@ h1 {
   margin: 0px;
 }
 
-.main-content {
-  padding: 0;
-  .sub-section {
-    padding: 5px 2px;
-
-    ul {
-      padding-left: 1rem;
-    }
-  }
-  p {
-    margin-bottom: 15px;
-  }
-}
 
 @media (min-width: 43.75em) {
   #page {
@@ -285,36 +341,8 @@ h1 {
     line-height: 1.05;
     /* keep to a multiple of the 20px line height and something more appropriate for display headings */
   }
-  .main-content {
-    margin: 0px auto 30px;
-    p {
-      margin-bottom: 1.2em;
-    }
-  }
 }
 
-h2 {
-  font-size: 1.625em;
-  /* 1.625x body copy size = 26px */
-  line-height: 1.15384615;
-  /* 30px / 26px */
-}
-
-@media (min-width: 43.75em) {
-  h2 {
-    font-size: 2em;
-    /* 2x body copy size = 32px */
-    line-height: 1.25;
-  }
-}
-
-@media (min-width: 56.25em) {
-  h2 {
-    font-size: 2.25em;
-    /* 2.25x body copy size = 36px */
-    line-height: 1.25;
-  }
-}
 
 h3 {
   font-size: 1.375em;
@@ -339,18 +367,6 @@ h3 {
   }
 }
 
-h4 {
-  font-size: 1.125em;
-  /* 1.125x body copy size = 18px */
-  line-height: 1.11111111;
-}
-
-@media (min-width: 43.75em) {
-  h4 {
-    line-height: 1.22222222;
-    /* (22px / 18px */
-  }
-}
 
 blockquote {
   font-size: 1.25em;
@@ -384,8 +400,7 @@ blockquote {
 
 .homepage-content {
   display: inline-block;
-  .info {
-    float: left;
+
 
     .accreditations {
       width: 100%;
@@ -404,15 +419,13 @@ blockquote {
       }
     }
   }
-}
+
 
 @media (max-width: 568px) {
   .homepage-content {
     margin-top: 15px;
 
-    .info {
-      width: 100%;
-    }
+   
 
     .facebook-feed {
       margin-top: 15px;
@@ -429,16 +442,10 @@ blockquote {
 
 
 @media (min-width: 768px) {
-  .main-content {
-    margin-top: 15px;
-  }
-
   .homepage-content {
     margin-top: 30px;
 
-      .info {
-        width: calc(100% - 319px);
-      }
+   
 
       .facebook-feed {
         width: 299px;
@@ -450,27 +457,15 @@ blockquote {
 
 
 
-#calendar {
-  width: 100%;
-  margin: 35px 0;
-}
-
-#calendar h2 {
-  font-size: 1.8em;
-}
-
-#colorbox {
-  #calendar {
-    margin: 10px 0 0;
-    width: 100%;
-  }
-}
-
-
+/* Testimonials */
 .testimonials p {
   border-bottom: 1px solid #d0d0d0;
-  padding-bottom: 10px;
+  padding-bottom: 1rem;
   margin-bottom: 40px;
+
+  &.last {
+    border-bottom: none;
+  }
 
   &:before {
     background: url('../images/open-quote.png') 0 0 no-repeat;
@@ -498,123 +493,36 @@ blockquote {
   }
 }
 
-#news .sub-section {
-  border-bottom: 1px solid #d0d0d0;
+/* About Me */
+main {
+  font-size: 1rem;
+  max-width: 1140px;
+  display: flex;
+  margin: 0 auto;
 
-  &:last-child {
-    border-bottom: none;
-  }
-}
-
-
-@media (min-width: 320px) {
-  .main-content {
-    .image {
-      float: left;
-      width: 100%;
-      margin-bottom: 20px;
-
-      img {
-        max-width: 100%;
-      }
-    }
-    h4.heading-image {
-      text-align: center;
-      overflow: hidden;
-
-      &:before, &:after {
-        background-color: #d0d0d0;
-        content: "";
-        display: inline-block;
-        height: 1px;
-        bottom: .1em;
-        position: relative;
-        vertical-align: middle;
-        width: 39%;
-        margin-top: -65px;
-      }
-
-      &:before {
-        right: 29px;
-        margin-left: -50%;
-
-      }
-
-      &:after {
-        left: 29px;
-        margin-right: -50%;
-      }
-      img {
-        width: 150px;
-      }
-    }
-  }
-  #bikeability {
-    .main-content {
-      .sub-section {
-        display: inline-block;
-      }
-      ul {
-        list-style-type: none;
-        li {
-          background: transparent url(../images/bg-list.png) no-repeat left 5px;
-          padding: 5px 0 0 35px;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 600px) {
   .main-content {
 
-    .image {
-      float: right;
-      width: 35%;
-      padding: 5px 0 5px 10px;
-
-      img {
-        max-width: 100%;
-      }
-    }
-  }
-
-  .about {
-    .main-content {
-      .image {
-        width: 25%;
-      }
-    }
-  }
-
-  #childrens-lessons {
-    .main-content {
-       .image {
-          padding-top: 45px;
-
-          img {
-            padding-bottom: 25px;
-          }
-       }
-    }
-  }
-}
-
-@media (min-width: 1150px) {
-  .homepage-content {
     .info {
-      width: 65%;
+      width: 70%;
     }
   }
 }
 
-@media (max-width: 767px) {
-  .main-content {
-    padding: 0 20px;
-    width: 87.5%;
-    margin: 0 auto;
+/* Bikeability */
+
+.bikebability {
+  .info {
+    ul {
+      list-style-type: none;
+      li {
+        background: transparent url(../images/bg-list.png) no-repeat left 5px;
+        padding: 5px 0 0 35px;
+        line-height: 1.5rem;
+      }
+    }
   }
 }
+
 
 input[type=submit],
 input[type=button],
@@ -634,7 +542,6 @@ select {
 @import 'footer';
 @import 'form';
 @import 'colorbox';
-@import 'slider';
 
 
 /*# sourceMappingURL=style.css.map */

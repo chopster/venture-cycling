@@ -64,7 +64,7 @@ header {
             ul {
               display: none;
               position: absolute;
-              width: 100%;
+              width: auto;
               background-color: #e1e1e1;
               z-index: 2;
             }
@@ -81,15 +81,14 @@ header {
                   display: block;
         
                   &:hover {
-                    color: #fff;
+                    color: #008080;
                   }
                 }
               }
             }
         
             &:hover, &.active {
-              background: #008080;
-              color: #fff;
+              color: #008080;
         
               ul {
                 li {

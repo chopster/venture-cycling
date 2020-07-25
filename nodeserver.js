@@ -55,11 +55,11 @@ server.get('/', function (req, res) {
 });
 
 server.get('/about', function (req, res) {
-  res.render('about/about', {menu: 'About'});
+  res.render('about', {menu: 'About'});
 });
 
-server.get('/about/testimonials', function (req, res) {
-  res.render('about/testimonials', {menu: 'About', submenu: 'testimonials'});
+server.get('/testimonials', function (req, res) {
+  res.render('testimonials', {menu: 'Testimonials'});
 });
 
 server.get('/services', function (req, res) {

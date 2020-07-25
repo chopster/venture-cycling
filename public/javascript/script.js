@@ -144,7 +144,6 @@ $(document).ready(function(){
       },
       number: {
         required: false
-        // phonesUK: true
       },
     },
     messages: {
@@ -240,17 +239,4 @@ $(accItem).click(function() {
   }
 
   $(accItem).not(this).removeClass('active').find(accContent).removeClass('show').addClass('hide');
-});
-
-
-$(document).ready(function(){
-	$('.bxslider').show().bxSlider({
-		auto: true,
-		controls: false,
-		pager: false,
-		mode: 'fade',
-    onSliderLoad: function() {
-      $('.default-image').hide();
-    }
-	});
 });

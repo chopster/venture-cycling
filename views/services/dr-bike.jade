@@ -6,18 +6,19 @@ html(lang="en")
 	include ../body.jade
 	div(id="container")
 		include ../navigation.jade
-		div(class="main-content")
-			h2 Dr Bike
-			div(class="image")
-				img(src="../images/dr-bike.jpg" alt="")
+		main
+			div(class="main-content")
+				h2 Dr Bike
+				section
+					div(class="info")
+						p As an accredited cycle mechanic I can carry out minor repairs, adjustments and servicing, both for individuals and organisations that may wish to hold a Bike clinic for employees.
 
-			div(class="content")
+						p All bikes are checked prior to lessons, but if your bike has been unused for a while, or has an mechanical issue, why not book it in for a full check up before your lesson or ride?
 
-				p As an accredited cycle mechanic I can carry out minor repairs, adjustments and servicing, both for individuals and organisations that may wish to hold a Bike clinic for employees.
+						p A basic service costs just £20. Your bike will be thoroughly checked over, and brakes and gears adjusted. Advice will be given if any parts need replacing or further work is necessary.
 
-				p All bikes are checked prior to lessons, but if your bike has been unused for a while, or has an mechanical issue, why not book it in for a full check up before your lesson or ride?
-
-				p A basic service costs just £20. Your bike will be thoroughly checked over, and brakes and gears adjusted. Advice will be given if any parts need replacing or further work is necessary.
+					div(class="image")
+						img(src="../images/dr-bike.jpg" alt="Bike repair")
 
 	include ../footer.jade
 	|</body>

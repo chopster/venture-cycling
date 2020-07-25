@@ -2,6 +2,9 @@
   "name": "venture-cycling",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "6.11.0"
+  },
   "main": "example.js",
   "dependencies": {
     "express": "^4.13.3",

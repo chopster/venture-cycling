@@ -655,7 +655,8 @@ header .logo {
 footer {
   border-top: 1px solid #d0d0d0;
   width: 75.77vw;
-  margin: auto; }
+  margin: auto;
+  clear: both; }
   footer ul {
     display: inline-block;
     margin: 10px 0;

@@ -115,6 +115,7 @@ $(document).ready(function(){
           $('#booking-form')[0].reset();
       	  ga('send', 'event', { eventCategory: 'Booking Form', eventAction: 'Booking Request', eventLabel: 'Booking Form'});
         } else {
+          $('#booking-form-submit').prop('disabled', false);
         	ga('send', 'event', { eventCategory: 'Booking Form Error', eventAction: 'Booking Request Error', eventLabel: 'Booking Form Error'});
         	$("#colorbox").find('.processing').text("Sorry an error occurred, please try again or contact please call on 07725360407");
           setTimeout(function(){
@@ -209,6 +210,13 @@ $(document).ready(function(){
           }, 3000);
           $('#contact-form-submit').prop('disabled', false);
           $('#contact-form')[0].reset();
+        } else {
+          $('#ontact-form-submit').prop('disabled', false);
+        	ga('send', 'event', { eventCategory: 'Contact Form Error', eventAction: 'Contact Request Error', eventLabel: 'Contact Form Error'});
+        	$("#colorbox").find('.processing').text("Sorry an error occurred, please try again or contact please call on 07725360407");
+          setTimeout(function(){
+              $.colorbox.close();
+          }, 3000);
         }
       });
     },

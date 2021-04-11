@@ -1,14 +1,50 @@
-.default-image {
-  max-width: 100%;
-  margin: 0 auto;
-  display: block;
-  border: 5px solid #fff;
-  -moz-box-shadow: 0 0 5px #ccc;
-  -webkit-box-shadow: 0 0 5px #ccc;
-  box-shadow: 0 0 5px #ccc; }
+/* latin */
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Droid Sans"), local("DroidSans"), url(https://fonts.gstatic.com/s/droidsans/v6/s-BiyweUPV0v-yRb-cjciAzyDMXhdD8sAj6OAJTFsBI.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
 
-.js .default-image {
-  display: none; }
+/* latin */
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Droid Sans Bold"), local("DroidSans-Bold"), url(https://fonts.gstatic.com/s/droidsans/v6/EFpQQyG9GqCrobXxL-KRMWaVI6zN22yiurzcBKxPjFE.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(https://fonts.gstatic.com/s/lobster/v18/MeFZ5NpSE1j8mC06Jh1miFKPGs1ZzpMvnHX-7fPOuAc.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(https://fonts.gstatic.com/s/lobster/v18/UKmFXcLnvG78k2CT5LYRfFKPGs1ZzpMvnHX-7fPOuAc.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(https://fonts.gstatic.com/s/lobster/v18/MCZn_h27nLxWmTqnbmnb3lKPGs1ZzpMvnHX-7fPOuAc.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lobster"), local("Lobster-Regular"), url(https://fonts.gstatic.com/s/lobster/v18/G6-OYdAAwU5fSlE7MlBvhQLUuEpTyoUstqEm5AMlJo4.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215; }
 
 body {
   font-size: 100%;
@@ -47,38 +83,36 @@ a {
     height: auto;
     overflow: visible; }
 
-.faqs .content div.content-item {
-  padding: 10px 0;
-  border-bottom: 1px solid #d0d0d0;
-  position: relative; }
-  .faqs .content div.content-item.last {
-    border: 0px; }
-  .faqs .content div.content-item span.accordion-item {
-    cursor: pointer;
-    display: inline-block;
-    width: 90%; }
-  .faqs .content div.content-item svg {
-    color: #707070;
-    position: absolute;
-    right: 0px; }
-  .faqs .content div.content-item.active svg {
-    transform: translate(0%, 5%) rotate(180deg); }
-  .faqs .content div.content-item .accordion-content {
-    display: none;
-    padding: 10px 0;
-    width: 90%; }
-    .faqs .content div.content-item .accordion-content.hidden {
-      display: none; }
-    .faqs .content div.content-item .accordion-content.show {
-      display: block; }
-    .faqs .content div.content-item .accordion-content ul {
-      padding-left: 17px; }
-
-#page {
-  font-size: 1em;
-  /* equivalent to 16px */
-  line-height: 1.25;
-  /* equivalent to 20px */ }
+/* FAQs */
+.faqs .content {
+  width: 100%; }
+  .faqs .content div.content-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #d0d0d0;
+    position: relative; }
+    .faqs .content div.content-item.last {
+      border: 0px; }
+    .faqs .content div.content-item span.accordion-item {
+      cursor: pointer;
+      display: inline-block;
+      width: 90%; }
+    .faqs .content div.content-item svg {
+      color: #707070;
+      position: absolute;
+      right: 0px; }
+    .faqs .content div.content-item.active svg {
+      transform: translate(0%, 5%) rotate(180deg); }
+    .faqs .content div.content-item .accordion-content {
+      display: none;
+      padding: 10px 0;
+      width: 90%;
+      line-height: 1.5rem; }
+      .faqs .content div.content-item .accordion-content.hidden {
+        display: none; }
+      .faqs .content div.content-item .accordion-content.show {
+        display: block; }
+      .faqs .content div.content-item .accordion-content ul {
+        padding-left: 17px; }
 
 .no-script {
   background: #008080;
@@ -90,13 +124,6 @@ a {
   .no-script .white {
     color: #fff;
     text-decoration: underline; }
-
-@font-face {
-  font-family: 'responav';
-  src: url("/fonts/responav.eot");
-  src: url("/fonts/responav.eot?#iefix") format("embedded-opentype"), url("/fonts/responav.woff") format("woff"), url("/fonts/responav.ttf") format("truetype"), url("/fonts/responav.svg#responav") format("svg");
-  font-weight: normal;
-  font-style: normal; }
 
 .processing {
   font-size: 1.5em;
@@ -127,6 +154,15 @@ main {
     display: flex;
     flex-wrap: wrap;
     width: 100%; }
+    main .main-content .info {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 100%;
+      flex: 0 100%; }
+      @media (min-width: 768px) {
+        main .main-content .info {
+          flex: 1;
+          margin-right: 30px; } }
     main .main-content h4 {
       margin-top: 0px; }
       main .main-content h4.heading {
@@ -153,24 +189,25 @@ main {
           width: 150px; }
     main .main-content section {
       display: flex;
-      padding-bottom: 30px; }
+      padding-bottom: 30px;
+      flex-direction: row;
+      flex-wrap: wrap; }
       main .main-content section:last-child {
         padding-bottom: 0; }
       main .main-content section .image {
-        display: flex;
-        margin-left: auto; }
+        margin: 0 auto; }
+        main .main-content section .image img {
+          width: 100%;
+          height: auto; }
+          @media (min-width: 600px) {
+            main .main-content section .image img {
+              max-width: 100%; } }
     main .main-content h2 {
       padding-bottom: 10px;
       color: #008080;
       margin: 10px 0 0;
       width: 100%;
       font-size: 2em; }
-    main .main-content .info {
-      display: flex;
-      flex-direction: column;
-      flex-basis: 100%;
-      flex: 0 60%;
-      margin-right: 30px; }
     main .main-content .homepage-image {
       display: flex;
       flex-direction: column;
@@ -209,50 +246,12 @@ main {
 h1 {
   margin: 0px; }
 
-@media (min-width: 43.75em) {
-  #page {
-    font-size: 1em;
-    /* equivalent to 16px */
-    line-height: 1.375;
-    /* equivalent to 22px */ } }
-
 h1 {
   font-size: 2em;
   text-align: center;
   /* 2x body copy size = 32px */
   line-height: 1.25;
   /* 45px / 36px */ }
-
-@media (min-width: 43.75em) {
-  h1 {
-    font-size: 2.5em;
-    /* 2.5x body copy size = 40px */
-    line-height: 1.125; } }
-
-@media (min-width: 56.25em) {
-  h1 {
-    font-size: 2.5rem;
-    /* 3x body copy size = 48px */
-    line-height: 1.05;
-    /* keep to a multiple of the 20px line height and something more appropriate for display headings */ } }
-
-h3 {
-  font-size: 1.375em;
-  /* 1.375x body copy size = 22px */
-  line-height: 1.13636364;
-  /* 25px / 22px */ }
-
-@media (min-width: 43.75em) {
-  h3 {
-    font-size: 1.5em;
-    /* 1.5x body copy size = 24px */
-    line-height: 1.25; } }
-
-@media (min-width: 56.25em) {
-  h3 {
-    font-size: 1.75em;
-    /* 1.75x body copy size = 28px */
-    line-height: 1.25; } }
 
 blockquote {
   font-size: 1.25em;
@@ -266,10 +265,6 @@ blockquote {
     /* 24px / 16px = */
     line-height: 1.45833333;
     /* 35px / 24px */ } }
-
-@media (max-width: 399px) {
-  .main-content .pricing-structure .lesson-type h4, .main-content .pricing-structure .lesson-type .prices {
-    width: 100%; } }
 
 .homepage-content {
   display: inline-block; }
@@ -286,28 +281,18 @@ blockquote {
       vertical-align: top;
       margin: 5px 0 0; }
 
-@media (max-width: 568px) {
-  .homepage-content {
-    margin-top: 15px; }
-    .homepage-content .facebook-feed {
-      margin-top: 15px;
-      width: 100%;
-      float: left; }
-  .main-content .pricing-structure {
-    width: 100%; } }
-
-@media (min-width: 768px) {
-  .homepage-content {
-    margin-top: 30px; }
-    .homepage-content .facebook-feed {
-      width: 299px;
-      float: right; } }
+.facebook-feed {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 0 33%;
+  margin-left: auto; }
 
 /* Testimonials */
 .testimonials p {
   border-bottom: 1px solid #d0d0d0;
   padding-bottom: 1rem;
-  margin-bottom: 40px; }
+  width: 100%; }
   .testimonials p.last {
     border-bottom: none; }
   .testimonials p:before {
@@ -336,8 +321,6 @@ main {
   max-width: 1140px;
   display: flex;
   margin: 0 auto; }
-  main .main-content .info {
-    width: 70%; }
 
 /* Bikeability */
 .bikebability .info ul {
@@ -358,7 +341,13 @@ input[type=password],
 select {
   border-radius: 0; }
 
-/* Desktop navigation */
+@font-face {
+  font-family: 'responav';
+  src: url("/fonts/responav.eot");
+  src: url("/fonts/responav.eot?#iefix") format("embedded-opentype"), url("/fonts/responav.woff") format("woff"), url("/fonts/responav.ttf") format("truetype"), url("/fonts/responav.svg#responav") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 #toggle {
   display: none; }
 
@@ -386,16 +375,26 @@ header {
     header .header-container .header-content {
       display: flex;
       padding: 0 20px; }
+      @media (min-width: 900px) {
+        header .header-container .header-content {
+          width: 100%; } }
       header .header-container .header-content nav {
         display: none;
         flex-grow: 1;
         align-items: center; }
+        @media (min-width: 900px) {
+          header .header-container .header-content nav {
+            display: flex; } }
         header .header-container .header-content nav.mobile {
           display: flex; }
+          @media (min-width: 900px) {
+            header .header-container .header-content nav.mobile {
+              display: none; } }
         header .header-container .header-content nav .navbar {
           flex-direction: row;
           margin-left: auto;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          margin-top: 10px; }
           header .header-container .header-content nav .navbar li {
             display: inline-block;
             list-style: none; }
@@ -444,26 +443,8 @@ header {
             header .header-container .header-content .logo a h1 span {
               color: #008080; }
 
-@media (min-width: 768px) {
-  header .header-container .header-content {
-    width: 720px; }
-    header .header-container .header-content nav {
-      display: flex; }
-      header .header-container .header-content nav.mobile {
-        display: none; }
-        header .header-container .header-content nav.mobile .navbar li ul {
-          width: 175px; } }
-
-@media (min-width: 992px) {
-  header .header-container .header-content {
-    width: 942px; } }
-
-@media (min-width: 1140px) {
-  header .header-container .header-content {
-    width: 1092px; } }
-
 /* Mobile overrides for header */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .nav-trigger {
     float: left;
     cursor: pointer;
@@ -793,10 +774,10 @@ footer {
   margin-bottom: 5px; }
 
 #cboxLoadingOverlay {
-  background: url(http://www.jacklmoore.com/colorbox/example5/images/loading_background.png) no-repeat center center; }
+  background: url(https://www.jacklmoore.com/colorbox/example5/images/loading_background.png) no-repeat center center; }
 
 #cboxLoadingGraphic {
-  background: url(http://www.jacklmoore.com/colorbox/example5/images/loading.gif) no-repeat center center; }
+  background: url(https://www.jacklmoore.com/colorbox/example5/images/loading.gif) no-repeat center center; }
 
 #cboxTitle {
   position: absolute;
@@ -822,7 +803,7 @@ footer {
   overflow: visible;
   position: absolute;
   top: -29px;
-  background: url(http://www.jacklmoore.com/colorbox/example2/images/controls.png) no-repeat 0px 0px;
+  background: url(https://www.jacklmoore.com/colorbox/example2/images/controls.png) no-repeat 0px 0px;
   width: 23px;
   height: 23px;
   text-indent: -9999px; }

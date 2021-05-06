@@ -16,7 +16,7 @@ function generate_xml_sitemap() {
   var urls = ['', 'about', 'about/testimonials', 'services', 'services/learn-to-ride', 'services/bikeability','services/ride-leading','services/dr-bike','make-a-booking',
   'pricing','contact', 'faqs'];
   // the root of your website - the protocol and the domain name with a trailing slash
-  var root_path = 'http://www.venturecycling.co.uk/';
+  var root_path = 'https://www.venturecycling.co.uk/';
   // XML sitemap generation starts here
   var priority = 0.5;
   var freq = 'monthly';

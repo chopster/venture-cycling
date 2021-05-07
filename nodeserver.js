@@ -1,5 +1,6 @@
 
 var express = require('express');
+var sslRedirect = require('heroku-ssl-redirect').default;
 var stylus = require('stylus');
 var nodemailer = require('nodemailer');
 var compression = require('compression');
@@ -7,6 +8,7 @@ var server = express();
 
 console.log(__dirname);
 
+server.use(sslRedirect());
 server.set('port', (process.env.PORT || 8080));
 server.set('views', __dirname + '/views')
 server.set('view engine', 'jade');

@@ -1,7 +1,4 @@
-
-
-
-//* Desktop navigation */
+/* Desktop navigation */
 $mediaDesktopWidthXL: 1140px;
 $mediaDesktopWidth: 992px;
 $mediaIpadWidth: 768px;
@@ -107,65 +104,6 @@ a {
   font-weight: bold;
 }
 
-
-/* FAQs */
-.faqs {
-  .content {
-    width: 100%;
-    div {
-      &.content-item {
-        padding: 1rem 0;
-        border-bottom: 1px solid #d0d0d0;
-        position: relative;
-
-        &.last {
-          border: 0px;
-        }
-
-        span {
-          &.accordion-item {
-            cursor: pointer;
-            display: inline-block;
-            width: 90%;
-          }
-        }
-
-        svg {
-          color: #707070;
-          position: absolute;
-          right: 0px;
-        }
-        
-        &.active {
-          svg {
-            transform: translate(0%, 5%) rotate(180deg);
-          }
-        }
-    
-        .accordion-content {
-          display: none;
-          padding: 10px 0;
-          width: 90%;
-          line-height: 1.5rem;
-
-          &.hidden {
-            display: none;
-          }
-          &.show {
-            display: block;
-          }
-
-          ul {
-            padding-left: 17px;
-          }
-        }
-      }
-    }
-  } 
-}
-
-
-
 .no-script {
   background: #008080;
   text-align: center;
@@ -179,7 +117,6 @@ a {
     text-decoration: underline;
   }
 }
-
 
 .processing {
   font-size: 1.5em;
@@ -220,6 +157,10 @@ main {
       flex-direction: column;
       flex-basis: 100%;
       flex: 0 100%;
+
+      @media (max-width: $mediaIpadWidth) {
+        margin-bottom:20px
+      }
 
       @media (min-width: $mediaIpadWidth) {
         flex: 1;
@@ -338,7 +279,6 @@ main {
   }
 }
 
-
 blockquote {
   font-size: 1.25em;
   /* 20px / 16px */
@@ -355,43 +295,78 @@ blockquote {
   }
 }
 
-
-.homepage-content {
-  display: inline-block;
-
-    .accreditations {
-      width: 100%;
-      margin-top: 40px;
-      text-align: center;
-      img {
-        padding: 0 10px 0 0;
-      }
-      .breeze {
-        vertical-align: top;
-        margin: 20px 3px 0;
-      }
-      .ctc {
-        vertical-align: top;
-        margin: 5px 0 0;
-      }
-    }
-  }
-
-
+.bikeability-promo {
+  width: 100%;
+}
 
 .facebook-feed {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 0 33%;
-    margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 0 33%;
+  @media (max-width: $mediaIpadWidth) {
+    flex: 0 100%;
+    // width: 100%;
+    margin-top: 20px;
   }
+  margin-left: auto;
+}
 
+/* FAQs */
+.faqs {
+  .content {
+    width: 100%;
+    div {
+      &.content-item {
+        padding: 1rem 0;
+        border-bottom: 1px solid #d0d0d0;
+        position: relative;
 
+        &.last {
+          border: 0px;
+        }
 
+        span {
+          &.accordion-item {
+            cursor: pointer;
+            display: inline-block;
+            width: 90%;
+          }
+        }
 
+        svg {
+          color: #707070;
+          position: absolute;
+          right: 0px;
+        }
+        
+        &.active {
+          svg {
+            transform: translate(0%, 5%) rotate(180deg);
+          }
+        }
+    
+        .accordion-content {
+          display: none;
+          padding: 10px 0;
+          width: 90%;
+          line-height: 1.5rem;
 
+          &.hidden {
+            display: none;
+          }
+          &.show {
+            display: block;
+          }
 
+          ul {
+            padding-left: 17px;
+          }
+        }
+      }
+    }
+  } 
+}
 
 /* Testimonials */
 .testimonials p {
@@ -429,7 +404,6 @@ blockquote {
   }
 }
 
-
 /* Bikeability */
 
 .bikebability {
@@ -441,6 +415,11 @@ blockquote {
         padding: 5px 0 0 35px;
         line-height: 1.5rem;
       }
+    }
+  }
+  .image {
+    @media (max-width: $mediaIpadWidth) {
+      margin: 0px !important; 
     }
   }
 }

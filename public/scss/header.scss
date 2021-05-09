@@ -43,13 +43,13 @@ header {
     .header-content {
       display: flex;
       padding: 0 20px;
-      @media (min-width: 900px) {
+      @media (min-width: $mediaIpadWidth) {
         width: 100%;
       }
 
       nav {
         display: none;
-        @media (min-width: 900px) {
+        @media (min-width: $mediaIpadWidth) {
           display: flex;
         }
 
@@ -58,7 +58,7 @@ header {
 
         &.mobile {
           display: flex;
-          @media (min-width: 900px) {
+          @media (min-width: $mediaIpadWidth) {
             display: none;
           }
         }
@@ -160,7 +160,7 @@ header {
 
 
 /* Mobile overrides for header */
-@media (max-width: 900px) {
+@media (max-width: $mediaIpadWidth) {
 
   .nav-trigger {
     float: left;

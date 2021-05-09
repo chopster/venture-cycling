@@ -83,6 +83,9 @@ a {
     height: auto;
     overflow: visible; }
 
+.strong {
+  font-weight: bold; }
+
 /* FAQs */
 .faqs .content {
   width: 100%; }
@@ -153,16 +156,26 @@ main {
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    width: 100%; }
+    width: 100%;
+    /* Pricing */ }
     main .main-content .info {
       display: flex;
       flex-direction: column;
       flex-basis: 100%;
       flex: 0 100%; }
+      @media (max-width: 768px) {
+        main .main-content .info {
+          margin-bottom: 20px; } }
       @media (min-width: 768px) {
         main .main-content .info {
           flex: 1;
           margin-right: 30px; } }
+    main .main-content h2 {
+      padding-bottom: 10px;
+      color: #008080;
+      margin: 10px 0 0;
+      width: 100%;
+      font-size: 2em; }
     main .main-content h4 {
       margin-top: 0px; }
       main .main-content h4.heading {
@@ -202,24 +215,9 @@ main {
           @media (min-width: 600px) {
             main .main-content section .image img {
               max-width: 100%; } }
-    main .main-content h2 {
-      padding-bottom: 10px;
-      color: #008080;
-      margin: 10px 0 0;
-      width: 100%;
-      font-size: 2em; }
-    main .main-content .homepage-image {
-      display: flex;
-      flex-direction: column;
-      flex-basis: 100%;
-      flex: 1; }
     main .main-content p {
       line-height: 1.5rem;
       margin-bottom: 1rem; }
-    main .main-content .strong {
-      font-weight: bold; }
-    main .main-content .marginS {
-      margin-top: 1.2em; }
     main .main-content .pricing-structure {
       display: inline-block;
       padding: 10px 0; }
@@ -243,16 +241,6 @@ main {
           main .main-content .pricing-structure .lesson-type .prices p {
             margin-bottom: 0px; }
 
-h1 {
-  margin: 0px; }
-
-h1 {
-  font-size: 2em;
-  text-align: center;
-  /* 2x body copy size = 32px */
-  line-height: 1.25;
-  /* 45px / 36px */ }
-
 blockquote {
   font-size: 1.25em;
   /* 20px / 16px */
@@ -266,20 +254,8 @@ blockquote {
     line-height: 1.45833333;
     /* 35px / 24px */ } }
 
-.homepage-content {
-  display: inline-block; }
-  .homepage-content .accreditations {
-    width: 100%;
-    margin-top: 40px;
-    text-align: center; }
-    .homepage-content .accreditations img {
-      padding: 0 10px 0 0; }
-    .homepage-content .accreditations .breeze {
-      vertical-align: top;
-      margin: 20px 3px 0; }
-    .homepage-content .accreditations .ctc {
-      vertical-align: top;
-      margin: 5px 0 0; }
+.bikeability-promo {
+  width: 100%; }
 
 .facebook-feed {
   display: flex;
@@ -287,6 +263,10 @@ blockquote {
   flex-basis: 100%;
   flex: 0 33%;
   margin-left: auto; }
+  @media (max-width: 768px) {
+    .facebook-feed {
+      flex: 0 100%;
+      margin-top: 20px; } }
 
 /* Testimonials */
 .testimonials p {
@@ -315,13 +295,6 @@ blockquote {
     border: none;
     font-style: italic; }
 
-/* About Me */
-main {
-  font-size: 1rem;
-  max-width: 1140px;
-  display: flex;
-  margin: 0 auto; }
-
 /* Bikeability */
 .bikebability .info ul {
   list-style-type: none; }
@@ -329,6 +302,10 @@ main {
     background: transparent url(../images/bg-list.png) no-repeat left 5px;
     padding: 5px 0 0 35px;
     line-height: 1.5rem; }
+
+@media (max-width: 768px) {
+  .bikebability .image {
+    margin: 0px !important; } }
 
 input[type=submit],
 input[type=button],
@@ -375,19 +352,19 @@ header {
     header .header-container .header-content {
       display: flex;
       padding: 0 20px; }
-      @media (min-width: 900px) {
+      @media (min-width: 768px) {
         header .header-container .header-content {
           width: 100%; } }
       header .header-container .header-content nav {
         display: none;
         flex-grow: 1;
         align-items: center; }
-        @media (min-width: 900px) {
+        @media (min-width: 768px) {
           header .header-container .header-content nav {
             display: flex; } }
         header .header-container .header-content nav.mobile {
           display: flex; }
-          @media (min-width: 900px) {
+          @media (min-width: 768px) {
             header .header-container .header-content nav.mobile {
               display: none; } }
         header .header-container .header-content nav .navbar {
@@ -437,6 +414,7 @@ header {
           /*width: 400px;*/ }
           header .header-container .header-content .logo a h1 {
             color: #707070;
+            font-size: 2em;
             font-family: 'Lobster', cursive;
             margin: 30px 0;
             font-weight: normal; }
@@ -444,7 +422,7 @@ header {
               color: #008080; }
 
 /* Mobile overrides for header */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .nav-trigger {
     float: left;
     cursor: pointer;
@@ -532,63 +510,35 @@ header {
 
 /* Common footer styles */
 footer {
-  border-top: 1px solid #d0d0d0;
-  max-width: 1140px;
-  margin: auto;
-  clear: both; }
-  footer ul {
-    display: inline-block;
-    margin: 10px 0;
+  background: #fff;
+  color: #707070; }
+  footer .footer-container {
+    display: flex;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-top: 20px; }
+    @media (max-width: 1140px) {
+      footer .footer-container {
+        padding: 20px; } }
+    footer .footer-container .footer-content {
+      display: flex;
+      flex: 1; }
+  footer ul:first-child {
     width: 100%; }
-    footer ul li {
-      list-style: none;
-      font-size: 0.75em;
-      line-height: 2em;
-      width: 6%;
-      display: inline-block; }
-      footer ul li.copy {
-        color: #707070;
-        text-transform: none;
-        font-size: 0.9em;
-        width: 94%;
-        text-align: right; }
-      footer ul li a {
-        color: #707070; }
-        footer ul li a:before {
-          margin-right: 5px; }
-      footer ul li ul li {
-        text-transform: capitalize; }
-
-@font-face {
-  font-family: 'icomoon';
-  src: url("/fonts/icomoon.eot?573dx3");
-  src: url("/fonts/icomoon.eot?573dx3#iefix") format("embedded-opentype"), url("/fonts/icomoon.ttf?573dx3") format("truetype"), url("/fonts/icomoon.woff?573dx3") format("woff"), url("/fonts/icomoon.svg?573dx3#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-[class^="icon-"]:before, [class*=" icon-"]:before {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.icon-calendar:before {
-  content: "\e900"; }
-
-.icon-facebook:before {
-  content: "\e901"; }
-
-/* Footer overrides */
-@media (max-width: 767px) {
-  footer {
-    width: 93%; } }
+  footer ul li {
+    list-style: none;
+    line-height: 2em;
+    margin-right: 20px;
+    display: inline-block; }
+    footer ul li.creditation {
+      margin: 0; }
+    footer ul li.copy {
+      margin-top: 40px;
+      width: 99%; }
+    footer ul li.facebook {
+      vertical-align: top; }
+    footer ul li a {
+      color: #707070; }
 
 #booking-form {
   width: 630px; }
@@ -774,10 +724,10 @@ footer {
   margin-bottom: 5px; }
 
 #cboxLoadingOverlay {
-  background: url(https://www.jacklmoore.com/colorbox/example5/images/loading_background.png) no-repeat center center; }
+  background: url(http://www.jacklmoore.com/colorbox/example5/images/loading_background.png) no-repeat center center; }
 
 #cboxLoadingGraphic {
-  background: url(https://www.jacklmoore.com/colorbox/example5/images/loading.gif) no-repeat center center; }
+  background: url(http://www.jacklmoore.com/colorbox/example5/images/loading.gif) no-repeat center center; }
 
 #cboxTitle {
   position: absolute;
@@ -803,7 +753,7 @@ footer {
   overflow: visible;
   position: absolute;
   top: -29px;
-  background: url(https://www.jacklmoore.com/colorbox/example2/images/controls.png) no-repeat 0px 0px;
+  background: url(http://www.jacklmoore.com/colorbox/example2/images/controls.png) no-repeat 0px 0px;
   width: 23px;
   height: 23px;
   text-indent: -9999px; }

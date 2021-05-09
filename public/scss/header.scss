@@ -37,7 +37,7 @@ header {
    
   .header-container {
     display: flex;
-    max-width: 1140px;
+    max-width: $mediaDesktopWidthXL;
     margin: 0 auto;
 
     .header-content {
@@ -76,6 +76,10 @@ header {
             ul {
               display: none;
               position: absolute;
+              @media (max-width: $mediaIpadWidth) {
+                position: relative;
+                margin-left: 20px;
+              }
               width: auto;
               background-color: #e1e1e1;
               z-index: 2;
@@ -138,7 +142,7 @@ header {
 
           h1 {
           color: #707070;
-          font-size: 2em;
+          font-size: 2.5rem;
           font-family: 'Lobster', cursive;
           margin: 30px 0;
           font-weight: normal;
@@ -180,11 +184,11 @@ header {
   }
   label.mobile-nav {
     position: absolute;
-    top: 35px;
+    top: 40px;
     right: 30px;
     z-index: 1;
     display: block;
-    font-size: 3em;
+    font-size: 3rem;
     color: #444;
     cursor: pointer;
     transform: translate3d(0, 0, 0);
@@ -193,14 +197,13 @@ header {
     &:before {
       content: "!";
       color: #f9f9f9;
-      background: #333;
+      background: #008080;
       display: block;
-      height: 30px;
+      height: 32px;
       width: 38px;
       border-radius: 3px;
       font: 24px/30px 'responav';
       text-align: center;
-      margin-left: -19px;
     }
   }
 
@@ -209,14 +212,13 @@ header {
       right: 0px;
       content: '"';
       color: #f9f9f9;
-      background: #333;
+      background: #008080;
       display: block;
       height: 30px;
       width: 38px;
       border-radius: 3px;
       font: 24px/30px 'responav';
       text-align: center;
-      margin-left: -19px;
     }
   }
 

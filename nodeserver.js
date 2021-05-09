@@ -15,7 +15,7 @@ server.set('view engine', 'jade');
 
 function generate_xml_sitemap() {
     // this is the source of the URLs on your site, in this case we use a simple array, actually it could come from the database
-  var urls = ['', 'about', 'about/testimonials', 'services', 'services/learn-to-ride', 'services/bikeability','services/ride-leading','services/dr-bike','make-a-booking',
+  var urls = ['', 'about', 'about/testimonials', 'services', 'services/learn-to-ride', 'services/bikeability','services/dr-bike','make-a-booking',
   'pricing','contact', 'faqs'];
   // the root of your website - the protocol and the domain name with a trailing slash
   var root_path = 'https://www.venturecycling.co.uk/';

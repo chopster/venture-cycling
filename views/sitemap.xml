@@ -6,47 +6,47 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>http://www.venturecycling.co.uk/</loc>
+  <loc>https://www.venturecycling.co.uk/</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/about</loc>
+  <loc>https://www.venturecycling.co.uk/about</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/testimonials</loc>
+  <loc>https://www.venturecycling.co.uk/testimonials</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services</loc>
+  <loc>https://www.venturecycling.co.uk/services</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services/learn-to-ride</loc>
+  <loc>https://www.venturecycling.co.uk/services/learn-to-ride</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services/bikeability</loc>
+  <loc>https://www.venturecycling.co.uk/services/bikeability</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/services/dr-bike</loc>
+  <loc>https://www.venturecycling.co.uk/services/dr-bike</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/make-a-booking</loc>
+  <loc>https://www.venturecycling.co.uk/make-a-booking</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/pricing</loc>
+  <loc>https://www.venturecycling.co.uk/pricing</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/contact</loc>
+  <loc>https://www.venturecycling.co.uk/contact</loc>
   <changefreq>monthly</changefreq>
 </url>
 <url>
-  <loc>http://www.venturecycling.co.uk/faqs</loc>
+  <loc>https://www.venturecycling.co.uk/faqs</loc>
   <changefreq>monthly</changefreq>
 </url>
 </urlset>

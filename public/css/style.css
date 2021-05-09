@@ -1,3 +1,4 @@
+/* Desktop navigation */
 /* latin */
 @font-face {
   font-family: 'Droid Sans';
@@ -85,37 +86,6 @@ a {
 
 .strong {
   font-weight: bold; }
-
-/* FAQs */
-.faqs .content {
-  width: 100%; }
-  .faqs .content div.content-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid #d0d0d0;
-    position: relative; }
-    .faqs .content div.content-item.last {
-      border: 0px; }
-    .faqs .content div.content-item span.accordion-item {
-      cursor: pointer;
-      display: inline-block;
-      width: 90%; }
-    .faqs .content div.content-item svg {
-      color: #707070;
-      position: absolute;
-      right: 0px; }
-    .faqs .content div.content-item.active svg {
-      transform: translate(0%, 5%) rotate(180deg); }
-    .faqs .content div.content-item .accordion-content {
-      display: none;
-      padding: 10px 0;
-      width: 90%;
-      line-height: 1.5rem; }
-      .faqs .content div.content-item .accordion-content.hidden {
-        display: none; }
-      .faqs .content div.content-item .accordion-content.show {
-        display: block; }
-      .faqs .content div.content-item .accordion-content ul {
-        padding-left: 17px; }
 
 .no-script {
   background: #008080;
@@ -267,6 +237,37 @@ blockquote {
     .facebook-feed {
       flex: 0 100%;
       margin-top: 20px; } }
+
+/* FAQs */
+.faqs .content {
+  width: 100%; }
+  .faqs .content div.content-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #d0d0d0;
+    position: relative; }
+    .faqs .content div.content-item.last {
+      border: 0px; }
+    .faqs .content div.content-item span.accordion-item {
+      cursor: pointer;
+      display: inline-block;
+      width: 90%; }
+    .faqs .content div.content-item svg {
+      color: #707070;
+      position: absolute;
+      right: 0px; }
+    .faqs .content div.content-item.active svg {
+      transform: translate(0%, 5%) rotate(180deg); }
+    .faqs .content div.content-item .accordion-content {
+      display: none;
+      padding: 10px 0;
+      width: 90%;
+      line-height: 1.5rem; }
+      .faqs .content div.content-item .accordion-content.hidden {
+        display: none; }
+      .faqs .content div.content-item .accordion-content.show {
+        display: block; }
+      .faqs .content div.content-item .accordion-content ul {
+        padding-left: 17px; }
 
 /* Testimonials */
 .testimonials p {

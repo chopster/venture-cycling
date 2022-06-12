@@ -15,12 +15,12 @@
       margin-left: 20px;
       color: #ff0000;
       font-style: italic;
-      font-size: 0.9em;
+      font-size: 0.9rem;
     }
   }
 
   small {
-    font-size: 0.8em;
+    font-size: 0.8rem;
   }
 
   input {
@@ -35,15 +35,12 @@
     -webkit-appearance: none;
   }
 
-  &.button-cont {
-    margin-left: 150px;
-  }
 
   .button {
     background: #008080;
     color: #fff;
     padding: 5px;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     width: 195px;
     -webkit-appearance: none;
 
@@ -59,7 +56,7 @@
 
 
 
-@media (max-width: 767px) {
+@media (max-width: $mediaIpadWidth) {
   #booking-form {
     width: 100%;
     .field-box {

@@ -55,11 +55,11 @@ server.get('/', function (req, res) {
 });
 
 server.get('/about', function (req, res) {
-  res.render('about/about', {menu: 'About'});
+  res.render('about', {menu: 'About'});
 });
 
-server.get('/about/testimonials', function (req, res) {
-  res.render('about/testimonials', {menu: 'About', submenu: 'testimonials'});
+server.get('/testimonials', function (req, res) {
+  res.render('testimonials', {menu: 'Testimonials'});
 });
 
 server.get('/services', function (req, res) {
@@ -77,11 +77,6 @@ server.get('/services/balanceability', function (req, res) {
 server.get('/services/bikeability', function (req, res) {
   res.render('services/bikeability', {menu: 'Services', submenu: 'bikeability'});
 });
-
-server.get('/services/dr-bike', function (req, res) {
-  res.render('services/dr-bike', {menu: 'Services', submenu: 'dr-bike'});
-});
-
 
 server.get('/pricing', function (req, res) {
   res.render('pricing', {menu: 'Pricing'});

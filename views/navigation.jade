@@ -1,61 +1,40 @@
 <input id="toggle" type="checkbox"><label for="toggle" class="mobile-nav"><span>Mobile menu toggle</span></label>
 header
-	div(class="nav-mobile-wrapper slide-menu")
-		div(class="nav menu")
-			ul(class="navbar")
-				li(class=(menu === 'Home' ? 'active' : ''))
-					a(href="/" title="Homepage") Home
-				li(class=(menu === 'About' ? 'active' : ''))
-					a(href="/about" title="About Venture Cycling") About
-					ul
-						li(class=(submenu === 'testimonials' ? 'active' : ''))
-							a(href="/about/testimonials" title="Venture Cycling Testimonials") Testimonials
-				li(class=(menu === 'Services' ? 'active' : ''))
-					a(href="/services" title="Venture Cycling Services") Services
-					ul
-						li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
-							a(href="/services/learn-to-ride" title="Learn to ride with Venture Cycling") Learn to ride
-						li(class=(submenu === 'bikeability' ? 'active' : ''))
-							a(href="/services/bikeability" title="Bikeability with Venture Cycling") Bikeability
-						li(class=(submenu === 'dr-bike' ? 'active' : ''))
-							a(href="/services/dr-bike" title="Dr Bike Venture Cycling") Dr Bike
-				li(class=(menu === 'Pricing' ? 'active' : ''))
-					a(href="/pricing" title="Pricing") Pricing
-				li(class=(menu === 'Booking' ? 'active' : ''))
-					a(href="/make-a-booking" title="Make a booking") Booking
-				li(class=(menu === 'Contact' ? 'active' : ''))
-					a(href="/contact" title="Contact Venture Cycling") Contact
-				li(class=(menu === 'FAQs' ? 'active' : ''))
-					a(href="/faqs" title="Frequently asked questions") Faqs
+	div(class="header-container")
+		div(class="header-content")
+			nav(class="mobile")
+				div(
+					class="nav-mobile-wrapper slide-menu")
+					ul(class="navbar")
+						li(class=(menu === 'Services' ? 'active' : ''))
+							a(href="/services" title="Venture Cycling Services") Services
+							ul
+								li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
+									a(href="/services/learn-to-ride" title="Learn to ride with Venture Cycling") Learn to ride
+								li(class=(submenu === 'bikeability' ? 'active' : ''))
+									a(href="/services/bikeability" title="Bikeability with Venture Cycling") Bikeability
+						li(class=(menu === 'Pricing' ? 'active' : ''))
+							a(href="/pricing" title="Pricing") Pricing
+						li(class=(menu === 'testimonials' ? 'active' : ''))
+							a(href="/testimonials" title="Venture Cycling Testimonials") Testimonials
+						li(class=(menu === 'Booking' ? 'active' : ''))
+							a(href="/make-a-booking" title="Make a booking") Booking
 
-	div(class="logo")
-		a(class="brand" href='/')
-			h1 Venture <span>Cycling</span>
-	nav
-		ul(class="navbar")
-			li(class=(menu === 'Home' ? 'active' : ''))
-				a(href="/" title="Homepage") Home
-			li(class=(menu === 'About' ? 'active' : ''))
-				a(href="/about" title="About Venture Cycling") About
-				ul
-					li(class=(submenu === 'testimonials' ? 'active' : ''))
-						a(href="/about/testimonials" title="Venture Cycling Testimonials") Testimonials
-			li(class=(menu === 'Services' ? 'active' : ''))
-				a(href="/services" title="Venture Cycling Services") Services
-				ul
-					li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
-						a(href="/services/learn-to-ride" title="Learn to ride with Venture Cycling") Learn to ride
-					li(class=(submenu === 'bikeability' ? 'active' : ''))
-						a(href="/services/bikeability" title="Bikeability with Venture Cycling") Bikeability
-					li
-					li(class=(submenu === 'dr-bike' ? 'active' : ''))
-						a(href="/services/dr-bike" title="Dr Bike Venture Cycling") Dr Bike
-			li(class=(menu === 'Pricing' ? 'active' : ''))
-				a(href="/pricing" title="Pricing") Pricing
-			li(class=(menu === 'Booking' ? 'active' : ''))
-				a(href="/make-a-booking" title="Make a booking") Booking
-			li(class=(menu === 'Contact' ? 'active' : ''))
-				a(href="/contact" title="Contact Venture Cycling") Contact
-			li(class=(menu === 'FAQs' ? 'active' : ''))
-					a(href="/faqs" title="Frequently asked questions") Faqs
-
+			div(class="logo")
+				a(class="brand" href='/')
+					h1 Venture <span>Cycling</span>
+			nav
+				ul(class="navbar")
+					li(class=(menu === 'Services' ? 'active' : ''))
+						a(href="/services" title="Venture Cycling Services") Services
+						ul
+							li(class=(submenu === 'learn-to-ride' ? 'active' : ''))
+								a(href="/services/learn-to-ride" title="Learn to ride with Venture Cycling") Learn to ride
+							li(class=(submenu === 'bikeability' ? 'active' : ''))
+								a(href="/services/bikeability" title="Bikeability with Venture Cycling") Bikeability
+					li(class=(menu === 'Pricing' ? 'active' : ''))
+						a(href="/pricing" title="Pricing") Pricing
+					li(class=(menu === 'testimonials' ? 'active' : ''))
+						a(href="/testimonials" title="Venture Cycling Testimonials") Testimonials
+					li(class=(menu === 'Booking' ? 'active' : ''))
+						a(href="/make-a-booking" title="Make a booking") Booking

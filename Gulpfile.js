@@ -1,18 +1,19 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var minifyCSS = require('gulp-minify-css');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-// var browserSync = require('browser-sync').create();
-var imagemin = require('gulp-imagemin');
-var del = require('del');
-var clean = require('gulp-clean');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const minifyCSS = require('gulp-minify-css');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+// const browserSync = require('browser-sync').create();
+const imagemin = require('gulp-imagemin');
+const del = require('del');
+const clean = require('gulp-clean');
+const watchSass = require("gulp-watch-sass")
 
 /*
   Config for JS file paths
 */
 
-var config = {
+const config = {
   scriptsrc: [
     'public/javascript'
   ]
@@ -66,14 +67,21 @@ gulp.task('image-optimise', function() {
   .pipe(gulp.dest('public/images'))
 });
 
+gulp.task("sass:watch", () => watchSass([
+  "public/scss/*.scss"
+])
+  .pipe(sass())
+  .pipe(minifyConcatCSS())
+  .pipe(gulp.dest('public/css'))
+);
 
 /*
   Task to watch for changes
 */
 gulp.task('watch', ['clean:dist', 'sass','minifyConcatCSS','bundle-script'], function(){
-  gulp.watch('scss/**/*.scss', ['sass']);
+  gulp.watch('/public/scss/**/*.scss', ['sass']);
   gulp.watch('css/dev/*.css', ['minifyConcatCSS']);
   gulp.watch('javascript/dev/*.js', ['bundle-script']);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default');

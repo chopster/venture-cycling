@@ -7,38 +7,39 @@ html(class="make-a-booking" lang="en")
 	include body.jade
 	div(id="container")
 		include navigation.jade
-		div(class="main-content")
-			h2 Make a booking
-			p To make a booking please fill out the form below and submit, once submitted I will be in touch shortly with details. Alternatively, please call on <a href="tel:07725360407" class="tel-link link">07725360407</a>.
+		main
+			div(class="main-content")
+				h2 Make a booking
+				p To make a booking please fill out the form below and submit, once submitted I will be in touch shortly with details. Alternatively, please call on <a href="tel:07725360407" class="tel-link link">07725360407</a>.
 
-			div(class="make-booking")
-				form(name="booking-form" id="booking-form" class="contact-form clear-fix")
-					div(class="field-box")
-						label(for="booking-form-name") Your name
-						input(type="text" name="name" id="booking-form-name")
+				div(class="make-booking")
+					form(name="booking-form" id="booking-form" class="contact-form clear-fix")
+						div(class="field-box")
+							label(for="booking-form-name") Your name
+							input(type="text" name="name" id="booking-form-name")
 
-					div(class="field-box")
-						label(for="booking-form-email") Your e-mail
-						input(type="email" name="email" id="booking-form-email")
+						div(class="field-box")
+							label(for="booking-form-email") Your e-mail
+							input(type="email" name="email" id="booking-form-email")
 
-					div(class="field-box")
-						label(for="booking-form-number") Your phone number
-						input(type="text" name="number" id="booking-form-number")
+						div(class="field-box")
+							label(for="booking-form-number") Your phone number
+							input(type="number" name="number" id="booking-form-number")
 
-					div(class="field-box")
-						label(for="booking-form-location") Your location
-						input(type="text" name="location" id="booking-form-location")
+						div(class="field-box")
+							label(for="booking-form-location") Your location
+							input(type="text" name="location" id="booking-form-location")
 
-					div(class="field-box")
-						label(for="booking-form-dob") Date of birth <small>(trainee)</small>
-						input(type="text" name="dob" id="booking-form-dob" placeholder="dd/mm/yy")
+						div(class="field-box")
+							label(for="booking-form-dob") Date of birth <small>(trainee)</small>
+							input(type="text" name="dob" id="booking-form-dob" placeholder="dd/mm/yy")
 
-					div(class="field-box")
-						label(for="booking-form-message") Your message
-						textarea(name="message" id="booking-form-message" rows="10" cols="29")
+						div(class="field-box")
+							label(for="booking-form-message") Your message
+							textarea(name="message" id="booking-form-message" rows="10" cols="29")
 
-					div(class="field-box button-cont")
-						input(type="submit" id="booking-form-submit" name="booking-form-submit" class="button" value="Submit")
+						div(class="field-box button-cont")
+							input(type="submit" id="booking-form-submit" name="booking-form-submit" class="button" value="Submit")
 
 	include footer.jade
 	|</body>

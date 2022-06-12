@@ -1,70 +1,79 @@
 doctype html
-html(lang="en")
+html(class="bikebability" lang="en")
 	- var titleVar = "- Bikeability"
 	- var canonicalUrl = "services/bikeability"
 	include ../head.jade
 	include ../body.jade
 	div(id="container")
 		include ../navigation.jade
-		div(class="main-content")
-			h2 Bikeability training
+		main
+			div(class="main-content")
+				h2 Bikeability training
 
-			p For adults and children aged 9+. Bikeability is the modern day version of cycle proficiency, delivered by qualified instructors and registered schemes. Venture Cycling is registered with Bikeability as an approved scheme and we are experienced in delivering Bikeability to all ages.
-			p Courses are available on either a 1:1 basis, or can be shared by groups of friends or siblings. The course durations and pricing depends on the level of course, and the number of trainees. <a href="../pricing	" class="link">For information on pricing</a>. Prices quoted include Bikeability badges and certificates, site risk assessments, and bike safety checks. High vis jackets are provided for children to wear during the course.
+				p For adults and children aged 9+. Bikeability is the modern day version of cycle proficiency, delivered by qualified instructors and registered schemes. Venture Cycling is registered with Bikeability as an approved scheme and we are experienced in delivering Bikeability to all ages.
+				p Courses are available on either a 1:1 basis, or can be shared by groups of friends or siblings. The course durations and pricing depends on the level of course, and the number of trainees. <a href="../pricing	" class="link">For information on pricing</a>. Prices quoted include Bikeability badges and certificates, site risk assessments, and bike safety checks. High vis jackets are provided for children to wear during the course.
+
+				h4(class="heading") <img src="../images/bikeability-level-1.png" alt="Bikeability Level 1" title="Bikeability Level 1" />
+
+				section
+					div(class="info")
+						p
+							<span class="strong">Bikeability Level 1</span> is delivered in a traffic-free environment, where you will learn basic bike handling skills and improve your riding confidence.
+
+						p Once you have completed Level 1 and you have received your red badge, you will be able to:
+
+						ul
+							li Fit your helmet correctly.
+							li Check your bike is ready to ride.
+							li Get on and off your bike safely.
+							li Ride your bike and make it go where you want it to.
+							li Avoid objects through good bike control.
+							li Use your gears effectively.
+							li Control the bike with one hand.
+							li Observe all around you whilst cycling.
+							li Stop safely and quickly if you need to.
+
+					div(class="image")
+						img(src="../images/bikeability-level1-image.jpg" alt="Bikeability Level 1")
+				
+				h4(class="heading") <img src="../images/bikeability-level-2.png" alt="Bikeability Level 2" title="Bikeability Level 2" />
+				section
+					div(class="info")
+						p  
+							<span class="strong">Bikeability Level 2</span> is delivered on quiet residential streets close to your home, school or place of work. You will learn how to cycle confidently on-road, amongst real traffic.
+
+						p Once you have completed Level 2 and received your orange badge, you will be able to:
+
+						ul
+							li Start and finish an on-road journey.
+							li Pass parked cars or slower moving vehicles and side roads.
+							li Make a u-turn.
+							li Identify and react to potential hazards.
+							li Communicate your intentions with other road users and pedestrians as appropriate.
+							li Use road positioning effectively.
+							li Use junctions, including turning left and right in and out of minor roads.
+							li Use the Highway Code and make decisions on safe riding strategy.
 
 
+					div(class="image")
+						img(src="../images/bikeability-level2-image.jpg" alt="Bikeability Level 2")
+				
+				h4(class="heading") <img src="../images/bikeability-level-3.png" alt="Bikeability Level 3" title="Bikeability Level 3" />
+				section
+					div(class="info")
+						p <span class="strong">Bikeability Level 3</span> is delivered on roads with larger volumes of traffic travelling at higher speeds. You will learn how to negotiate more complex junctions on a route of your choice, usually your journey to school or work.
 
-			div(class="sub-section level-1")
-				h4(class="heading heading-image") <img src="../images/bikeability-level-1.png" alt="Bikeability Level 1" title="Bikeability Level 1" />
-				div(class="image")
-					img(src="../images/bikeability-level1-image.jpg" alt="")
-				p <strong>Bikeability Level 1</strong> is delivered in a traffic-free environment, where you will learn basic bike handling skills and improve your riding confidence.
+						p Once you have completed Level 3 and received your green badge, you will be able to:
 
-				p Once you have completed Level 1 and you have received your red badge, you will be able to:
+						ul
+							li Cycle almost anywhere using complex road junctions and features such as roundabouts, multi-lane roads and traffic lights.
+							li Plan your route using any road.
+							li Understand driver blind spots and how to avoid them.
+							li Filter through queuing or slower moving traffic.
+							li Identify and react to hazardous road surfaces.
 
-				ul
-					li Fit your helmet correctly.
-					li Check your bike is ready to ride.
-					li Get on and off your bike safely.
-					li Ride your bike and make it go where you want it to.
-					li Avoid objects through good bike control.
-					li Use your gears effectively.
-					li Control the bike with one hand.
-					li Observe all around you whilst cycling.
-					li Stop safely and quickly if you need to.
-
-			div(class="sub-section level-2")
-				h4(class="heading heading-image") <img src="../images/bikeability-level-2.png" alt="Bikeability Level 2" title="Bikeability Level 2" />
-				div(class="image")
-					img(src="../images/bikeability-level2-image.jpg" alt="")
-				p <strong>Bikeability Level 2</strong> is delivered on quiet residential streets close to your home, school or place of work. You will learn how to cycle confidently on-road, amongst real traffic.
-
-				p Once you have completed Level 2 and received your orange badge, you will be able to:
-
-				ul
-					li Start and finish an on-road journey.
-					li Pass parked cars or slower moving vehicles and side roads.
-					li Make a u-turn.
-					li Identify and react to potential hazards.
-					li Communicate your intentions with other road users and pedestrians as appropriate.
-					li Use road positioning effectively.
-					li Use junctions, including turning left and right in and out of minor roads.
-					li Use the Highway Code and make decisions on safe riding strategy.
-
-			div(class="sub-section level-3")
-				h4(class="heading heading-image") <img src="../images/bikeability-level-3.png" alt="Bikeability Level 3" title="Bikeability Level 3" />
-				div(class="image")
-					img(src="../images/bikeability-level3-image.jpg" alt="")
-				p <strong>Bikeability Level 3</strong> is delivered on roads with larger volumes of traffic travelling at higher speeds. You will learn how to negotiate more complex junctions on a route of your choice, usually your journey to school or work.
-
-				p Once you have completed Level 3 and received your green badge, you will be able to:
-
-				ul
-					li Cycle almost anywhere using complex road junctions and features such as roundabouts, multi-lane roads and traffic lights.
-					li Plan your route using any road.
-					li Understand driver blind spots and how to avoid them.
-					li Filter through queuing or slower moving traffic.
-					li Identify and react to hazardous road surfaces.
-
+					div(class="image")
+						img(src="../images/bikeability-level3-image.jpg" alt="Bikeability Level 3")
+				
 	include ../footer.jade
 	|</body>

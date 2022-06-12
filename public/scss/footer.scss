@@ -1,82 +1,52 @@
 /* Common footer styles */
 footer {
-  border-top: 1px solid #d0d0d0;
-  width: 75.77vw;
-  margin: auto;
-  clear: both;
+  background: #fff;
+  color: #707070;
+
+  .footer-container {
+    display: flex;
+    max-width: $mediaDesktopWidthXL;
+    margin: 0 auto;
+    @media (max-width: $mediaDesktopWidthXL) {
+      padding: 20px;
+    }
+    padding-top: 20px;
+
+    .footer-content {
+      display: flex;
+      flex: 1;
+    }
+  }
 
   ul {
-    display: inline-block;
-    margin: 10px 0;
-    width: 100%;
+    &:first-child {
+      width: 100%;
+    } 
 
     li {
       list-style: none;
-      font-size: 0.75em;
-      line-height: 2em;
-      width: 6%;
+      line-height: 2rem;
+      margin-right: 20px;
       display: inline-block;
+    
+      &.creditation {
+        margin: 0;
+      }
 
       &.copy {
-        color: #707070;
-        text-transform: none;
-        font-size: 0.9em;
-        width: 94%;
-        text-align: right;
+        margin-top: 40px;
+        width: 99%;
+      }
+
+      &.facebook {
+        vertical-align: top;
       }
 
       a {
         color: #707070;
-
-        &:before {
-          margin-right: 5px;
-        }
-      }
-      ul {
-        li {
-          text-transform: capitalize;
-        }
       }
     }
   }
 }
 
-@font-face {
-    font-family: 'icomoon';
-    src:    url('/fonts/icomoon.eot?573dx3');
-    src:    url('/fonts/icomoon.eot?573dx3#iefix') format('embedded-opentype'),
-        url('/fonts/icomoon.ttf?573dx3') format('truetype'),
-        url('/fonts/icomoon.woff?573dx3') format('woff'),
-        url('/fonts/icomoon.svg?573dx3#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 
-[class^="icon-"]:before, [class*=" icon-"]:before {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-calendar:before {
-    content: "\e900";
-}
-.icon-facebook:before {
-    content: "\e901";
-}
-
-/* Footer overrides */
-@media (max-width: 767px) {
-  footer {
-    width: 93%;
-  }
-}

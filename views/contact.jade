@@ -6,30 +6,31 @@ html(lang="en" class="contact")
 	include body.jade
 	div(id="container")
 		include navigation.jade
-		div(class="main-content")
-			h2 Contact
-			p Please fill out the form below and submit to contact me with any enquiries. I will get back to you as soon as possible. Alternatively, please call on <a href="tel:07725360407" class="tel-link link">07725360407</a>.
+		main
+			div(class="main-content")
+				h2 Contact
+				p Please fill out the form below and submit to contact me with any enquiries. I will get back to you as soon as possible. Alternatively, please call on <a href="tel:07725360407" class="tel-link link">07725360407</a>.
 
-			div(class="contact")
-				form(name="contact-form" id="contact-form" class="contact-form clear-fix")
-					div(class="field-box")
-						label(for="contact-form-name") Your name
-						input(type="text" name="name" id="contact-form-name")
+				div(class="contact")
+					form(name="contact-form" id="contact-form" class="contact-form clear-fix")
+						div(class="field-box")
+							label(for="contact-form-name") Your name
+							input(type="text" name="name" id="contact-form-name")
 
-					div(class="field-box")
-						label(for="contact-form-email") Your e-mail
-						input(type="email" name="email" id="contact-form-email")
+						div(class="field-box")
+							label(for="contact-form-email") Your e-mail
+							input(type="email" name="email" id="contact-form-email")
 
-					div(class="field-box")
-						label(for="contact-form-number") Your phone number
-						input(type="text" name="number" id="contact-form-number")
+						div(class="field-box")
+							label(for="contact-form-number") Your phone number
+							input(type="number" name="number" id="contact-form-number")
 
-					div(class="field-box")
-						label(for="contact-form-message") Your message
-						textarea(name="message" id="contact-form-message" rows="10" cols="29")
+						div(class="field-box")
+							label(for="contact-form-message") Your message
+							textarea(name="message" id="contact-form-message" rows="10" cols="29")
 
-					div(class="field-box button-cont")
-						input(type="submit" id="contact-form-submit" name="contact-form-submit" class="button" value="Submit")
+						div(class="field-box button-cont")
+							input(type="submit" id="contact-form-submit" name="contact-form-submit" class="button" value="Submit")
 
 	include footer.jade
 	|</body>

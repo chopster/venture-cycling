@@ -1,6 +1,5 @@
 script(async src='../javascript/jquery-1.11.3.min.js')
-script(async src='../javascript/jquery-slider.js')
-script(async src='../javascript/script.js')
+script(async src='../javascript/script.min.js')
 
 script.
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -11,9 +10,30 @@ script.
 	ga('create', 'UA-75016389-1', 'auto');
 	ga('send', 'pageview');
 footer
-	ul
-		li 
-			a(class="facebook icon-facebook" target="_blank" href='https://www.facebook.com/Venturecycling') Facebook
+	div(class="footer-container")
+		div(class="footer-content")
+			ul
+				li 
+					a(href='/contact' title="Contact Venture Cycling") Contact
+				li
+					a(href='/faqs' title="Frequently asked questions") Faqs
+				li
+					a(href='/about' title="About Venture Cycling") About
 				
-		li(class="copy")
-			<small>&copy; Copyright 2020, Venture Cycling</small>
+				li(class="facebook")
+					a(target="_blank" href='https://www.facebook.com/Venturecycling') 
+						img(alt="Facebook social media" src="../images/facebook-logo.svg")
+
+
+				li(class="copy")
+
+					<small>&copy; <script>document.write(new Date().getFullYear())</script> Venture Cycling</small>
+
+
+		
+			ul
+				li(class='creditation')
+					img(src="../images/bikeability.png" class="bikeability" alt="" width="90" height="108")
+		
+	
+		

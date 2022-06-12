@@ -1,0 +1,31 @@
+doctype html
+html(class="about" lang="en")
+	- var titleVar = "- About"
+	- var canonicalUrl = "about"
+
+	include head.jade
+	include body.jade
+	div(id="container")
+		include navigation.jade
+		main
+			div(class="main-content")
+				h2 About me
+
+				section
+					div(class="info")
+						p I am award winning cycle instructor and has helped hundreds of local children to take to two wheels with confidence, and control. I am committed to cycling for all, and works with children and adults of all ages and abilities, helping them to enjoy learning to cycle, or improve their cycling skills through an easy and fun step by step method.
+
+						p Lessons are offered on a 1:1 basis, or for siblings together, allowing me to structure lessons to meet individual needs and most trainee cyclists learn to ride in just one or two lessons. 
+
+						p I am also a qualified Ride Leader with British Cycling and lead Breeze cycle rides encouraging ladies to get out on their bikes, friendly social rides with coffee stops.
+
+						p I am fully insured, a member of CTC and British Cycling. I have successfully registered Venture Cycling with the Department of Transport as a Bikeability provider. I am CRB checked, trained and very experienced in supporting those with special educational needs and disabilities and hold a current First Aid certificate.
+
+						p Each lesson will start with a bike check, and as an experienced cycle mechanic I will ensure that your child's bike is safe to ride and set up correctly for them.
+
+					div(class="image")
+						img(src="../images/me.jpg" alt="Kelly Koya")
+
+
+	include footer.jade
+	|</body>

@@ -121,7 +121,8 @@ main {
   font-size: 1rem;
   max-width: 1140px;
   display: flex;
-  margin: 0 auto; }
+  margin: 0 auto;
+  min-height: 100vh; }
   main .main-content {
     padding: 20px;
     display: flex;
@@ -188,26 +189,25 @@ main {
     main .main-content p {
       line-height: 1.5rem;
       margin-bottom: 1rem; }
+      main .main-content p span.terms {
+        color: #008080; }
     main .main-content .pricing-structure {
       display: inline-block;
-      padding: 10px 0; }
+      padding: 10px 0;
+      width: 100%; }
       main .main-content .pricing-structure .lesson-type {
         width: 100%;
-        padding: 10px 0; }
+        padding: 10px 0 25px; }
         main .main-content .pricing-structure .lesson-type h4 {
           font-weight: bold;
           color: #008080;
           vertical-align: top;
-          width: 35%;
-          margin-right: 5%;
-          display: inline-block;
-          margin-top: 0px; }
+          margin: 0 0 5px; }
           main .main-content .pricing-structure .lesson-type h4 span {
             font-size: .9rem;
             color: #8c8e8e; }
         main .main-content .pricing-structure .lesson-type .prices {
-          display: inline-block;
-          width: 60%; }
+          display: inline-block; }
           main .main-content .pricing-structure .lesson-type .prices p {
             margin-bottom: 0px; }
 
@@ -303,10 +303,6 @@ blockquote {
     background: transparent url(../images/bg-list.png) no-repeat left 5px;
     padding: 5px 0 0 35px;
     line-height: 1.5rem; }
-
-@media (max-width: 768px) {
-  .bikebability .image {
-    margin: 0px !important; } }
 
 input[type=submit],
 input[type=button],
@@ -423,6 +419,9 @@ header {
             font-family: 'Lobster', cursive;
             margin: 30px 0;
             font-weight: normal; }
+            @media (max-width: 600px) {
+              header .header-container .header-content .logo a h1 {
+                font-size: 2.1rem; } }
             header .header-container .header-content .logo a h1 span {
               color: #008080; }
 

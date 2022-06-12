@@ -98,14 +98,8 @@ server.get('/faqs', function (req, res) {
 var transport = nodemailer.createTransport("SMTP", {
     service: 'gmail',
     auth: {
-      // XOAuth2: {
-      //   user: 'venturecycling@gmail.com',
-      //   clientId: '501911394985-mdfhlmue90pjtbhf7v1l5h9cjjns13ge.apps.googleusercontent.com',
-      //   clientSecret: '2tJtyTiM1CwERPDd_bW5Rpkh',
-      //   refreshToken: '1/FNp0XFG8rfjhbUrLIRKlUJubj7IWnnI-Mo6fs5CgGYM'
-      // }
       user: 'venturecycling@gmail.com',
-      pass: 'iwbhbetaiylszvqk'
+      pass: 'qxzinknjduspqigz'
     }
 });
 

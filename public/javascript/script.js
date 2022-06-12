@@ -87,14 +87,14 @@ $(document).ready(function(){
         overlayClose: false
       }
 
-      if(Modernizr.touch) {
-      	windowWidth = $(window).width();
-      	var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
+      if(('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) {
+        windowWidth = $(window).width();
+        var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
 
-      	colourBoxWidth = (windowWidth/zoomLevel) - 5;
-      	defaultValue.fixed = true;
-      	defaultValue.left = '15px'
-      	defaultValue.width = colourBoxWidth
+        colourBoxWidth = (windowWidth/zoomLevel) - 5;
+        defaultValue.fixed = true;
+        defaultValue.left = '15px';
+        defaultValue.width = colourBoxWidth;
       }
 
       $.colorbox(
@@ -115,7 +115,7 @@ $(document).ready(function(){
         } else {
           $('#booking-form-submit').prop('disabled', false);
         	ga('send', 'event', { eventCategory: 'Booking Form Error', eventAction: 'Booking Request Error', eventLabel: 'Booking Form Error'});
-        	$("#colorbox").find('.processing').text("Sorry an error occurred, please try again or contact please call on 07725360407");
+        	$("#colorbox").find('.processing').text("Sorry an error occurred, please try again or call on 07725360407");
           setTimeout(function(){
               $.colorbox.close();
           }, 3000);
@@ -185,14 +185,14 @@ $(document).ready(function(){
         overlayClose: false
       }
 
-      if(Modernizr.touch) {
-      	windowWidth = $(window).width();
-      	var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
+      if(('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) {
+        windowWidth = $(window).width();
+        var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
 
-      	colourBoxWidth = (windowWidth/zoomLevel) - 5;
-      	defaultValue.fixed = true;
-      	defaultValue.left = '15px'
-      	defaultValue.width = colourBoxWidth
+        colourBoxWidth = (windowWidth/zoomLevel) - 5;
+        defaultValue.fixed = true;
+        defaultValue.left = '15px';
+        defaultValue.width = colourBoxWidth;
       }
 
       $.colorbox(
@@ -208,9 +208,9 @@ $(document).ready(function(){
           $('#contact-form-submit').prop('disabled', false);
           $('#contact-form')[0].reset();
         } else {
-          $('#ontact-form-submit').prop('disabled', false);
+          $('#contact-form-submit').prop('disabled', false);
         	ga('send', 'event', { eventCategory: 'Contact Form Error', eventAction: 'Contact Request Error', eventLabel: 'Contact Form Error'});
-        	$("#colorbox").find('.processing').text("Sorry an error occurred, please try again or contact please call on 07725360407");
+        	$("#colorbox").find('.processing').text("Sorry an error occurred, please try again or please call on 07725360407");
           setTimeout(function(){
               $.colorbox.close();
           }, 3000);

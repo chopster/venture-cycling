@@ -56,7 +56,7 @@
 
 
 
-@media (max-width: $mediaIpadWidth) {
+@media (max-width: calc($mediaIpadWidth-1)) {
   #booking-form {
     width: 100%;
     .field-box {

@@ -76,7 +76,7 @@ header {
             ul {
               display: none;
               position: absolute;
-              @media (max-width: $mediaIpadWidth) {
+              @media (max-width: calc($mediaIpadWidth-1)) {
                 position: relative;
                 margin-left: 20px;
               }
@@ -167,7 +167,7 @@ header {
 
 
 /* Mobile overrides for header */
-@media (max-width: $mediaIpadWidth) {
+@media (max-width: calc($mediaIpadWidth-1)) {
 
   .nav-trigger {
     float: left;

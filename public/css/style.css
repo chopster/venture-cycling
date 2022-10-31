@@ -57,7 +57,9 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: 0 !important;
   padding: 0 !important;
-  font-size-adjust: 0.5; }
+  font-size-adjust: 0.5; 
+  display: flex;
+  flex-direction: column; }
 
 caption, th, td, input, textarea, select, option, legend, fieldset, h1, h2, h3, h4, h5, h6 {
   font-size-adjust: 0.5; }
@@ -65,6 +67,9 @@ caption, th, td, input, textarea, select, option, legend, fieldset, h1, h2, h3, 
 ul, ol, li, pre, form, body, html, p, blockquote, fieldset, input {
   margin: 0;
   padding: 0; }
+
+html {
+  height: 100% }
 
 a {
   text-decoration: none; }
@@ -121,8 +126,7 @@ main {
   font-size: 1rem;
   max-width: 1140px;
   display: flex;
-  margin: 0 auto;
-  min-height: 100vh; }
+  margin: 0 auto; }
   main .main-content {
     padding: 20px;
     display: flex;
@@ -134,7 +138,7 @@ main {
       flex-direction: column;
       flex-basis: 100%;
       flex: 0 100%; }
-      @media (max-width: 768px) {
+      @media (max-width: 767px) {
         main .main-content .info {
           margin-bottom: 20px; } }
       @media (min-width: 768px) {
@@ -233,7 +237,7 @@ blockquote {
   flex-basis: 100%;
   flex: 0 33%;
   margin-left: auto; }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .facebook-feed {
       flex: 0 100%;
       margin-top: 20px; } }
@@ -378,7 +382,7 @@ header {
               width: auto;
               background-color: #e1e1e1;
               z-index: 2; }
-              @media (max-width: 768px) {
+              @media (max-width: 767px) {
                 header .header-container .header-content nav .navbar li ul {
                   position: relative;
                   margin-left: 20px; } }
@@ -426,7 +430,7 @@ header {
               color: #008080; }
 
 /* Mobile overrides for header */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .nav-trigger {
     float: left;
     cursor: pointer;
@@ -513,7 +517,8 @@ header {
 /* Common footer styles */
 footer {
   background: #fff;
-  color: #707070; }
+  color: #707070; 
+  margin-top: auto; }
   footer .footer-container {
     display: flex;
     max-width: 1140px;
@@ -582,7 +587,7 @@ footer {
     margin-left: 10px;
     color: #ff0000; }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   #booking-form {
     width: 100%; }
     #booking-form .field-box {
